@@ -12,9 +12,22 @@ public class Ant : MonoBehaviour, IDamageable
 
     public ManagerUI managerUI;
 
+    Control _control;
+
+    private Rigidbody _rb;
+
+    void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+        _control = new Control(this);
+        //playerAudio = GetComponent<PlayerAudio>();
+        currentHealth = health;
+    }
+
     void Update()
     {
         transform.position += Vector3.forward * speed * Time.deltaTime;
+        _control.OnUpdate();
     }
 
     public void TakeDamage()
@@ -41,7 +54,10 @@ public class Ant : MonoBehaviour, IDamageable
             obj.Collect();
         }
 
-        /*if (other.gameObject.layer == 12)
-            TakeDamage();*/
+        if (other.gameObject.layer == 8)
+        {
+            TakeDamage();
+        } 
     }
+
 }
