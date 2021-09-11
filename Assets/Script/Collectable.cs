@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour, ICollectable
     public void Collect()
     {
         //audioSource.Play();
-        //ScoreManager.instance.ChangeScore(collectableValue);
+        ScoreManager.instance.ChangeScore(collectableValue);
         Destroy(gameObject);
     }
 }
