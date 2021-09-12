@@ -626,8 +626,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1170030072}
   - component: {fileID: 1170030071}
+  - component: {fileID: 1170030073}
   m_Layer: 0
-  m_Name: rant-04-01
+  m_Name: Rant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,11 +692,30 @@ Transform:
   m_GameObject: {fileID: 1170030070}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.3117578, y: 382.5959, z: 45.079292}
-  m_LocalScale: {x: 143.59363, y: 143.59363, z: 143.59363}
+  m_LocalScale: {x: 143.6, y: 143.6, z: 143.6}
   m_Children: []
   m_Father: {fileID: 158120886}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1170030073
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170030070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b28e212d3c25c944926a690a7a4fa48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1221678981
 GameObject:
   m_ObjectHideFlags: 0
