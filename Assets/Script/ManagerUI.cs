@@ -10,6 +10,7 @@ public class ManagerUI : MonoBehaviour
     public GameObject pausedMenu;
     public Image cameraShutDown;
     public float speedFade;
+    public AudioSource clickAudioSource;
 
     private void Start()
     {
@@ -20,6 +21,11 @@ public class ManagerUI : MonoBehaviour
     public void ChangeScore(int score)
     {
         text.text = "SCORE: " + score.ToString();
+    }
+
+    public void OnCliclkSound()
+    {
+        clickAudioSource.Play();
     }
 
     public void ActivePause()
@@ -41,7 +47,7 @@ public class ManagerUI : MonoBehaviour
     {
         Color fade = cameraShutDown.color;
         fade.a = 1;
-
+        
         while (cameraShutDown.color.a < 1)
         {
             Debug.Log("Entre al camerashutdown");

@@ -23,6 +23,7 @@ public class SceneTransitions : MonoBehaviour
 
     public void Play()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Picnic");
     }
 
