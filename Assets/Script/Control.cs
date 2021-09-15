@@ -23,6 +23,8 @@ public class Control
 
     void NormalControls()
     {
+        ant.managerUI.InactivePause();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Pausa");

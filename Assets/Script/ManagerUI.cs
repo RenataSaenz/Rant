@@ -37,13 +37,14 @@ public class ManagerUI : MonoBehaviour
         StartCoroutine(FadeActive());
     }
 
-    IEnumerator FadeActive()
+    public IEnumerator FadeActive()
     {
         Color fade = cameraShutDown.color;
         fade.a = 1;
 
         while (cameraShutDown.color.a < 1)
         {
+            Debug.Log("Entre al camerashutdown");
             cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
