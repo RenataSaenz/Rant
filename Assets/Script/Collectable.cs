@@ -6,11 +6,11 @@ using TMPro;
 public class Collectable : MonoBehaviour, ICollectable
 {
     public int collectableValue = 1;
-    //public AudioSource audioSource;
+    public AudioSource audioSource;
 
     public void Collect()
     {
-        //audioSource.Play();
+        audioSource.Play();
         ScoreManager.instance.ChangeScore(collectableValue);
         Destroy(gameObject);
     }
