@@ -8,10 +8,10 @@ public class Pool<T>
 
     private List<T> _uninstantiated = new List<T>();
     private Func<T> _create;
-    private Func<T, T> _turnOff;
-    private Func<T, T> _turnOn;
+    private Action<T> _turnOff;
+    private Action<T> _turnOn;
 
-    public Pool(Func<T> create, Func<T,T> turnOff, Func<T, T> turnOn, int amount)
+    public Pool(Func<T> create, Action<T> turnOff, Action<T> turnOn, int amount)
     {
         _create = create;   //guardo el objeto para poder volver a instanciarlo
 
@@ -24,20 +24,27 @@ public class Pool<T>
         }
     }
     public T Get() {
+        T obj;
+
         if (_uninstantiated.Count > 0)
         {
-            var element = _uninstantiated[0];
+            obj = _uninstantiated[0];
             _uninstantiated.RemoveAt(0);
-            return _turnOn(element);
+        }
+        else
+        {
+            obj = _create();
         }
 
-        var instance = _create();
-        return _turnOn(instance);
+        _turnOn(obj);
+        return obj;
     }
 
-    public void Return(T element)
+    public void ReturnToPool(T obj)
     {
-        _uninstantiated.Add(_turnOff(element));
+       // _uninstantiated.Add(_turnOff(obj));
+        _uninstantiated.Add(obj);
+        _turnOff(obj);
     }
 
 

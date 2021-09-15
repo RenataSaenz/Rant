@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class FoodManager : MonoBehaviour
 {
-    public GameObject foodPrefab;
-    //private FoodFactory _factory;
-  //  private IFactory<GameObject, GameObject> _factory = new FoodFactory();
+    public Food foodPrefab;
 
     private void Awake()
     {
-        var pool = new Pool<Food>(Create, 5);
-    }
+        FoodFactory _factory = new FoodFactory();
 
+        var pool = new Pool<Food>(Create, Food.TurnOff, Food.TurnOn, 5);
+
+    }
     private Food Create()
     {
-        PlaceFood();
+        return PlaceFood();
     }
 
     private void Update()
@@ -25,9 +25,11 @@ public class FoodManager : MonoBehaviour
             PlaceFood();
         }
     }
-    private void PlaceFood() {
+
+    private Food PlaceFood() {
         FoodFactory _factory = new FoodFactory();
-        var food = _factory.Create(foodPrefab);
+       var food = _factory.Create(foodPrefab);
+        return food;
     }
 
 }

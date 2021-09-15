@@ -10,13 +10,10 @@ public interface IFactory<T>
     T Create(T parameter);
 }
 
-public interface IFactory<T, P>
+
+public class FoodFactory : IFactory<Food>
 {
-    T Create(P parameter);
-}
-public class FoodFactory : IFactory<GameObject>
-{
-    public GameObject Create(GameObject foodPrefab)
+    public Food Create(Food foodPrefab)
     {
         var food = Object.Instantiate(foodPrefab);
         return food;

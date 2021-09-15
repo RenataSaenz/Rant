@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4eabadd78d01b44a77d38bd908558e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 5934954721353426268, guid: 0896b527046e63848bbf43ffa7c26504,
+  foodPrefab: {fileID: -2788317956537939803, guid: 0896b527046e63848bbf43ffa7c26504,
     type: 3}
 --- !u!4 &345959311
 Transform:
