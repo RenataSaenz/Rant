@@ -52,6 +52,10 @@ public class SoundManager : MonoBehaviour
     public enum Types
     {
         Damage,
+        ExtraLife,
+        PowerUp,
+        Dead,
+        Victory,
     }
     public void OnCliclkSound()
     {
