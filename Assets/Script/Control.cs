@@ -5,20 +5,31 @@ using System;
 
 public class Control 
 {
+    Movement _movement;
     private Ant ant;
+    private Vector3 _movementInput;
     
 
     Action controlsMethod;
 
-    public Control(Ant controller)
+    public Control(Ant controller, Movement m)
     {
+        _movement = m;
         ant = controller;
         controlsMethod = NormalControls;
     }
 
     public void OnUpdate()
     {
+        _movementInput.x = Input.GetAxis("Horizontal");
+        _movementInput.y = Input.GetAxis("Vertical");
+
         controlsMethod();
+
+        if (_movementInput.x != 0)
+            _movement.Move( _movementInput.x);
+        if (_movementInput.y >= 1)
+            _movement.Jump();
     }
 
     void NormalControls()
