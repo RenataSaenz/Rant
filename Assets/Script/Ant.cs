@@ -4,29 +4,43 @@ using UnityEngine;
 
 public class Ant : MonoBehaviour, IDamageable
 {
-    public float speed;
+    
     public bool isDead;
     public int health = 1;
     private int currentHealth;
     public float dieTimer;
 
+    [SerializeField]
+    private float _speed;
+    [SerializeField]
+    private float _swipeSpeed;
+    [SerializeField]
+    private float _jumpForce;
+    [SerializeField]
+    private Transform _camTransform;
+    [SerializeField]
+    private ForceMode jumpForceMode = ForceMode.Force;
+
     public ManagerUI managerUI;
 
     Control _control;
+    Movement _movement;
 
     private Rigidbody _rb;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _control = new Control(this);
+
+        _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb, _camTransform);
+        _control = new Control(this, _movement);
         //playerAudio = GetComponent<PlayerAudio>();
         currentHealth = health;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        transform.position += Vector3.forward * _speed * Time.deltaTime;
         _control.OnUpdate();
     }
 
@@ -36,7 +50,7 @@ public class Ant : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            speed = 0;
+            _speed = 0;
             isDead = true;
             //animator.SetTrigger(deathTriggerName);
             //playerAudio.deathSound.Play();
