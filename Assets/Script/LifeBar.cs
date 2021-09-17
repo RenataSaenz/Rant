@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MoodBar : MonoBehaviour
+public class LifeBar : MonoBehaviour
 {
 
     float _lerpSpeed;
     float _lifes;
     float _maxLife;
     public Image lifeBar;
-    public Text lifeText;
+    //public Text lifeText;
     LifeManager _lifeManager;
 
     public void Awake()
@@ -22,8 +22,8 @@ public class MoodBar : MonoBehaviour
         _maxLife = _lifeManager.maxLife;
         _lifes = _lifeManager.life;
         MoodBarFiller();
-        ColorChanger();
-        Text();
+        //ColorChanger();
+        //Text();
     }
     public void MoodBarFiller()
     {
@@ -32,11 +32,11 @@ public class MoodBar : MonoBehaviour
     }
     public void ColorChanger()
     {
-        Color moodColor = Color.Lerp(Color.black, Color.white, (_lifes / _maxLife));
+        Color moodColor = Color.Lerp(Color.black, Color.red, (_lifes / _maxLife));
         lifeBar.color = moodColor;
     }
     public void Text()
     {
-        lifeText.text = "Life: " + _lifes + "%";
+       // lifeText.text = "Life: " + _lifes + "%";
     }
 }
