@@ -12,6 +12,9 @@ public class ManagerUI : MonoBehaviour
     public float speedFade;
     public AudioSource clickAudioSource;
     private int _totalScore;
+    
+    public Animator fadeOnAnimator;
+    public Ant ant;
 
     [Header("Stars")]
     [SerializeField]
@@ -23,6 +26,8 @@ public class ManagerUI : MonoBehaviour
     [SerializeField]
     private Image _star3 = null;
 
+
+ 
     private void Start()
     {
         if (_star1 != null)
@@ -34,8 +39,11 @@ public class ManagerUI : MonoBehaviour
         }
 
         EventManager.Subscribe("GameOver", FadeOn);
+
+        fadeOnAnimator.SetBool("FadeOnActive", true);
         if (cameraShutDown !=null)
             cameraShutDown.canvasRenderer.SetAlpha(0f);
+
     }
 
     public void ChangeScore(int score)
@@ -60,21 +68,16 @@ public class ManagerUI : MonoBehaviour
 
     public void FadeOn(params object[] parameters)
     {
-        StartCoroutine(FadeActive());
+        //fadeOnAnimator.SetBool("FadeOnActive", true);
+        Debug.Log("Entre");
+
     }
 
-    public IEnumerator FadeActive()
+    /*public IEnumerator FadeActive()
     {
-        Color fade = cameraShutDown.color;
-        fade.a = 1;
-        
-        while (cameraShutDown.color.a < 1)
-        {
-            Debug.Log("Entre al camerashutdown");
-            cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
-    }
+        yield return new WaitForSeconds(ant.dieTimer);
+        fadeOnAnimator.SetTrigger("FadeOn");
+    }*/
 
     public void StarsSet()
     {
