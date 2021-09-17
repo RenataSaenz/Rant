@@ -30,6 +30,8 @@ public class Ant : MonoBehaviour, IDamageable
 
     void Awake()
     {
+        EventManager.Subscribe("GameOver", Dead);
+
         _rb = GetComponent<Rigidbody>();
 
         _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb, _camTransform);
@@ -42,6 +44,12 @@ public class Ant : MonoBehaviour, IDamageable
     {
         transform.position += Vector3.forward * _speed * Time.deltaTime;
         _control.OnUpdate();
+    }
+
+    public void Dead(params object[] parameters)
+    {
+        _speed = 0;
+        isDead = true;
     }
 
     public void TakeDamage()

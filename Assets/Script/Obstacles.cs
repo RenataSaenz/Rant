@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int damage;
+    private int _counter = 1;
+    void OnCollisionEnter(Collision col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Check to see if the Collider's name is "Chest"
+        if (col.collider.tag == "Player" && _counter == 1 )
+        {
+            EventManager.Trigger("SubtractLife", damage);
+            _counter--;
+        }
     }
 }
