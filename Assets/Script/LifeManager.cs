@@ -7,11 +7,12 @@ public class LifeManager : MonoBehaviour
 {
     #region Variables
 
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public float life;
 
     public float maxLife;
     public float minLife;
+    public float dieTimer = 3;
 
     #endregion
 
@@ -22,14 +23,15 @@ public class LifeManager : MonoBehaviour
     public void Start()
     {
         EventManager.Subscribe("AddLife", AddLife);
-        EventManager.Subscribe("SubtractLife", SubtractLife);
+        EventManager.Subscribe("SubtractLife", SubtractLife1);
         EventManager.Subscribe("ResetLife", ResetLife);
     }
-    public void AddLife(params object[] n1)
+    public void AddLife(params object[] parameters)
     {
-        life += (int)n1[0];
+        life += (int)parameters[0];
         if (life > maxLife)
             life = maxLife;
+        
     }
 
     public void ResetLife(params object[] parameters)
@@ -38,13 +40,21 @@ public class LifeManager : MonoBehaviour
     }
 
 
-    public void SubtractLife(params object[] n1)
+    public void SubtractLife1(params object[] parameters)
     {
-        life -= (int)n1[0];
+        life -= (int)parameters[0];
         SoundManager.instance.Play(SoundManager.Types.Damage);
-        Debug.Log("life");
         if (life < minLife)
-            life = minLife;
+        {
+            Dead();
+        } 
+    }
+
+    public void Dead()
+    {
+        EventManager.Trigger("GameOver", dieTimer);
+        SoundManager.instance.Play(SoundManager.Types.Dead);
+        life = minLife;
     }
 
     /// <summary>
