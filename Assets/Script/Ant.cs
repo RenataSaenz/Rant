@@ -8,7 +8,6 @@ public class Ant : MonoBehaviour, IDamageable
     public bool isDead;
     public int health = 1;
     private int currentHealth;
-    public float dieTimer;
 
     [SerializeField]
     private float _speed;
@@ -62,7 +61,7 @@ public class Ant : MonoBehaviour, IDamageable
             isDead = true;
             //animator.SetTrigger(deathTriggerName);
             //playerAudio.deathSound.Play();
-            EventManager.Trigger("GameOver", dieTimer);
+            EventManager.Trigger("GameOver");
             
         }
     }

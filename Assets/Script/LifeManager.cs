@@ -12,7 +12,6 @@ public class LifeManager : MonoBehaviour
 
     public float maxLife;
     public float minLife;
-    public float dieTimer = 3;
 
     #endregion
 
@@ -52,7 +51,7 @@ public class LifeManager : MonoBehaviour
 
     public void Dead()
     {
-        EventManager.Trigger("GameOver", dieTimer);
+        EventManager.Trigger("GameOver");
         SoundManager.instance.Play(SoundManager.Types.Dead);
         life = minLife;
     }
