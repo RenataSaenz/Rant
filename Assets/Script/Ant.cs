@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ant : MonoBehaviour, IDamageable
+public class Ant : MonoBehaviour
 {
     
     public bool isDead;
@@ -50,21 +50,7 @@ public class Ant : MonoBehaviour, IDamageable
     {
         _speed = 0;
         isDead = true;
-    }
-
-    public void TakeDamage()
-    {
-        currentHealth--;
-
-        if (currentHealth <= 0)
-        {
-            _speed = 0;
-            isDead = true;
-            //animator.SetTrigger(deathTriggerName);
-            //playerAudio.deathSound.Play();
-            EventManager.Trigger("GameOver", dieTimer);
-            
-        }
+        EventManager.Trigger("GameOver", dieTimer);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -76,10 +62,10 @@ public class Ant : MonoBehaviour, IDamageable
             obj.Collect();
         }
 
-        if (other.gameObject.layer == 8)
+        /*if (other.gameObject.layer == 8)
         {
             TakeDamage();
-        } 
+        } */
     }
 
 }
