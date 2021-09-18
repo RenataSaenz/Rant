@@ -16,12 +16,19 @@ public class ScoreManager : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void ChangeScore(int collectableValue)
     {
         score += collectableValue;
         managerUI.ChangeScore(score);
-
     }
+
 }

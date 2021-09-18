@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ant : MonoBehaviour
+public class Ant : MonoBehaviour, IDamageable
 {
     
     public bool isDead;
     public int health = 1;
     private int currentHealth;
-    public float dieTimer;
 
     [SerializeField]
     private float _speed;
@@ -50,7 +49,21 @@ public class Ant : MonoBehaviour
     {
         _speed = 0;
         isDead = true;
-        EventManager.Trigger("GameOver", dieTimer);
+    }
+
+    public void TakeDamage()
+    {
+        currentHealth--;
+
+        if (currentHealth <= 0)
+        {
+            _speed = 0;
+            isDead = true;
+            //animator.SetTrigger(deathTriggerName);
+            //playerAudio.deathSound.Play();
+            EventManager.Trigger("GameOver");
+            
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,10 +75,10 @@ public class Ant : MonoBehaviour
             obj.Collect();
         }
 
-        /*if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8)
         {
             TakeDamage();
-        } */
+        } 
     }
 
 }
