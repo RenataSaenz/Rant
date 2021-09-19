@@ -13,7 +13,6 @@ public class ManagerUI : MonoBehaviour
     public AudioSource clickAudioSource;
     private int _totalScore;
     
-    public Animator fadeOnAnimator;
     public Ant ant;
 
     [Header("Stars")]
@@ -40,7 +39,6 @@ public class ManagerUI : MonoBehaviour
 
         EventManager.Subscribe("GameOver", FadeOn);
 
-        fadeOnAnimator.SetBool("FadeOnActive", true);
         if (cameraShutDown !=null)
             cameraShutDown.canvasRenderer.SetAlpha(0f);
 
@@ -68,16 +66,20 @@ public class ManagerUI : MonoBehaviour
 
     public void FadeOn(params object[] parameters)
     {
-        //fadeOnAnimator.SetBool("FadeOnActive", true);
-        Debug.Log("Entre");
-
+        StartCoroutine(FadeActive());
     }
 
-    /*public IEnumerator FadeActive()
+    IEnumerator FadeActive()
     {
-        yield return new WaitForSeconds(ant.dieTimer);
-        fadeOnAnimator.SetTrigger("FadeOn");
-    }*/
+        Color fade = cameraShutDown.color;
+        fade.a = 1;
+
+        while (cameraShutDown.color.a < 1)
+        {
+            cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     public void StarsSet()
     {
