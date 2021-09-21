@@ -6,7 +6,6 @@ public class Ant : MonoBehaviour, IDamageable
 {
     
     public bool isDead;
-    public int health = 1;
     private int currentHealth;
     public float dieTimer;
 
@@ -37,7 +36,6 @@ public class Ant : MonoBehaviour, IDamageable
         _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb, _camTransform);
         _control = new Control(this, _movement);
         //playerAudio = GetComponent<PlayerAudio>();
-        currentHealth = health;
     }
 
     void FixedUpdate()

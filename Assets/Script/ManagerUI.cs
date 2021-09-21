@@ -16,8 +16,15 @@ public class ManagerUI : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("GameOver", FadeOn);
+<<<<<<< Updated upstream
         fadeOnAnimator.SetBool("FadeOnActive", true);
         //cameraShutDown.canvasRenderer.SetAlpha(0f);
+=======
+
+        if (cameraShutDown != null)
+            cameraShutDown.color = new Color(cameraShutDown.color.r, cameraShutDown.color.g, cameraShutDown.color.b, 0);
+
+>>>>>>> Stashed changes
     }
 
     public void ChangeScore(int score)
