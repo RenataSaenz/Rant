@@ -5,14 +5,35 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     private int _counter = 1;
-    void OnCollisionEnter(Collision col)
+
+    [SerializeField]
+    private ParticleSystem _slowParticles;
+    [SerializeField]
+    private ParticleSystem _fastParticles;
+
+    void OnTriggerEnter(Collider collision)
     {
-        //Check to see if the Collider's name is "Chest"
-        if (col.collider.tag == "Player" && _counter == 1)
+        if (this.tag == "FasterPowerUp")
         {
-            
-            EventManager.Trigger("FasterPowerUp");
-            _counter--;
+            if (collision.tag == "Player" && _counter == 1)
+            {   
+                _counter--;
+                SoundManager.instance.Play(SoundManager.Types.PowerUp);
+                Instantiate(_fastParticles, transform.position, transform.rotation);
+                this.gameObject.SetActive(false);
+            }
+        }
+        else if (this.tag == "SlowerPowerUp")
+        {
+            if (collision.tag == "Player" && _counter == 1)
+            {
+                _counter--;
+                SoundManager.instance.Play(SoundManager.Types.PowerUp);
+                Instantiate(_slowParticles, transform.position, transform.rotation);
+                this.gameObject.SetActive(false);
+            }
         }
     }
+
+    
 }
