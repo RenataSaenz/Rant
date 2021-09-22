@@ -12,12 +12,9 @@ public class SceneTransitions : MonoBehaviour
 
     public void YouLost(params object[] parameters)
     {
-<<<<<<< Updated upstream
-        StartCoroutine(WaitForLoadScene((float)parameters[0]));
+        //StartCoroutine(WaitForLoadScene((float)parameters[0]));
 
-=======
         StartCoroutine(WaitForLoadScene(2));
->>>>>>> Stashed changes
     }
     IEnumerator WaitForLoadScene(float time)
     {

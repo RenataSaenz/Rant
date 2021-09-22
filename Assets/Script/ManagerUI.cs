@@ -9,22 +9,15 @@ public class ManagerUI : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject pausedMenu;
     public Image cameraShutDown;
-    //public float speedFade;
+    public float speedFade;
     public AudioSource clickAudioSource;
-    public Animator fadeOnAnimator;
-    public Ant ant;
     private void Start()
     {
         EventManager.Subscribe("GameOver", FadeOn);
-<<<<<<< Updated upstream
-        fadeOnAnimator.SetBool("FadeOnActive", true);
-        //cameraShutDown.canvasRenderer.SetAlpha(0f);
-=======
 
         if (cameraShutDown != null)
             cameraShutDown.color = new Color(cameraShutDown.color.r, cameraShutDown.color.g, cameraShutDown.color.b, 0);
 
->>>>>>> Stashed changes
     }
 
     public void ChangeScore(int score)
@@ -49,15 +42,19 @@ public class ManagerUI : MonoBehaviour
 
     public void FadeOn(params object[] parameters)
     {
-        //fadeOnAnimator.SetBool("FadeOnActive", true);
-        Debug.Log("Entre");
-
+        StartCoroutine(FadeActive());
     }
 
-    /*public IEnumerator FadeActive()
+    public IEnumerator FadeActive()
     {
-        yield return new WaitForSeconds(ant.dieTimer);
-        fadeOnAnimator.SetTrigger("FadeOn");
-    }*/
+        Color fade = cameraShutDown.color;
+        fade.a = 1;
+
+        while (cameraShutDown.color.a < 1)
+        {
+            cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 }
