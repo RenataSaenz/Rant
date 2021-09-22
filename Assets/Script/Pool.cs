@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Pool<T>
 {
-
     private List<T> _uninstantiated = new List<T>();
     private Func<T> _create;
     private Action<T> _turnOff;
@@ -23,6 +22,7 @@ public class Pool<T>
             _uninstantiated.Add(element);
         }
     }
+    
     public T Get() {
         T obj;
 
@@ -39,13 +39,11 @@ public class Pool<T>
         _turnOn(obj);
         return obj;
     }
-
+     
     public void ReturnToPool(T obj)
     {
        // _uninstantiated.Add(_turnOff(obj));
         _uninstantiated.Add(obj);
         _turnOff(obj);
     }
-
-
 }
