@@ -6,7 +6,6 @@ public class Ant : MonoBehaviour
 {
     
     public bool isDead;
-    public int health = 1;
     private int currentHealth;
 
     [SerializeField]
@@ -36,7 +35,6 @@ public class Ant : MonoBehaviour
         _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb, _camTransform);
         _control = new Control(this, _movement);
         //playerAudio = GetComponent<PlayerAudio>();
-        currentHealth = health;
     }
 
     void FixedUpdate()

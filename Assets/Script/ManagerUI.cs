@@ -8,40 +8,23 @@ public class ManagerUI : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public GameObject pausedMenu;
-    public Image cameraShutDown = null;
-    public float speedFade;
+    public Image cameraShutDown;
+    //public float speedFade;
     public AudioSource clickAudioSource;
-    private int _totalScore;
-    
+    public Animator fadeOnAnimator;
     public Ant ant;
-
-    [Header("Stars")]
-    [SerializeField]
-    private Image _star0 = null;
-    [SerializeField]
-    private Image _star1 = null;
-    [SerializeField]
-    private Image _star2 = null;
-    [SerializeField]
-    private Image _star3 = null;
-
-
- 
     private void Start()
     {
-        if (_star1 != null)
-        {
-            _star0.enabled = false;
-            _star1.enabled = false;
-            _star2.enabled = false;
-            _star3.enabled = false;
-        }
-
         EventManager.Subscribe("GameOver", FadeOn);
+<<<<<<< Updated upstream
+        fadeOnAnimator.SetBool("FadeOnActive", true);
+        //cameraShutDown.canvasRenderer.SetAlpha(0f);
+=======
 
-        if (cameraShutDown !=null)
-            cameraShutDown.canvasRenderer.SetAlpha(0f);
+        if (cameraShutDown != null)
+            cameraShutDown.color = new Color(cameraShutDown.color.r, cameraShutDown.color.g, cameraShutDown.color.b, 0);
 
+>>>>>>> Stashed changes
     }
 
     public void ChangeScore(int score)
@@ -66,42 +49,15 @@ public class ManagerUI : MonoBehaviour
 
     public void FadeOn(params object[] parameters)
     {
-        StartCoroutine(FadeActive());
+        //fadeOnAnimator.SetBool("FadeOnActive", true);
+        Debug.Log("Entre");
+
     }
 
-    IEnumerator FadeActive()
+    /*public IEnumerator FadeActive()
     {
-        Color fade = cameraShutDown.color;
-        fade.a = 1;
-
-        while (cameraShutDown.color.a < 1)
-        {
-            cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    public void StarsSet()
-    {
-        while (_star1 != null)
-        {
-            if (_totalScore <= 0)
-            {
-                _star0.enabled = true;
-            }
-            else if (_totalScore <= 10)
-            {
-                _star1.enabled = true;
-            }
-            else if (_totalScore <= 20)
-            {
-                _star2.enabled = true;
-            }
-            else if (_totalScore > 20)
-            {
-                _star3.enabled = true;
-            }
-        }
-    }
+        yield return new WaitForSeconds(ant.dieTimer);
+        fadeOnAnimator.SetTrigger("FadeOn");
+    }*/
 
 }
