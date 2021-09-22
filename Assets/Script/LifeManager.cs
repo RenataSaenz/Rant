@@ -21,11 +21,11 @@ public class LifeManager : MonoBehaviour
     }
     public void Start()
     {
-        EventManager.Subscribe("AddLife", AddLife);
-        EventManager.Subscribe("SubtractLife", SubtractLife1);
-        EventManager.Subscribe("ResetLife", ResetLife);
+        EventManager.Subscribe("AddLife", AddLifeFunc);
+        EventManager.Subscribe("SubtractLife", SubtractLifeFunc);
+        EventManager.Subscribe("ResetLife", ResetLifeFunc);
     }
-    public void AddLife(params object[] parameters)
+    public void AddLifeFunc(params object[] parameters)
     {
         life += (int)parameters[0];
         if (life > maxLife)
@@ -33,13 +33,13 @@ public class LifeManager : MonoBehaviour
         
     }
 
-    public void ResetLife(params object[] parameters)
+    public void ResetLifeFunc(params object[] parameters)
     {
         life = maxLife;
     }
 
 
-    public void SubtractLife1(params object[] parameters)
+    public void SubtractLifeFunc(params object[] parameters)
     {
         life -= (int)parameters[0];
         SoundManager.instance.Play(SoundManager.Types.Damage);
