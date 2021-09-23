@@ -8,8 +8,7 @@ public class Ant : MonoBehaviour
     public bool isDead;
     private int currentHealth;
 
-    [SerializeField]
-    private float _speed;
+    public float _speed;
     [SerializeField]
     private float _swipeSpeed;
     [SerializeField]
