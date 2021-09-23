@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    public Floor[] floors;
-    public int floorIndex = 0;
+    public Floor floor;
     [SerializeField]
     private GameObject _player;
 
@@ -18,29 +17,30 @@ public class FloorManager : MonoBehaviour
     private void Update()
     {
         FloorUpdate();
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlaceFloor();
         }
     }
     private void FloorUpdate()
-    {   //(Vector3.Distance(floors[floorIndex].transform.position, transform.position) < 0.1f)
-       
-        if (floors[floorIndex].transform.position.z <= -10)
-        {
-            floorIndex++;
-            PlaceFloor();
-        }
+    {
+        bool _spawnFloor = Floor.spawnFloor;
+
+         if (_spawnFloor == true)
+         {
+             PlaceFloor();
+            Floor.spawnFloor = false;
+         }
     }
-    private Floor PlaceFloor()
+    public Floor PlaceFloor()
     {
         FloorFactory _factory = new FloorFactory();
-        var floor = _factory.Create(floors[floorIndex]);
-        return floor;
+        var floorObj = _factory.Create(floor);
+        return floorObj;
     }
     private Floor Create()
     {
         return PlaceFloor();
     }
+
 }

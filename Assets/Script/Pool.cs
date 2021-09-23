@@ -10,40 +10,41 @@ public class Pool<T>
     private Action<T> _turnOff;
     private Action<T> _turnOn;
 
+
     public Pool(Func<T> create, Action<T> turnOff, Action<T> turnOn, int amount)
     {
-        _create = create;   //guardo el objeto para poder volver a instanciarlo
-
+        _create = create;
         _turnOff = turnOff;
         _turnOn = turnOn;
 
-        for (var i = 0; i< amount; i++)
-        {   var element = create();
+        for (var i = 0; i < amount; i++)
+        {
+            var element = _create();
             _uninstantiated.Add(element);
+            //_uninstantiated.Add(_turnOff(element));
         }
-    }
-    
-    public T Get() {
-        T obj;
 
+    }
+
+    public T Get()
+    {
         if (_uninstantiated.Count > 0)
         {
-            obj = _uninstantiated[0];
+            var element = _uninstantiated[0];
             _uninstantiated.RemoveAt(0);
-        }
-        else
-        {
-            obj = _create();
+            _turnOn(element);
+            return element;
         }
 
-        _turnOn(obj);
-        return obj;
+        var instance = _create();
+        _turnOn(instance);
+        return instance;
     }
-     
-    public void ReturnToPool(T obj)
+
+    public void Return(T element)
     {
-       // _uninstantiated.Add(_turnOff(obj));
-        _uninstantiated.Add(obj);
-        _turnOff(obj);
+        _uninstantiated.Add(element);
+        _turnOff(element);
     }
+
 }
