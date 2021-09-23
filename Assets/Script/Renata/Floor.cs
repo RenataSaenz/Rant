@@ -6,7 +6,11 @@ public class Floor : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5f;
+    private Pool<Floor> _pool;
+    public Floor floor;
 
+    public static bool spawnFloor = false;
+    private int _counter = 1;
     private void Awake()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -15,6 +19,17 @@ public class Floor : MonoBehaviour
     private void Update()
     {
         transform.position += -transform.forward * speed * Time.deltaTime;
+
+        if (transform.position.z <= -5 && _counter == 1)
+        {
+            spawnFloor = true;
+            _counter--;
+        }
+        
+        if (transform.position.z <= -10)
+        {
+            //_pool.Return(floor);
+        }
     }
     public static void TurnOff(Floor floor)
     {
@@ -25,6 +40,5 @@ public class Floor : MonoBehaviour
     {
         floor.gameObject.SetActive(true);
     }
-
 
 }
