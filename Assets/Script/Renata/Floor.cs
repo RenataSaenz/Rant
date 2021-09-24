@@ -28,7 +28,7 @@ public class Floor : MonoBehaviour
         
         if (transform.position.z <= -10)
         {
-            //_pool.Return(floor);
+            _pool.Return(floor);
         }
     }
     public static void TurnOff(Floor floor)
@@ -39,6 +39,12 @@ public class Floor : MonoBehaviour
     public static void TurnOn(Floor floor)
     {
         floor.gameObject.SetActive(true);
+    }
+
+    public void InitialFloor(Pool<Floor> pool)
+    {
+        _pool = pool;
+        floor = pool.Get();
     }
 
 }

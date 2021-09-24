@@ -10,7 +10,6 @@ public class Pool<T>
     private Action<T> _turnOff;
     private Action<T> _turnOn;
 
-
     public Pool(Func<T> create, Action<T> turnOff, Action<T> turnOn, int amount)
     {
         _create = create;
@@ -23,7 +22,6 @@ public class Pool<T>
             _uninstantiated.Add(element);
             //_uninstantiated.Add(_turnOff(element));
         }
-
     }
 
     public T Get()
