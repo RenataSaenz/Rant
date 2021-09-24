@@ -7,11 +7,12 @@ public class FloorManager : MonoBehaviour
     public Floor floor;
     [SerializeField]
     private GameObject _player;
+    public Pool<Floor> pool;
 
     private void Awake()
     {
         FloorFactory _factory = new FloorFactory();
-        var pool = new Pool<Floor>(Create, Floor.TurnOff, Floor.TurnOn, 1);
+        pool = new Pool<Floor>(Create, Floor.TurnOff, Floor.TurnOn, 1);
     }
 
     private void Update()
@@ -28,7 +29,8 @@ public class FloorManager : MonoBehaviour
 
          if (_spawnFloor == true)
          {
-             PlaceFloor();
+            pool.Get();
+            floor.InitialFloor(pool);
             Floor.spawnFloor = false;
          }
     }
@@ -38,9 +40,9 @@ public class FloorManager : MonoBehaviour
         var floorObj = _factory.Create(floor);
         return floorObj;
     }
-    private Floor Create()
+    public Floor Create()
     {
         return PlaceFloor();
     }
-
+   
 }
