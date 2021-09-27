@@ -8,19 +8,18 @@ public class Heart : MonoBehaviour
 
     [SerializeField]
     private ParticleSystem _slowParticles;
-    //private int _counter = 1;
     [SerializeField]
     private int _addLife = 10;
 
     void OnTriggerEnter(Collider trig)
     {
-        //Check to see if the Collider's name is "Chest"
-        if (trig.tag == "Player")
+        var damageable = trig.GetComponent<IDamageable>();
+        if (damageable != null)
         {
             SoundManager.instance.Play(SoundManager.Types.ExtraLife);
             heartObj.SetActive(false);
             Instantiate(_slowParticles, transform.position, transform.rotation);
-            EventManager.Trigger("AddLife", _addLife);
+            damageable.AddLifeFunc(_addLife);
         }
     }
 }

@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 6794056030255190573}
   - component: {fileID: 3842818342098188857}
   - component: {fileID: 3842818342098188853}
-  - component: {fileID: 3842818342098188856}
+  - component: {fileID: 4313773725746325705}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -4867,7 +4867,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3842818342098188856
+--- !u!114 &4313773725746325705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4876,8 +4876,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5077109265750304497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd66f9496d250db40a022990e63862c0, type: 3}
+  m_Script: {fileID: 11500000, guid: d7c3f1fa71b1c22499098660c03948fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heartObj: {fileID: 5077109265750304497}
+  _slowParticles: {fileID: 4927758430890295417, guid: 348a0b09b2d51c545ad949f38b84e094,
+    type: 3}
   _addLife: 10
