@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    public Transform initialPos; //utilizar para pasar el valor 0 del position
+    //public Transform initialPos; //utilizar para pasar el valor 0 del position
+    public int initialPosZ = 0;
 
     public Floor prefab;
     [SerializeField]
@@ -24,7 +25,7 @@ public class FloorManager : MonoBehaviour
 
     public void NewFloor()
     {
-        pool.Get().InitialFloor(this); //aca pasar initialPos.position, luego de this
+        pool.Get().InitialFloor(this, initialPosZ); //aca pasar initialPos.position, luego de this
     }
 
     public void ReturnFloor (Floor floor)

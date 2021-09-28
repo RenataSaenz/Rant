@@ -24,7 +24,7 @@ public class Bee : MonoBehaviour
     [SerializeField]
     private float _nextAttack = 5;
 
-    float m_MaxDistance = 12;
+    float m_MaxDistance = 6;
     bool m_HitDetect;
     public Collider m_Collider;
     RaycastHit m_Hit;
