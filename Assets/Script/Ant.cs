@@ -55,9 +55,11 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     }
 
 
-    private void OnCollisionEnter(Collider col)
+
+    void OnCollisionEnter(Collision collision)
     {
-        var collectable = col.GetComponent<ICollectable>();
+        var collectable = collision.gameObject.GetComponent<ICollectable>();
+
         if (collectable != null)
         {
             if (isDead == false & collectable != null)
