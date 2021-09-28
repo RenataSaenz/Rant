@@ -1,36 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Floor : MonoBehaviour
 {
+    private FloorManager manager;
     [SerializeField]
     private float speed = 5f;
-    private Pool<Floor> _pool;
-    public Floor floor;
+    int minDist = -20;
+    Action _ArtificialFloor;
 
-    public static bool spawnFloor = false;
-    private int _counter = 1;
     private void Awake()
     {
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = Vector3.zero;
+        _ArtificialFloor = NewFloor;
     }
 
     private void Update()
     {
         transform.position += -transform.forward * speed * Time.deltaTime;
 
-        if (transform.position.z <= -5 && _counter == 1)
+        if (transform.position.z <= minDist)
         {
-            spawnFloor = true;
-            _counter--;
-        }
-        
-        if (transform.position.z <= -10)
-        {
-            _pool.Return(floor);
+            //ReturnFloor();
+            _ArtificialFloor();
         }
     }
+
+    void NewFloor()
+    {
+        manager.NewFloor();
+        minDist = -80;
+        _ArtificialFloor = ReturnFloor;
+    }
+
+    void ReturnFloor()
+    {
+        manager.ReturnFloor(this);
+        minDist = -20;
+    }
+
     public static void TurnOff(Floor floor)
     {
         floor.gameObject.SetActive(false);
@@ -41,10 +51,13 @@ public class Floor : MonoBehaviour
         floor.gameObject.SetActive(true);
     }
 
-    public void InitialFloor(Pool<Floor> pool)
+    public void InitialFloor(FloorManager f)
     {
-        _pool = pool;
-        floor = pool.Get();
+        manager = f;
+        transform.position = Vector3.zero; // pasar la posicion por parametro
+        _ArtificialFloor = NewFloor;
+        minDist = -20;
+        
     }
 
 }

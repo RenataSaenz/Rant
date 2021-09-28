@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FloorManager : MonoBehaviour
 {
-    public Floor floor;
+    public Transform initialPos; //utilizar para pasar el valor 0 del position
+
+    public Floor prefab;
     [SerializeField]
     private GameObject _player;
     public Pool<Floor> pool;
@@ -15,34 +17,23 @@ public class FloorManager : MonoBehaviour
         pool = new Pool<Floor>(Create, Floor.TurnOff, Floor.TurnOn, 1);
     }
 
-    private void Update()
+    private void Start()
     {
-        FloorUpdate();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaceFloor();
-        }
+        NewFloor();
     }
-    private void FloorUpdate()
-    {
-        bool _spawnFloor = Floor.spawnFloor;
 
-         if (_spawnFloor == true)
-         {
-            pool.Get();
-            floor.InitialFloor(pool);
-            Floor.spawnFloor = false;
-         }
-    }
-    public Floor PlaceFloor()
+    public void NewFloor()
     {
-        FloorFactory _factory = new FloorFactory();
-        var floorObj = _factory.Create(floor);
-        return floorObj;
+        pool.Get().InitialFloor(this); //aca pasar initialPos.position, luego de this
+    }
+
+    public void ReturnFloor (Floor floor)
+    {
+        pool.Return(floor);
     }
     public Floor Create()
     {
-        return PlaceFloor();
+        return Instantiate(prefab);
     }
    
 }

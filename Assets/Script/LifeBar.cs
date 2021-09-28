@@ -1,42 +1,39 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class LifeBar : MonoBehaviour
+public class LifeBar : MonoBehaviour, IObserver
 {
-
     float _lerpSpeed;
-    float _lifes;
-    float _maxLife;
     public Image lifeBar;
-    //public Text lifeText;
-    LifeManager _lifeManager;
+    IObservable _playerToCopy;
+    public Ant ant;
 
-    public void Awake()
+    private void Start()
     {
-        _lifeManager = GameObject.Find("LifeManager").GetComponent<LifeManager>();
+        _playerToCopy = ant;
+        _playerToCopy.Subscribe(this);
+        
     }
-
- 
-    public void Update()
+    public void MoodBarFiller(float life, float maxLife)
     {
-        _maxLife = _lifeManager.maxLife;
-        _lifes = _lifeManager.life;
-        MoodBarFiller();
-        //ColorChanger();
-        //Text();
-    }
-    public void MoodBarFiller()
-    {
+        life = ant.life;
         _lerpSpeed = 3f * Time.deltaTime;
-        lifeBar.fillAmount = Mathf.Lerp(lifeBar.fillAmount, _lifes / _maxLife, _lerpSpeed);
+        lifeBar.fillAmount = Mathf.Lerp(lifeBar.fillAmount, life / maxLife, _lerpSpeed);
+        ColorChanger(life, maxLife);
     }
-    public void ColorChanger()
+    public void ColorChanger(float life, float maxLife)
     {
-        Color moodColor = Color.Lerp(Color.black, Color.red, (_lifes / _maxLife));
+        life = ant.life;
+        Color moodColor = Color.Lerp(Color.black, Color.red, (life / maxLife));
         lifeBar.color = moodColor;
     }
-    public void Text()
+
+    public void Notify(string action)
     {
-       // lifeText.text = "Life: " + _lifes + "%";
+        if (action == "AddLife")
+            Debug.Log("AddLife");
+        else if (action == "SubtractLife")
+            Debug.Log("SubtractLife");
     }
 }

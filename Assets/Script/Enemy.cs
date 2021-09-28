@@ -28,11 +28,11 @@ public class Enemy : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, range))
         {
-            Ant ant = hit.transform.GetComponent<Ant>();
+            var ant = hit.collider.GetComponent<IDamageable>();
             if (ant != null)
             {
-                Debug.Log("touch");
-                EventManager.Trigger("SubtractLife", damage);
+                Debug.Log("Entre");
+                ant.SubtractLifeFunc(damage);
             }
         }
     }

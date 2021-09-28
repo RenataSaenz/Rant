@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Anthill : MonoBehaviour
+public class Anthill : MonoBehaviour, ICollectable
 {
-    private int _counter = 1;
-    void OnCollisionEnter(Collision col)
+    public void Collect()
     {
-        if (col.collider.tag == "Player" && _counter == 1)
+        EventManager.Trigger("GameWon");
+    }
+
+    /*void OnCollisionEnter(Collision col)
+    {
+        var damageable = col.collider.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            _counter--;
             EventManager.Trigger("GameWon");
         }
-    }
+    }*/
 }
