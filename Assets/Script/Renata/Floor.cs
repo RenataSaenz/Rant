@@ -31,7 +31,7 @@ public class Floor : MonoBehaviour
     void NewFloor()
     {
         manager.NewFloor();
-        minDist = -80;
+        minDist = -50;
         _ArtificialFloor = ReturnFloor;
     }
 
@@ -51,10 +51,10 @@ public class Floor : MonoBehaviour
         floor.gameObject.SetActive(true);
     }
 
-    public void InitialFloor(FloorManager f)
+    public void InitialFloor(FloorManager f, int t)
     {
         manager = f;
-        transform.position = Vector3.zero; // pasar la posicion por parametro
+        transform.position = new Vector3(0, 0, t); // pasar la posicion por parametro
         _ArtificialFloor = NewFloor;
         minDist = -20;
         

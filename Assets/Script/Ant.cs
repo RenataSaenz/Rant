@@ -13,11 +13,9 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     private float _swipeSpeed;
     [SerializeField]
     private float _jumpForce;
+    public float life = 100;
     [SerializeField]
-    private Transform _camTransform;
-    public float life;
-    [SerializeField]
-    private float maxLife;
+    private float maxLife = 100;
     [SerializeField]
     private float minLife;
 
@@ -36,14 +34,14 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
         _rb = GetComponent<Rigidbody>();
 
-        _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb, _camTransform);
+        _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb);
         _control = new Control(this, _movement);
         life = maxLife;
     }
 
     void FixedUpdate()
     {
-        transform.position += Vector3.forward * _speed * Time.deltaTime;
+        //transform.position += Vector3.forward * _speed * Time.deltaTime;
         _control.OnUpdate();
     }
 

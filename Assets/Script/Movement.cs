@@ -8,15 +8,12 @@ public class Movement
     float _swipeSpeed;
     float _jumpForce;
     Rigidbody _rb;
-    [SerializeField]
-    private Transform _camTransform;
-    public Movement(Transform t, float swipeSpeed, float jumpForce, Rigidbody rb, Transform camTransform)
+    public Movement(Transform t, float swipeSpeed, float jumpForce, Rigidbody rb)
     {
         _transform = t;
         _swipeSpeed = swipeSpeed;
         _jumpForce = jumpForce;
         _rb = rb;
-        _camTransform = camTransform;
     }
     public void Jump()
     {
@@ -25,7 +22,7 @@ public class Movement
 
     public void Move(float h)
     {
-        _transform.position += _camTransform.right * h * _swipeSpeed * Time.deltaTime;
+        _transform.position += _transform.right * h * _swipeSpeed * Time.deltaTime;
     }
     /*
     public void Run(float v, float h)

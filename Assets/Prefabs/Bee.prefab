@@ -644,9 +644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 1200412760035563}
-  target: {fileID: 0}
+  target: {fileID: 9167015917449943442, guid: 5ab4b0a4312c9d84eacc7f682c1961e0, type: 3}
   _particles: {fileID: 96530956565100085}
-  _damage: 20
+  _damage: 1
   maxSpeed: 5
   maxForce: 0.1
   _nextAttack: 0
