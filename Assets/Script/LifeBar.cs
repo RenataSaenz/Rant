@@ -32,6 +32,7 @@ public class LifeBar : MonoBehaviour, IObserver
     public void Notify(string action)
     {
         if (action == "AddLife")
+            
             Debug.Log("AddLife");
         else if (action == "SubtractLife")
             Debug.Log("SubtractLife");
