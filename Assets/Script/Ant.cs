@@ -40,7 +40,9 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     void FixedUpdate()
     {
-        //transform.position += Vector3.forward * _speed * Time.deltaTime;
+        transform.position += Vector3.forward * _speed * Time.deltaTime;
+
+
         _control.OnUpdate();
     }
 
@@ -123,8 +125,6 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     {
         for (int i = 0; i < _allObservers.Count; i++)
             _allObservers[i].Notify(action, life);
-            
-        
     }
 
 }
