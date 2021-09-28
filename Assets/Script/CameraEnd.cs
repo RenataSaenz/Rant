@@ -6,6 +6,8 @@ public class CameraEnd : MonoBehaviour
 {
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log("Camera End");
         EventManager.Trigger("GameOver");
+        
     }
 }
