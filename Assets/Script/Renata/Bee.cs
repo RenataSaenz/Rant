@@ -66,12 +66,14 @@ public class Bee : MonoBehaviour
 
     void OnTriggerStay(Collider trig)
     {
-        if (trig.gameObject.tag == "Player" && _counter == 1)
+        var damageable = trig.GetComponent<IDamageable>();
+
+        if (damageable != null)
         {
-             _counter--;
+            
             m_Animator.SetTrigger("Attack");
             _particles.Play();
-            EventManager.Trigger("SubtractLife", _damage);
+            damageable.SubtractLifeFunc(_damage);
             StartCoroutine(WaitForNextAttack(_nextAttack));
         }
     }

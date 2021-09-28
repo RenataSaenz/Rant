@@ -337,7 +337,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5736859139116950512}
   - component: {fileID: 785840971405772126}
-  - component: {fileID: 5297824740652367073}
+  - component: {fileID: 2549446768283626733}
+  - component: {fileID: 7539802141034094537}
   m_Layer: 0
   m_Name: SlowSpeedPowerUp
   m_TagString: SlowerPowerUp
@@ -376,7 +377,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6111765, y: 0.30730677, z: 0.6379051}
   m_Center: {x: 0.008090496, y: -0.100445986, z: 0.029848099}
---- !u!114 &5297824740652367073
+--- !u!114 &2549446768283626733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,8 +386,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8774757158086644195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95dd7c97f048d5e42abe057d8e746479, type: 3}
+  m_Script: {fileID: 11500000, guid: 69f3aac62cfc6084796f6a4eed34b291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slowParticles: {fileID: 0}
-  _fastParticles: {fileID: 0}
+  _slowParticles: {fileID: 4927758430890295417, guid: 348a0b09b2d51c545ad949f38b84e094,
+    type: 3}
+--- !u!95 &7539802141034094537
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8774757158086644195}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a45f351acafc6774da8384582113138f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

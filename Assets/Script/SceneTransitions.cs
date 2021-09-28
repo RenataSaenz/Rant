@@ -11,12 +11,16 @@ public class SceneTransitions : MonoBehaviour
     private void Start()
     {
         EventManager.Subscribe("GameOver", YouLost);
+        EventManager.Subscribe("GameWon", YouWon);
+    }
+
+    public void YouWon(params object[] parameters)
+    {
+        SceneManager.LoadScene("YouWon");
     }
 
     public void YouLost(params object[] parameters)
     {
-        //StartCoroutine(WaitForLoadScene((float)parameters[0]));
-
         StartCoroutine(WaitForLoadScene(2));
     }
     IEnumerator WaitForLoadScene(float time)
@@ -24,8 +28,6 @@ public class SceneTransitions : MonoBehaviour
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("YouLost");
     }
-
-
 
     public void Play()
     {
