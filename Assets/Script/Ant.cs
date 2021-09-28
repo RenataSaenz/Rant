@@ -51,6 +51,18 @@ public class Ant : MonoBehaviour
     }
 
 
+    void OnCollisionEnter(Collision collision)
+    {
+        var collectable = collision.gameObject.GetComponent<ICollectable>();
+        if (collectable != null)
+        {
+            if (isDead == false & collectable != null)
+            {
+                collectable.Collect();
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var obj = other.gameObject.GetComponent<ICollectable>();
