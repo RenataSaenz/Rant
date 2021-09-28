@@ -16,6 +16,6 @@ public class DotManager : MonoBehaviour
     public class EntityPositionList
     {
         public string name;
-        public List<Transform> dots;
+        public List<Vector3> dots;
     }
 }
