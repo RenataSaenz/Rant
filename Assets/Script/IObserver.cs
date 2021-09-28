@@ -1,4 +1,4 @@
 ﻿public interface IObserver 
 {
-    void Notify(string action);
+    void Notify(string action, float life);
 }

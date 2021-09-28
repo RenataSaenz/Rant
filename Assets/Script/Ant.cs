@@ -6,7 +6,6 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 {
     
     public bool isDead;
-    private int currentHealth;
 
     public float _speed;
     [SerializeField]
@@ -15,7 +14,7 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     private float _jumpForce;
     public float life = 100;
     [SerializeField]
-    private float maxLife = 100;
+    public float maxLife = 100;
     [SerializeField]
     private float minLife;
 
@@ -41,7 +40,9 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     void FixedUpdate()
     {
-        //transform.position += Vector3.forward * _speed * Time.deltaTime;
+        transform.position += Vector3.forward * _speed * Time.deltaTime;
+
+
         _control.OnUpdate();
     }
 
@@ -78,16 +79,16 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     }
     public void AddLifeFunc(int dmg)
     {
-        life += dmg;
+           life += dmg;
         if (life > maxLife)
             life = maxLife;
-        NotifyToObservers("AddLife");
+        NotifyToObservers("AddLife", life);
     }
 
     public void SubtractLifeFunc(int dmg)
     {
         life -= dmg;
-        NotifyToObservers("SubtractLife");
+        NotifyToObservers("SubtractLife", life);
         SoundManager.instance.Play(SoundManager.Types.Damage);
         if (life < minLife)
         {
@@ -120,11 +121,10 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
             _allObservers.Remove(obs);
     }
 
-    public void NotifyToObservers(string action)
+    public void NotifyToObservers(string action, float life)
     {
         for (int i = 0; i < _allObservers.Count; i++)
-            _allObservers[i].Notify(action);
-        
+            _allObservers[i].Notify(action, life);
     }
 
 }
