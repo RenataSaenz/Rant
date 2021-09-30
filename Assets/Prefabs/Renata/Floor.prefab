@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 7473803854256706447}
   - component: {fileID: 7473803854256706446}
   - component: {fileID: -5803271594243398761}
-  - component: {fileID: 2067584226671229151}
+  - component: {fileID: -5826565380674986356}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
---- !u!114 &2067584226671229151
+--- !u!114 &-5826565380674986356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,25 +617,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7343cb43c2dcd54ea885386efbdf428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclesPref:
-  - {fileID: 4358292978440843921, guid: c4741baabcb4879409b3fd89986ebfc1, type: 3}
-  - {fileID: 2087170049558104572, guid: f700f67f90a53274dbe6e88a4cca18d0, type: 3}
-  - {fileID: -5909888805435362591, guid: 538295a5bf7897941859669a3ac9d6c9, type: 3}
-  - {fileID: 822380284412352456, guid: 32a0c242a2d10f14eb1be22f367e5917, type: 3}
-  - {fileID: 1815711354669066576, guid: 14d059c8a5c5a214aab02e5078c84f95, type: 3}
-  - {fileID: 8459143509986340690, guid: a917b240040f46e499fa3565219242be, type: 3}
-  positions:
-  - {fileID: 6679501335116347220}
-  - {fileID: 679976976209951705}
-  - {fileID: 2916380933930500200}
-  - {fileID: 6205070925291622826}
-  - {fileID: 5119036484347623385}
-  - {fileID: 6690733498614428394}
-  - {fileID: 6913628269843070056}
-  - {fileID: 6817545940858471937}
-  - {fileID: 3316788895631292586}
-  - {fileID: 2811024547470664966}
-  numberObstacles: 5
+  obstacles: []
+  positionsDesigns:
+  - name: Wave1
+    dots: []
+  - name: Wave2
+    dots: []
+  - name: Wave3
+    dots: []
+  positionList:
+    name: 
+    dots: []
+  heart: {fileID: 0}
+  powerUp: {fileID: 0}
+  numberObstacles: 0
 --- !u!1 &8290412677420419322
 GameObject:
   m_ObjectHideFlags: 0
