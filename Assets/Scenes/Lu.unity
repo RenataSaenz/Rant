@@ -2294,7 +2294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeBar: {fileID: 524891484}
-  ant: {fileID: 305165418}
 --- !u!114 &1100497705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,10 +3282,10 @@ MonoBehaviour:
   dots:
   - name: ObstaclesDot
     dots:
-    - {x: -8.8470454e+11, y: 4.85e-43, z: 4.7468815e+27}
-    - {x: 1.37e-43, y: -3.826706e-37, z: 4.85e-43}
-    - {x: 4.6e-44, y: 0, z: -8.8470454e+11}
-    - {x: 4.85e-43, y: -8.848933e+11, z: 4.85e-43}
+    - {x: -3.6409547e-13, y: 8.13e-43, z: 0}
+    - {x: 0, y: -2.2741897e+28, z: 8.13e-43}
+    - {x: 4.6e-44, y: 0, z: -3.6409547e-13}
+    - {x: 8.13e-43, y: -3.641163e-13, z: 8.13e-43}
 --- !u!4 &1618005898
 Transform:
   m_ObjectHideFlags: 0
@@ -3672,7 +3671,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-16114
+  m_Name: pb_Mesh-4148
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
