@@ -42,11 +42,25 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     private void Start()
     {
         StartLifeFunc(life);
+        _speed = 0;
+        EventManager.Subscribe("FastPowerUp", SpeedPowerUp);
+        EventManager.Subscribe("EndPowerUp", SpeedPowerUp);
     }
 
     void FixedUpdate()
     {
+        ForwardMovemnt(_speed);
         _control.OnUpdate();
+    }
+
+    public void SpeedPowerUp(params object[] n1)
+    {
+        _speed += (float)n1[0];
+    }
+
+    public void ForwardMovemnt(float _speed)
+    {
+        transform.position += Vector3.forward * _speed * Time.deltaTime;
     }
 
     public void PowerUpMovement(params object[] parameters)

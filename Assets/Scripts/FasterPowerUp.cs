@@ -7,13 +7,15 @@ public class FasterPowerUp : MonoBehaviour, ICollectable
     [SerializeField]
     private ParticleSystem _fastParticles;
     [SerializeField]
-    private int _speed;
+    private float _velocity;
+    [SerializeField]
+    private float _timePowerUp;
 
     public void Collect()
     {
         SoundManager.instance.Play(SoundManager.Types.PowerUp);
         Instantiate(_fastParticles, transform.position, transform.rotation);
+        EventManager.Trigger("FastPowerUp", _velocity);
         this.gameObject.SetActive(false);
-        EventManager.Trigger("FasterPowerUp", _speed);
     }
 }
