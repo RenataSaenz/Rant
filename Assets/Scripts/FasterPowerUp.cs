@@ -8,8 +8,6 @@ public class FasterPowerUp : MonoBehaviour, ICollectable
     private ParticleSystem _fastParticles;
     [SerializeField]
     private float _velocity;
-    [SerializeField]
-    private float _timePowerUp;
 
     public void Collect()
     {
