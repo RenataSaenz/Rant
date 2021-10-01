@@ -27,6 +27,10 @@ public class SoundManager : MonoBehaviour
             s.source.loop = s.loop;
         }
     }
+    private void Start()
+    {
+        instance.Play(Types.MainSong);
+    }
     public void Play(Types name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -58,7 +62,7 @@ public class SoundManager : MonoBehaviour
         Click,
         Collect,
     }
-    public void OnCliclkSound()
+    public void OnClickSound()
     {
         instance.Play(Types.Click);
     }
