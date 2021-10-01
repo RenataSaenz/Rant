@@ -13,7 +13,6 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     [SerializeField]
     private float _jumpForce;
     public float life = 100;
-    [SerializeField]
     public float maxLife = 100;
     [SerializeField]
     private float minLife;
@@ -41,10 +40,11 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     private void Start()
     {
-        StartLifeFunc(life);
         _speed = 0;
         EventManager.Subscribe("FastPowerUp", SpeedPowerUp);
         EventManager.Subscribe("EndPowerUp", SpeedPowerUp);
+        StartLifeFunc(life);
+
     }
 
     void FixedUpdate()
@@ -99,7 +99,7 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     public void AddLifeFunc(float dmg)
     {
-           life += dmg;
+        life += dmg;
         if (life > maxLife)
             life = maxLife;
         NotifyToObservers("AddLife", life, maxLife);

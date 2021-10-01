@@ -61,6 +61,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fastParticles: {fileID: 4927758430890295417, guid: 6040276864ca16b45946b6f85d3de060,
     type: 3}
+  _velocity: 2
+  _timePowerUp: 0
 --- !u!95 &2457215924918785682
 Animator:
   serializedVersion: 3

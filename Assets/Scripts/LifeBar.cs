@@ -8,13 +8,12 @@ public class LifeBar : MonoBehaviour, IObserver
     public Image lifeBar;
     IObservable _playerToCopy;
     public Ant ant;
-    
     private void Start()
     {
         _playerToCopy = ant;
         _playerToCopy.Subscribe(this);
     }
-    
+
     void BarUpdate(float _life, float _maxLife)
     {
         _lerpSpeed = 3f * Time.deltaTime;
