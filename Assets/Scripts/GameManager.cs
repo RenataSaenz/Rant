@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
    
     void Start()
     {
-        SoundManager.instance.Play(SoundManager.Types.MainSong);
+       
     }
     void Update()
     {
