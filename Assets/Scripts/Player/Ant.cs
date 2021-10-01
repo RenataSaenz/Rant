@@ -94,7 +94,7 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     public void StartLifeFunc(float life)
     {
         life = maxLife;
-        NotifyToObservers("StartLife", life, maxLife);
+        NotifyToObservers(life, maxLife);
     }
 
     public void AddLifeFunc(float dmg)
@@ -102,13 +102,13 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         life += dmg;
         if (life > maxLife)
             life = maxLife;
-        NotifyToObservers("AddLife", life, maxLife);
+        NotifyToObservers(life, maxLife);
     }
 
     public void SubtractLifeFunc(float dmg)
     {
         life -= dmg;
-        NotifyToObservers("SubtractLife", life, maxLife);
+        NotifyToObservers(life, maxLife);
         SoundManager.instance.Play(SoundManager.Types.Damage);
         if (life < minLife)
         {
@@ -138,10 +138,10 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
             _allObservers.Remove(obs);
     }
 
-    public void NotifyToObservers(string action, float life, float maxLife)
+    public void NotifyToObservers(float life, float maxLife)
     {
         for (int i = 0; i < _allObservers.Count; i++)
-            _allObservers[i].Notify(action, life, maxLife);
+            _allObservers[i].Notify(life, maxLife);
     }
 
     

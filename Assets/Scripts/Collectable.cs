@@ -10,7 +10,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
     public void Collect()
     {
-        audioSource.Play();
+        SoundManager.instance.Play(SoundManager.Types.Collect);
         ScoreManager.instance.ChangeScore(collectableValue);
         Destroy(gameObject);
     }
