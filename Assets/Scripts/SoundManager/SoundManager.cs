@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource clickAudioSource;
-
     public Sound[] sounds;
     public static SoundManager instance;
     void Awake()
@@ -57,9 +55,11 @@ public class SoundManager : MonoBehaviour
         Dead,
         Victory,
         MainSong,
+        Click,
+        Collect,
     }
     public void OnCliclkSound()
     {
-        clickAudioSource.Play();
+        instance.Play(Types.Click);
     }
 }

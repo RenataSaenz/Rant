@@ -43,10 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91dbad0e1289ef42baa6675e7dfd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioSource: {fileID: 0}
   sounds:
   - name: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2f38f0d6a72bf264f9b0f38224d41e3c, type: 3}
     volume: 0.318
     pitch: 1.24
     loop: 0
@@ -59,6 +58,24 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: 5
     clip: {fileID: 8300000, guid: cf59d517fe289854da76a92431bb0571, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: 1
+    clip: {fileID: 8300000, guid: 1479a8b80e3f9724d9ab5b85594eddf9, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: 7
+    clip: {fileID: 8300000, guid: 33ebcfff2b8117748adb83398faa744a, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: 6
+    clip: {fileID: 8300000, guid: 0791575031687e847ae16225efeb33d7, type: 3}
     volume: 0.2
     pitch: 1
     loop: 1
