@@ -126,7 +126,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_Name: pb_Mesh27850
+=======
+  m_Name: pb_Mesh19474
+>>>>>>> Stashed changes
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -390,12 +394,20 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< Updated upstream
       value: 0.209
+=======
+      value: 0.435
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
       value: -49.165
+=======
+      value: -15
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
@@ -440,17 +452,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: a05ba0a4c55d869499bfb4b5a1f26569,
         type: 3}
@@ -829,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  _speed: 1
+  _speed: 2
   _swipeSpeed: 1
   _jumpForce: 0.5
   _camTransform: {fileID: 1521883711}
@@ -1463,7 +1475,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5769e3580bd7d5a48b1f16fbe3134c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
 --- !u!4 &475232937
+=======
+  initialPosZ: 10
+  prefab: {fileID: 8849144509994591063, guid: 29f34888da54bb64491025ca12ab883b, type: 3}
+  _firstFloor: {fileID: -1067618078601073522, guid: cfcf24b5e9778374e87ba069ea664f43,
+    type: 3}
+  _lastFloor: {fileID: 6208384057683819392, guid: 5ecbdebd3aec7c74dba025db76302f66,
+    type: 3}
+  minFloors: 4
+--- !u!4 &474763936
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2344,7 +2367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319ab2e710c09e743af3d4dca969835a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dots: []
 --- !u!4 &1014169569
 Transform:
   m_ObjectHideFlags: 0
