@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 public class Floor : MonoBehaviour
 {
     private FloorManager manager;
+
+    public GameObject anthill;
+    //public GameObject[] obstacles;
+
     [SerializeField]
     private float speed = 5f;
     int minDist = -20;
+
     Action _ArtificialFloor;
 
     private void Awake()
@@ -57,7 +63,25 @@ public class Floor : MonoBehaviour
         transform.position = new Vector3(0, 0, t); // pasar la posicion por parametro
         _ArtificialFloor = NewFloor;
         minDist = -20;
-        
+      //foreach (var o in obstacles)
+      //{
+      //    o.SetActive(false);
+      //
+      //}
+      //
+      //var random = Random.Range(obstacles.Length/2, obstacles.Length);
+      //
+      //for (int i = 0; i < random; i++)
+      //{
+      //    var index = Random.Range(obstacles.Length / 2, obstacles.Length);
+      //    obstacles[index].SetActive(true);
+      //}
+    }
+
+    public void FinishFloor(FloorManager f, int t)
+    {
+        anthill.SetActive(true);
+        InitialFloor(f, t);
     }
 
 }
