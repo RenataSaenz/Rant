@@ -17,6 +17,7 @@ public class SceneTransitions : MonoBehaviour
     public void YouWon(params object[] parameters)
     {
         SceneManager.LoadScene("YouWon");
+        ScoreManager.instance.TotalScore();
     }
 
     public void YouLost(params object[] parameters)
@@ -32,7 +33,7 @@ public class SceneTransitions : MonoBehaviour
     public void Play()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Picnic");
+        SceneManager.LoadScene("Picnic2");
     }
 
     public void Rules()

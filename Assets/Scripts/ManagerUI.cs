@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class ManagerUI : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class ManagerUI : MonoBehaviour
     public Image cameraShutDown;
     public float speedFade;
     public AudioSource clickAudioSource;
+    public Image stars0;
+    public Image stars1;
+    public Image stars2;
+    public Image stars3;
     private void Start()
     {
         EventManager.Subscribe("GameOver", FadeOn);
@@ -23,6 +28,34 @@ public class ManagerUI : MonoBehaviour
     public void ChangeScore(int score)
     {
         text.text = "SCORE: " + score.ToString();
+    }
+    public void TotalPoints(int totalScore)
+    {
+
+        if (stars0 != null)
+        {
+            stars0.enabled = false;
+            stars1.enabled = false;
+            stars2.enabled = false;
+            stars3.enabled = false;
+
+            if (totalScore == 0)
+            {
+                stars0.enabled = true;
+            }
+            else if (totalScore > 0 && totalScore <= 3)
+            {
+                stars1.enabled = true;
+            }
+            else if (totalScore > 3 && totalScore < 7)
+            {
+                stars2.enabled = true;
+            }
+            else
+            {
+                stars3.enabled = true;
+            }
+        }
     }
 
     public void OnCliclkSound()
