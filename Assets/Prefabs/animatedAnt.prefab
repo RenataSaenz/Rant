@@ -1648,6 +1648,7 @@ GameObject:
   - component: {fileID: 870924801107047466}
   - component: {fileID: 870924801107047464}
   - component: {fileID: 870924801107047467}
+  - component: {fileID: 2102530845}
   m_Layer: 9
   m_Name: animatedAnt
   m_TagString: Player
@@ -1725,7 +1726,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &870924801107047464
 BoxCollider:
@@ -1738,8 +1739,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05229473, y: 0.04114619, z: 0.07917786}
-  m_Center: {x: 0.0017223358, y: 0.022224158, z: -0.0037994385}
+  m_Size: {x: 0.05229473, y: 0.05221066, z: 0.07917786}
+  m_Center: {x: 0.0017223358, y: 0.016691923, z: -0.0037994385}
 --- !u!114 &870924801107047467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1756,7 +1757,20 @@ MonoBehaviour:
   _speed: 1
   _swipeSpeed: 1
   _jumpForce: 0.5
-  life: 0
-  maxLife: 0
+  life: 100
+  maxLife: 100
   minLife: 0
   managerUI: {fileID: 0}
+--- !u!114 &2102530845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167015917449943442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095a8ea738fa78141acfcb78005efef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1
