@@ -5,18 +5,9 @@ using System;
 
 public class FloorManager : MonoBehaviour
 {
-    public Transform initialPos;
-    //public Transform initialPos; //utilizar para pasar el valor 0 del position
-    public int initialPosZ;
-    //public Transform initialPos; //utilizar para pasar el valor 0 del position
     public int initialPosZ = 0;
 
     public Floor prefab;
-
-    [SerializeField]
-    private FloorManager _firstFloor;
-    [SerializeField]
-    private FloorManager _lastFloor;
 
     public Pool<Floor> pool;
 
@@ -40,7 +31,7 @@ public class FloorManager : MonoBehaviour
 
     public void NewFloor()
     {
-        pool.Get().InitialFloor(this); //aca pasar initialPos.position, luego de this
+       // pool.Get().InitialFloor(this, initialPosZ); 
         ActiveFloor();
     }
 
@@ -52,16 +43,23 @@ public class FloorManager : MonoBehaviour
     void InstantiateFloor()
     {
         _counter++;
-        //if (_counter == 0)
-        //    pool.Get().InitialFloor(_firstFloor, initialPosZ);
-        if (_counter <= minFloors)
-            pool.Get().InitialFloor(this, initialPosZ);
+
+        if (_counter == 1)
+        {
+            pool.Get().InitializeFloor(this, initialPosZ);
+        }
+        else if (_counter > 1 && _counter <= minFloors)
+        {
+            pool.Get().MiddleFloor(this, initialPosZ);
+        }
+        else if (_counter == (minFloors + 1))
+        {
+            pool.Get().FinishFloor(this, initialPosZ);
+        }
         else
         {
-            pool.Get().FinishFloor(_lastFloor, initialPosZ);
-           ActiveFloor = delegate { };        
-       }
-
+            ActiveFloor = delegate { };
+        }
     }
     public Floor Create()
     {
