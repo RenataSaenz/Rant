@@ -4,7 +4,6 @@ using System;
 
 public class LifeBar : MonoBehaviour, IObserver
 {
-    float _lerpSpeed;
     public Image lifeBar;
     IObservable _playerToCopy;
     public Ant ant;

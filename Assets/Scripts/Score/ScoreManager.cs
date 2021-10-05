@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-//using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     public ManagerUI managerUI;
     private int score;
-
-    private void Start()
+    public int totalScore;
+    private void Awake()
     {
         if (instance == null)
         {
+            Debug.Log("instanced");
             instance = this;
         }
         else
         {
+            Debug.Log("destroyed");
             Destroy(gameObject);
             return;
         }
@@ -29,6 +29,11 @@ public class ScoreManager : MonoBehaviour
     {
         score += collectableValue;
         managerUI.ChangeScore(score);
+    }
+    public void TotalScore()
+    {
+        totalScore = score;
+        managerUI.TotalPoints(totalScore);
     }
 
 }
