@@ -7,10 +7,17 @@ using Random = UnityEngine.Random;
 public class Floor : MonoBehaviour
 {
     private FloorManager manager;
-
-    public GameObject anthill;
-    //public GameObject[] obstacles;
-
+    [SerializeField]
+    private int _numberOfObstacles = 7;
+    [SerializeField]
+    private GameObject anthill;
+    [SerializeField]
+    private GameObject[] obstacles;
+    [SerializeField]
+    private GameObject[] powerUps;
+    [SerializeField]
+    private Transform[] obstaclesPositions;
+    private List<int> TakeList = new List<int>();
     [SerializeField]
     private float speed = 5f;
     int minDist = -20;
@@ -29,7 +36,6 @@ public class Floor : MonoBehaviour
 
         if (transform.position.z <= minDist)
         {
-            //ReturnFloor();
             _ArtificialFloor();
         }
     }
@@ -57,31 +63,61 @@ public class Floor : MonoBehaviour
         floor.gameObject.SetActive(true);
     }
 
-    public void InitialFloor(FloorManager f, int t)
+    public void InitializeFloor(FloorManager f, int t)
     {
+        foreach (var p in powerUps)
+        {
+            p.SetActive(false);
+        }
+
+        foreach (var o in obstacles)
+        {
+            o.SetActive(false);
+        }
+
         manager = f;
-        transform.position = new Vector3(0, 0, t); // pasar la posicion por parametro
+        transform.position = new Vector3(0, 0, t);
         _ArtificialFloor = NewFloor;
         minDist = -20;
-      //foreach (var o in obstacles)
-      //{
-      //    o.SetActive(false);
-      //
-      //}
-      //
-      //var random = Random.Range(obstacles.Length/2, obstacles.Length);
-      //
-      //for (int i = 0; i < random; i++)
-      //{
-      //    var index = Random.Range(obstacles.Length / 2, obstacles.Length);
-      //    obstacles[index].SetActive(true);
-      //}
     }
+    public void MiddleFloor(FloorManager f, int t)
+    {
+        InitializeFloor(f, t);
+        
+        var randomObstacles = Random.Range(_numberOfObstacles, obstacles.Length);
+        var randomPowerUps = Random.Range(2, obstacles.Length);
+        TakeList = new List<int>(new int[obstaclesPositions.Length]);
 
+        for (int o = 0; o < randomObstacles; o++)
+        {
+             var randomObstaclesPositions = Random.Range(1, (obstaclesPositions.Length) + 1);
+
+             while (TakeList.Contains(randomObstaclesPositions))
+             {
+                randomObstaclesPositions = Random.Range(1, (obstaclesPositions.Length) + 1);
+             }
+
+             TakeList[o] = randomObstaclesPositions;
+
+             Vector3 pos = transform.position;
+             pos = (obstaclesPositions[TakeList[o] - 1]).transform.position;
+            var index = Random.Range(0, obstacles.Length);
+            //var instance = Instantiate(obstacles[index], pos, Quaternion.identity);
+            //instance.transform.parent = gameObject.transform;
+            obstacles[index].transform.position = pos;
+            obstacles[index].SetActive(true);
+        }
+
+        for (int i = 0; i < randomPowerUps; i++)
+        {
+            var index = Random.Range(0, powerUps.Length);
+            powerUps[index].SetActive(true);
+        }
+    }
     public void FinishFloor(FloorManager f, int t)
     {
         anthill.SetActive(true);
-        InitialFloor(f, t);
+        InitializeFloor(f, t);
     }
 
 }
