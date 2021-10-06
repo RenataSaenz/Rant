@@ -25,12 +25,19 @@ public class ManagerUI : MonoBehaviour
 
     }
 
-    public void ChangeScore(int score)
+    private void Update()
     {
+       ShowScore();
+       TotalPoints();
+    }
+    public void ShowScore()
+    {
+        var score = TotalScore.totalScore;
         text.text = "SCORE: " + score.ToString();
     }
-    public void TotalPoints(int totalScore)
+    public void TotalPoints()
     {
+       var totalScore = TotalScore.totalScore;
 
         if (stars0 != null)
         {

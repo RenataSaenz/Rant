@@ -976,7 +976,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15056
+  m_Name: pb_Mesh15494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2297,6 +2297,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreManager
       objectReference: {fileID: 0}
+    - target: {fileID: 778310411795863402, guid: 8e129ad6e2214724fb29aee1195087ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 778310411795863404, guid: 8e129ad6e2214724fb29aee1195087ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2357,6 +2362,11 @@ PrefabInstance:
       propertyPath: managerUI
       value: 
       objectReference: {fileID: 186030196}
+    - target: {fileID: 778310411795863405, guid: 8e129ad6e2214724fb29aee1195087ab,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e129ad6e2214724fb29aee1195087ab, type: 3}
 --- !u!1001 &870924801410089025
