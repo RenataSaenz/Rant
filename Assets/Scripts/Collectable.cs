@@ -11,7 +11,8 @@ public class Collectable : MonoBehaviour, ICollectable
     public void Collect()
     {
         SoundManager.instance.Play(SoundManager.Types.Collect);
-        ScoreManager.instance.ChangeScore(collectableValue);
+        //ScoreManager.instance.ChangeScore(collectableValue);
+        TotalScore.SumScore(collectableValue);
         gameObject.SetActive(false);
     }
 }

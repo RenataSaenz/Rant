@@ -70,7 +70,6 @@ public class Bee : MonoBehaviour
 
         if (damageable != null)
         {
-            
             m_Animator.SetTrigger("Attack");
             _particles.Play();
             damageable.SubtractLifeFunc(_damage);
