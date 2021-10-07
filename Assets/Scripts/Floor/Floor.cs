@@ -18,6 +18,8 @@ public class Floor : MonoBehaviour
     [SerializeField]
     private GameObject[] powerUps;
     [SerializeField]
+    private GameObject[] enemies;
+    [SerializeField]
     private Transform[] obstaclesPositions;
     [SerializeField]
     private Transform[] foodPositions;
@@ -25,8 +27,10 @@ public class Floor : MonoBehaviour
     private List<int> FoodNumbersList = new List<int>(); 
     [SerializeField]
     private float speed = 5f;
-    int minDist = -20;
-
+    float minDist = 0;
+    private float _initialPosZ;
+    [SerializeField]
+    private int _floorSize = 30;
     Action _ArtificialFloor;
 
     private void Awake()
@@ -48,14 +52,15 @@ public class Floor : MonoBehaviour
     void NewFloor()
     {
         manager.NewFloor();
-        minDist = -50;
+        minDist = -(_floorSize*1.5f); //distancia en desaparecer el ult
         _ArtificialFloor = ReturnFloor;
     }
 
     void ReturnFloor()
     {
+        minDist = _initialPosZ;
         manager.ReturnFloor(this);
-        minDist = -20;
+        minDist = 0;
     }
 
     public static void TurnOff(Floor floor)
@@ -70,6 +75,8 @@ public class Floor : MonoBehaviour
 
     public void InitializeFloor(FloorManager m, int t)
     {
+        _initialPosZ = t;
+
         foreach (var p in powerUps)
         {
             p.SetActive(false);
@@ -83,10 +90,14 @@ public class Floor : MonoBehaviour
         {
             f.SetActive(false);
         }
+        foreach (var e in enemies)
+        {
+            e.SetActive(false);
+        }
         manager = m;
         transform.position = new Vector3(0, 0, t);
         _ArtificialFloor = NewFloor;
-        minDist = -20;
+        //minDist = 0
     }
     public void MiddleFloor(FloorManager m, int t)
     {
@@ -95,6 +106,7 @@ public class Floor : MonoBehaviour
         var randomObstacles = Random.Range(_numberOfObstacles, obstacles.Length);
         var randomPowerUps = Random.Range(2, obstacles.Length);
         var randomFood = Random.Range(2, food.Length);
+        
         ObstaclesNumbersList = new List<int>(new int[obstaclesPositions.Length]);
         FoodNumbersList = new List<int>(new int[foodPositions.Length]);
 
@@ -143,6 +155,18 @@ public class Floor : MonoBehaviour
             food[index].transform.position = pos;
             food[index].SetActive(true);
         }
+    }
+    public void MiddleFloorEnemy(FloorManager m, int t)
+    {
+        MiddleFloor(m,t);
+        var randomEnemies = Random.Range(1, food.Length);
+
+        for (int i = 0; i < randomEnemies; i++)
+        {
+            var index = Random.Range(0, enemies.Length);
+            enemies[index].SetActive(true);
+        }
+
     }
     public void FinishFloor(FloorManager m, int t)
     {

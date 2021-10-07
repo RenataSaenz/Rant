@@ -23,24 +23,40 @@ public class Bee : MonoBehaviour
     private float maxForce;
     [SerializeField]
     private float _nextAttack = 5;
+    [SerializeField]
+    private float startMaxSpeed;
 
-    float m_MaxDistance = 6;
+    float m_MaxDistance = 4;
     bool m_HitDetect;
     public Collider m_Collider;
     RaycastHit m_Hit;
+
+    public Transform honey;
+    private Vector3 honeyVec;
+    private float stop = 1;
+
+    // private Vector3 target1 = new Vector3(5.0f, 0.0f, 0.0f);
+    private void Start()
+    {
+        StartingPosition();
+    }
 
     private void Update()
     {
        m_HitDetect = Physics.BoxCast(m_Collider.bounds.center, transform.localScale, transform.forward, out m_Hit, transform.rotation, m_MaxDistance);
 
-
-        if (m_HitDetect)
+        if (!m_HitDetect)
+        {
+            HoneyRound();
+        }
+        else
         {
             Seek();
 
-            transform.position += _velocity * Time.deltaTime;
+            transform.position += _velocity * Time.deltaTime * stop;
             transform.forward = _velocity;
         }
+
             
     }
 
@@ -59,6 +75,14 @@ public class Bee : MonoBehaviour
         ApplyForce(steering);
     }
 
+    void HoneyRound()
+    {
+        m_Animator.SetBool("Moving", true);
+        Vector3 honeyVec = honey.transform.position;
+
+        transform.RotateAround(honeyVec, Vector3.up, 90 * Time.deltaTime * stop);
+    }
+
     void ApplyForce(Vector3 force)
     {
         _velocity += force;
@@ -67,27 +91,30 @@ public class Bee : MonoBehaviour
     void OnTriggerStay(Collider trig)
     {
         var damageable = trig.GetComponent<IDamageable>();
-
-        if (damageable != null)
+        int _counter = 1;
+        if (damageable != null && _counter ==1)
         {
             m_Animator.SetTrigger("Attack");
             _particles.Play();
             damageable.SubtractLifeFunc(_damage);
-            StartCoroutine(WaitForNextAttack(_nextAttack));
+            stop = 0;
+            _counter--;
+            StartCoroutine(WaitForRestart(4));
+            
         }
     }
-    IEnumerator WaitForNextAttack(float time)
+
+    IEnumerator WaitForRestart(float time)
     {
-        time = 5;
         yield return new WaitForSeconds(time);
-        Debug.Log("counter");
-        _counter = 1;
+        Debug.Log("beeRestart");
+        stop = 1;
+        StartingPosition();
     }
-    /*
-    void OnDrawGizmosSelected()
+
+    void StartingPosition()
     {
-        // Draw a semitransparent blue cube at the transforms position
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, new Vector3(10, 1, 10));
-    }*/
+        m_Animator.SetBool("Moving", true);
+        gameObject.transform.forward += honey.transform.position + new Vector3(0, 0.4f, 0.7f);
+    }
 }
