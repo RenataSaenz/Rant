@@ -43,18 +43,25 @@ public class FloorManager : MonoBehaviour
     void InstantiateFloor()
     {
         _counter++;
-
+        int _floorSize = 30;
         if (_counter == 1)
         {
             pool.Get().InitializeFloor(this, initialPosZ);
         }
         else if (_counter > 1 && _counter <= minFloors)
         {
-            pool.Get().MiddleFloor(this, initialPosZ);
+            if(_counter%2==1)
+            {
+                pool.Get().MiddleFloorEnemy(this, initialPosZ + _floorSize);
+            }
+            else
+            {
+                pool.Get().MiddleFloor(this, initialPosZ + _floorSize);
+            }
         }
         else if (_counter == (minFloors + 1))
         {
-            pool.Get().FinishFloor(this, initialPosZ);
+            pool.Get().FinishFloor(this, initialPosZ + _floorSize);
         }
         else
         {
