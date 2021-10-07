@@ -6,7 +6,7 @@ public class Bee : MonoBehaviour
 {
     public Animator m_Animator;
 
-    public GameObject target;
+    public Ant target;
 
     private Vector3 _velocity;
 
