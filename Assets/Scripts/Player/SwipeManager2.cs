@@ -1,12 +1,12 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 [DefaultExecutionOrder(-1)]
-public class SwipeManager : MonoBehaviour
+public class SwipeManager2 : MonoBehaviour
 {
-    public SwipeManager instance;
+    public static SwipeManager2 instance;
 
     public delegate void StartTouch(Vector2 position);
     public event StartTouch OnStartTouch;
@@ -34,7 +34,7 @@ public class SwipeManager : MonoBehaviour
         _ArtificialUpdate = StartTouchPrimary;
     }
 
-    private void Update()
+    private void  FixedUpdate()
     {
         _ArtificialUpdate();
     }
@@ -44,9 +44,11 @@ public class SwipeManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             var touch = Input.GetTouch(0);
-            var _idTouch = touch.fingerId;
+            _idTouch = touch.fingerId;
 
             _actualPos = GetWorldPositionPlane(touch.position);
+
+            //_actualPos = _cam.ScreenToWorldPoint(touch.position);
 
             if (OnStartTouch != null)
             {
@@ -55,7 +57,7 @@ public class SwipeManager : MonoBehaviour
             _ArtificialUpdate = UpdateTouchPrimary;
         }
     }
-
+    
     void UpdateTouchPrimary()
     {
         if (Input.touchCount > 0)
@@ -67,6 +69,7 @@ public class SwipeManager : MonoBehaviour
                 if (touch.fingerId == _idTouch)
                 {
                     _actualPos = GetWorldPositionPlane(touch.position);
+                    //_actualPos = _cam.ScreenToWorldPoint(touch.position);  //esto es si esta orthographic
                     OnUpdateTouch(_actualPos);
                 }
                 else
@@ -79,24 +82,25 @@ public class SwipeManager : MonoBehaviour
 
     void EndTouchPrimary()
     {
-       if (OnEndTouch != null)
-       {
+        if (OnEndTouch != null)
+        {
+            //_actualPos = _cam.ScreenToWorldPoint(touch.position);
             OnEndTouch(_actualPos);
-       }
+        }
 
         _ArtificialUpdate = StartTouchPrimary;
 
     }
-
+    
     Vector3 GetWorldPositionPlane(Vector3 screenPos)
     {
         if (_cam.orthographic)
             return _cam.ScreenToWorldPoint(screenPos);
-        
+
         Ray ray = _cam.ScreenPointToRay(screenPos);
         Plane xy = new Plane(Vector3.forward, Vector3.zero);
         float dist;
         xy.Raycast(ray, out dist);
         return ray.GetPoint(dist);
     }
-}*/
+}

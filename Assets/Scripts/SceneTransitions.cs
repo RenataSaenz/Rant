@@ -33,7 +33,7 @@ public class SceneTransitions : MonoBehaviour
     public void Play()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Picnic2");
+        SceneManager.LoadScene("Picnic");
     }
 
     public void Rules()

@@ -24,6 +24,13 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     private Rigidbody _rb;
 
+    private Vector2 _startPosition;
+    Vector2 _endPosition;
+    Vector2 _direction;
+    int _swipePositionCount;
+
+    float swipePowerUp;
+
     List<IObserver> _allObservers = new List<IObserver>();
 
     void Awake()
@@ -32,29 +39,89 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         EventManager.Subscribe("FasterPowerUp", PowerUpMovement);
 
         _rb = GetComponent<Rigidbody>();
-
         _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb);
         _control = new Control(this, _movement);
-
     }
 
     private void Start()
     {
+        SwipeManager2.instance.OnStartTouch += StartTouch;
+        //SwipeManager2.instance.OnUpdateTouch += UpdateTouch;
+        SwipeManager2.instance.OnEndTouch += EndTouch;
+
+        _swipePositionCount = 0;
+
         _speed = 0;
         EventManager.Subscribe("FastPowerUp", SpeedPowerUp);
         EventManager.Subscribe("EndPowerUp", SpeedPowerUp);
         StartLifeFunc(life);
 
+        swipePowerUp = -4.7f;
     }
 
     void FixedUpdate()
     {
         ForwardMovemnt(_speed);
+
         _control.OnUpdate();
+
+        CalculateSwipePosition();
+
+
     }
 
+    void StartTouch(Vector2 position)
+    {
+        _startPosition = position;
+    }
+    void EndTouch(Vector2 position)
+    {
+        _endPosition = position;
+    }
+
+    void CalculateSwipePosition()
+    {
+        Vector3 pos = new Vector3();
+        pos.x = transform.position.x;
+        pos.z = transform.position.z;
+
+        _direction.x = _endPosition.x - _startPosition.x;
+
+        if (_startPosition.x < _endPosition.x)
+        {
+           // transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos + 1, 0.063f, -4.7f), 2 * Time.deltaTime);
+
+            _swipePositionCount +=1;
+            if (_swipePositionCount >= 1)
+                _swipePositionCount = 1;
+            
+        }
+        if (_startPosition.x > _endPosition.x )
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos - 1, 0.063f, -4.7f), 2 * Time.deltaTime);
+            _swipePositionCount -=1;
+            if (_swipePositionCount <= 1)
+                _swipePositionCount = -1;
+        }
+        
+        if (_swipePositionCount == 0)
+        {   //_movement.Move1();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+        }
+        if (_swipePositionCount == 1)
+        {
+            //_movement.Move3();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+        }
+        if (_swipePositionCount == -1)
+        {
+            //_movement.Move2();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+        }
+    }
     public void SpeedPowerUp(params object[] n1)
     {
+        swipePowerUp = swipePowerUp + 1;
         _speed += (float)n1[0];
     }
 

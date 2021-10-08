@@ -1092,6 +1092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a381a862a35e69b44ae1550e4f378b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeForTransition: 0
 --- !u!4 &1495742656
 Transform:
   m_ObjectHideFlags: 0
@@ -1181,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 1784949341}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -641.51276, y: -9.247031, z: -6.9352555}
-  m_LocalScale: {x: 36.28141, y: 36.28141, z: 36.28141}
+  m_LocalScale: {x: 41.23382, y: 41.23382, z: 41.23382}
   m_Children: []
   m_Father: {fileID: 158120886}
   m_RootOrder: 0
@@ -1281,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91dbad0e1289ef42baa6675e7dfd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioSource: {fileID: 1100421726}
+  sounds: []
 --- !u!4 &2133809927
 Transform:
   m_ObjectHideFlags: 0
