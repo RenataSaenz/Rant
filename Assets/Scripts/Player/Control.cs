@@ -21,7 +21,6 @@ public class Control
 
     public void OnUpdate()
     {
-#if UNITY_EDITOR
         _movementInput.x = Input.GetAxis("Horizontal");
         _movementInput.y = Input.GetAxis("Vertical");
 
@@ -30,7 +29,6 @@ public class Control
         if (_movementInput.y >= 1)
             _movement.Jump();
 
-#endif
         controlsMethod();
 
       

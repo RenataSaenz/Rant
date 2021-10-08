@@ -46,7 +46,6 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     private void Start()
     {
         SwipeManager2.instance.OnStartTouch += StartTouch;
-        //SwipeManager2.instance.OnUpdateTouch += UpdateTouch;
         SwipeManager2.instance.OnEndTouch += EndTouch;
 
         _swipePositionCount = 0;
@@ -100,23 +99,21 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         {
             //transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos - 1, 0.063f, -4.7f), 2 * Time.deltaTime);
             _swipePositionCount -=1;
-            if (_swipePositionCount <= 1)
+            if (_swipePositionCount <= -1)
                 _swipePositionCount = -1;
         }
         
         if (_swipePositionCount == 0)
         {   //_movement.Move1();
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+           transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
         }
         if (_swipePositionCount == 1)
         {
-            //_movement.Move3();
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+           transform.position = Vector3.MoveTowards(transform.position, new Vector3(1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
         }
         if (_swipePositionCount == -1)
         {
-            //_movement.Move2();
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
+           transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
         }
     }
     public void SpeedPowerUp(params object[] n1)
