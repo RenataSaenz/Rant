@@ -17,9 +17,9 @@ public class Obstacles : MonoBehaviour
         return this;
     }
 
-    void OnTriggerEnter(Collider trigger)
+    void OnCollisionEnter(Collision col)
     {
-        var damageable = trigger.GetComponent<IDamageable>();
+        var damageable = col.collider.GetComponent<IDamageable>();
         if (damageable != null)
         {
             damageable.SubtractLifeFunc(damage);
