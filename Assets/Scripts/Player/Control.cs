@@ -8,7 +8,7 @@ public class Control
     Movement _movement;
     private Ant ant;
     private Vector3 _movementInput;
-    
+    //private int touchCount = 0;
 
     Action controlsMethod;
 
@@ -21,15 +21,26 @@ public class Control
 
     public void OnUpdate()
     {
+#if UNITY_EDITOR
         _movementInput.x = Input.GetAxis("Horizontal");
         _movementInput.y = Input.GetAxis("Vertical");
 
-        controlsMethod();
-
         if (_movementInput.x != 0)
-            _movement.Move( _movementInput.x);
+           _movement.Move( _movementInput.x);
         if (_movementInput.y >= 1)
             _movement.Jump();
+
+#endif
+        controlsMethod();
+
+      
+        /*
+        if (touchCount == 0)
+            _movement.Move1();
+        if (touchCount == -1)
+            _movement.Move2();
+        if (touchCount == 1)
+            _movement.Move3();*/
     }
 
     void NormalControls()

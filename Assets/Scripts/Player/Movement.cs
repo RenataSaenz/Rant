@@ -25,6 +25,24 @@ public class Movement
         _transform.position += _transform.right * h * _swipeSpeed * Time.deltaTime;
     }
     /*
+    public void Move1()
+    {
+        //_transform.position += _transform.forward * _swipeSpeed * Time.deltaTime;
+         //_transform.position = new Vector3(-1, 0.063f, -4.7f) * _swipeSpeed * Time.deltaTime;
+        _transform.position = Vector3.MoveTowards(_transform.position, new Vector3(-1, 0.063f, -4.7f), _swipeSpeed * Time.deltaTime);
+    }
+    public void Move2()
+    {
+        //_transform.position = new Vector3(0, 0.063f, -4.7f) * _swipeSpeed * Time.deltaTime;
+        _transform.position = Vector3.MoveTowards(_transform.position, new Vector3(0, 0.063f, -4.7f), _swipeSpeed * Time.deltaTime);
+    }
+    public void Move3()
+    {
+        //_transform.position = new Vector3(1, 0.063f, -4.7f) * _swipeSpeed * Time.deltaTime;
+        _transform.position = Vector3.MoveTowards(_transform.position, new Vector3(1, 0.063f, -4.7f), _swipeSpeed * Time.deltaTime);
+    }
+    */
+    /*
     public void Run(float v, float h)
     {
         _transform.position += _camTransform.forward * v * (_speed * 1.2f) * Time.deltaTime;
