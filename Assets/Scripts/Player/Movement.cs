@@ -22,7 +22,7 @@ public class Movement
 
     public void Move(float h)
     {
-        _transform.position += _transform.right * h * _swipeSpeed * Time.deltaTime;
+        _transform.position += _transform.right * h *  _swipeSpeed * Time.deltaTime;
     }
     /*
     public void Move1()

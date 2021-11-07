@@ -15,7 +15,7 @@ public class FloorManager : MonoBehaviour
     int _counter;
 
     Action ActiveFloor;
-
+    
 
     private void Awake()
     {

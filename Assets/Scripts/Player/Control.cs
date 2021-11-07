@@ -23,11 +23,10 @@ public class Control
     {
         _movementInput.x = Input.GetAxis("Horizontal");
         _movementInput.y = Input.GetAxis("Vertical");
-
         if (_movementInput.x != 0)
            _movement.Move( _movementInput.x);
-        if (_movementInput.y >= 1)
-            _movement.Jump();
+        /*if (_movementInput.y >= 1)
+            _movement.Jump();*/
 
         controlsMethod();
 
