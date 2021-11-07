@@ -63,9 +63,10 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         ForwardMovemnt(_speed);
 
         _control.OnUpdate();
-
+    
+#if UNITY_ANDROID && !UNITY_EDITOR
         CalculateSwipePosition();
-
+#endif
 
     }
 
