@@ -10,8 +10,6 @@ public class SceneTransitions : MonoBehaviour
     [SerializeField]
     private float _timeForTransition;
 
-    [SerializeField] private GameObject _pauseMenu;
-
     private void Start()
     {
         EventManager.Subscribe("GameOver", YouLost);
@@ -47,11 +45,6 @@ public class SceneTransitions : MonoBehaviour
         SceneManager.LoadScene("Picnic");
         PointsContoller.totalScore = 0;
     } 
-    public void Continue()
-    {
-        Time.timeScale = 1f;
-        _pauseMenu.SetActive(false);
-    }
 
     public void Rules()
     {
