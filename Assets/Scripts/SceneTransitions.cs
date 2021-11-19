@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitions : MonoBehaviour
 {
+    public ManagerUI managerUI;
+
     [SerializeField]
     private float _timeForTransition;
 
@@ -12,6 +14,12 @@ public class SceneTransitions : MonoBehaviour
     {
         EventManager.Subscribe("GameOver", YouLost);
         EventManager.Subscribe("GameWon", YouWon);
+    }
+
+    public void Resume()
+    {
+        managerUI.InactivePause();
+        Time.timeScale = 1f;
     }
 
     public void YouWon(params object[] parameters)
