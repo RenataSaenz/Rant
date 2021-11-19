@@ -8,6 +8,8 @@ public class SceneTransitions : MonoBehaviour
     [SerializeField]
     private float _timeForTransition;
 
+    [SerializeField] private GameObject _pauseMenu;
+
     private void Start()
     {
         EventManager.Subscribe("GameOver", YouLost);
@@ -17,15 +19,16 @@ public class SceneTransitions : MonoBehaviour
     public void YouWon(params object[] parameters)
     {
         SceneManager.LoadScene("YouWon");
-       // ScoreManager.instance.TotalScore();
+       // ScoreManager.instance.PointsContoller();
     }
 
     public void YouLost(params object[] parameters)
-    {
+    {Debug.Log("YouLost");
         StartCoroutine(WaitForLoadScene(2));
     }
     IEnumerator WaitForLoadScene(float time)
     {
+        Debug.Log("LoadScreen");
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("YouLost");
     }
@@ -34,6 +37,12 @@ public class SceneTransitions : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Picnic");
+        PointsContoller.totalScore = 0;
+    } 
+    public void Continue()
+    {
+        Time.timeScale = 1f;
+        _pauseMenu.SetActive(false);
     }
 
     public void Rules()

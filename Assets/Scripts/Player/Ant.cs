@@ -8,8 +8,7 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     public bool isDead;
 
     public float _speed;
-    [SerializeField]
-    private float _swipeSpeed;
+    private float _swipeSpeed = 1;
     [SerializeField]
     private float _jumpForce;
     public float life = 100;
@@ -27,9 +26,14 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
     private Vector2 _startPosition;
     Vector2 _endPosition;
     Vector2 _direction;
-    int _swipePositionCount;
+    int _swipePositionCount = 0;
 
     float swipePowerUp;
+
+    private Vector3 posLeft;
+    private Vector3 posCenter;
+    private Vector3 posRight;
+    
 
     List<IObserver> _allObservers = new List<IObserver>();
 
@@ -45,10 +49,10 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     private void Start()
     {
+        
+        
         SwipeManager2.instance.OnStartTouch += StartTouch;
         SwipeManager2.instance.OnEndTouch += EndTouch;
-
-        _swipePositionCount = 0;
 
         _speed = 0;
         EventManager.Subscribe("FastPowerUp", SpeedPowerUp);
@@ -56,6 +60,11 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         StartLifeFunc(life);
 
         swipePowerUp = -4.7f;
+        
+        transform.position = new Vector3(0, 0.063f, gameObject.transform.position.z);
+        posLeft = new Vector3(-1, gameObject.transform.position.y, gameObject.transform.position.z);
+        posCenter = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
+        posRight = new Vector3(0, gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
     void FixedUpdate()
@@ -67,7 +76,6 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 #if UNITY_ANDROID && !UNITY_EDITOR
         CalculateSwipePosition();
 #endif
-
     }
 
     void StartTouch(Vector2 position)
@@ -81,31 +89,56 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     void CalculateSwipePosition()
     {
-        Vector3 pos = new Vector3();
-        pos.x = transform.position.x;
-        pos.z = transform.position.z;
+        /*Vector3 pos = new Vector3();
+        pos.x = gameObject.transform.position.x;
+        pos.z = gameObject.transform.position.z;*/
+        
+        float step = _swipeSpeed * Time.deltaTime;
+        float dist = _endPosition.x - _startPosition.x;
 
-        _direction.x = _endPosition.x - _startPosition.x;
+        Vector3 distLeft = posLeft - transform.position;
+        Vector3 distCenter = posCenter - transform.position;
+        Vector3 distRight = posRight - transform.position;
 
-        if (_startPosition.x < _endPosition.x)
-        {
-           // transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos + 1, 0.063f, -4.7f), 2 * Time.deltaTime);
-
+        if (_startPosition.x <= _endPosition.x) //swipe derecha
+        { 
             _swipePositionCount +=1;
             if (_swipePositionCount >= 1)
-                _swipePositionCount = 1;
+                _swipePositionCount = 1; 
             
+            // transform.position += new Vector3(1 * step, 0.063f, gameObject.transform.position.z);
+            if (transform.position.x <= posRight.x)
+                transform.position += transform.right * step;
+            
+
+            if (Vector3.Distance(posCenter, transform.position) < 0.001f || Vector3.Distance(posRight, transform.position) < 0.001f)
+            {
+                _swipeSpeed = 0;
+                return;
+            }
         }
-        if (_startPosition.x > _endPosition.x )
-        {
-            //transform.position = Vector3.MoveTowards(transform.position, new Vector3(pos - 1, 0.063f, -4.7f), 2 * Time.deltaTime);
+        if (_startPosition.x >= _endPosition.x) //swipe izq
+        {  
             _swipePositionCount -=1;
+            
             if (_swipePositionCount <= -1)
                 _swipePositionCount = -1;
+            
+            if (transform.position.x >= posLeft.x)
+                transform.position += -transform.right * step;
+            
+            // transform.position += new Vector3(-1 * step, 0.063f, gameObject.transform.position.z);
+            
+           if (Vector3.Distance(  posCenter, transform.position) < 0.001f || Vector3.Distance(posLeft, transform.position) < 0.001f)
+            {
+                _swipeSpeed = 0;
+                return;
+            } 
         }
-        
+        _swipeSpeed = 1;
+        /*
         if (_swipePositionCount == 0)
-        {   //_movement.Move1();
+        {   
            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
         }
         if (_swipePositionCount == 1)
@@ -115,7 +148,7 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         if (_swipePositionCount == -1)
         {
            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
-        }
+        }*/
     }
     public void SpeedPowerUp(params object[] n1)
     {
@@ -183,6 +216,8 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
 
     public void Dead(params object[] parameters)
     {
+        SaveGame.instance.gameData.collectPointInt = PointsContoller.totalScore;
+        SaveGame.instance.Save();
         _speed = 0;
         isDead = true;
         EventManager.Trigger("GameOver");

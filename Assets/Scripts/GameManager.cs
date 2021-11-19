@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
-{/*
-    private void Start()
+{
+    public static GameManager instance;
+
+    void Awake()
     {
-        SwipeManager2.instance.OnStartTouch += StartTouch;
-        SwipeManager2.instance.OnEndTouch += EndTouch;
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
-    void StartTouch(Vector2 position)
+    void Start()
     {
-
-    }
-
-    void EndTouch(Vector2 position)
-    {
-
-    }*/
-
+        PointsContoller.totalScore = 0;
+        //GameData ld = new GameData();
+        
+       // Debug.Log(ld.ToJson());
+       
+    } 
+  
+   
+   //SaveGame.instance.Load();  //recargar partida
+   
 }

@@ -32,12 +32,12 @@ public class ManagerUI : MonoBehaviour
     }
     public void ShowScore()
     {
-        var score = TotalScore.totalScore;
+        var score = PointsContoller.totalScore;
         text.text = "SCORE: " + score.ToString();
     }
     public void TotalPoints()
     {
-       var totalScore = TotalScore.totalScore;
+       var totalScore = PointsContoller.totalScore;
 
         if (stars0 != null)
         {
