@@ -325,6 +325,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 859254464}
+        m_MethodName: Active
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &211449223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +692,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &815889896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815889898}
+  - component: {fileID: 815889897}
+  m_Layer: 0
+  m_Name: AdsGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &815889897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815889896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef4b82da93966747a5d387b4d660bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &815889898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815889896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5012733, y: -1.7571785, z: -2.701688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &859254460
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,43 +744,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 859254463}
-  - component: {fileID: 859254462}
-  - component: {fileID: 859254461}
   - component: {fileID: 859254464}
   m_Layer: 0
-  m_Name: Ads
+  m_Name: Ads test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &859254461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859254460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a20ca43d723e364097d2f64f2a8cf66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showAdButton: {fileID: 211449222}
---- !u!114 &859254462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859254460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d41cd47395e3f54498166b629483714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idIOS: 4447118
-  idANDROID: 4447119
 --- !u!4 &859254463
 Transform:
   m_ObjectHideFlags: 0
@@ -753,7 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfabaca5d0aa505468bae80a57492c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardedAds: {fileID: 859254461}
+  nameAds: 2
 --- !u!1 &1032872491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a381a862a35e69b44ae1550e4f378b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerUI: {fileID: 0}
   _timeForTransition: 0
 --- !u!4 &1495742656
 Transform:
@@ -1355,7 +1381,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91dbad0e1289ef42baa6675e7dfd01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: 6
+    clip: {fileID: 8300000, guid: 0791575031687e847ae16225efeb33d7, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &2133809927
 Transform:
   m_ObjectHideFlags: 0

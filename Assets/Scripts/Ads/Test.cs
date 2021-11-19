@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    public RewardedAds rewardedAds;
+    public AdsGame.AdsType nameAds;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            rewardedAds.LoadAd();
+            Active();
+    }
+
+    public void Active()
+    {
+        AdsGame.instance.Active(nameAds, FinishAds, GameOver);
+    }
+
+    void GameOver()
+    {
+        Debug.Log("Perdiste");
+    }
+
+    void FinishAds()
+    {
+        Debug.Log("Tenés una vida extra");
     }
 }
