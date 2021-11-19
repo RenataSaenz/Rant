@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPosZ: 0
   prefab: {fileID: -5803271594243398761, guid: cfcf24b5e9778374e87ba069ea664f43, type: 3}
-  minFloors: 5
+  minFloors: 6
 --- !u!4 &1257685212
 Transform:
   m_ObjectHideFlags: 0
