@@ -24,6 +24,6 @@ public class Test : MonoBehaviour
 
     void FinishAds()
     {
-        Debug.Log("Tenés una vida extra");
+        ManagerUI.instance.AdsRewards();
     }
 }
