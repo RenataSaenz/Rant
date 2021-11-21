@@ -10,37 +10,77 @@ using UnityEngine;
 
 public class HighScore : MonoBehaviour
 {
+    public static HighScore instance;
+
+    public GameObject highScoreCanvas;
+
     public TextMeshProUGUI score;
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI secondHighScore;
     public TextMeshProUGUI thirdHighScore;
+    public TextMeshProUGUI nameScore;
+    public TextMeshProUGUI nameHighScore;
+    public TextMeshProUGUI nameSecondHighScore;
+    public TextMeshProUGUI nameThirdHighScore;
     private int score0;
     private int score1;
     private int score2;
-    Dictionary<int, string> playersScores = new Dictionary<int, string>();
-    private IOrderedEnumerable<KeyValuePair<int, string>> sortedDict;
-    
+    Dictionary<string, int> playersScores = new Dictionary<string, int>();
+    private IOrderedEnumerable<KeyValuePair<string, int>> sortedDict;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
-    {  
+    {
+        highScoreCanvas.SetActive(false);
+    }
+
+    public void LoadScores()
+    {
+        highScoreCanvas.SetActive(true);
         SaveGame.instance.Load();
         score.text = PointsContoller.totalScore.ToString();
+        nameScore.text = PointsContoller.playerName + ":";
         SetScores();
     }
 
+
     void SetScores()
     {
-        var gamesSaved = Enumerable.Range(0,2);
-        foreach (var i in gamesSaved)
+        for (int i = 0; i <= 100; i++)
         {
+            
+            Debug.Log("Game loaded: "+ i.ToString());
             SaveGame.instance.numberGame = i;
+            
             var check = SaveGame.instance.CheckData();
-            if (check)
-            {
-                SaveGame.instance.Load();
-                playersScores.Add(PointsContoller.totalScore, PointsContoller.playerName);
-            }
-        } 
+            
+            if (!check) break;
+            
+            int n = i +1;
+            SaveGame.instance.Load();
+            if (PointsContoller.playerName == "")
+            { 
+                Debug.Log("Player does not have a name, number used for player is: " + n);
+                PointsContoller.playerName = "player" + n;
+           }
+            Debug.Log("Total score of " + PointsContoller.playerName + " is "+ PointsContoller.totalScore.ToString()); 
+            playersScores.Add(PointsContoller.playerName, PointsContoller.totalScore);
+            
+            if (playersScores.Count == 2)break;
+        }
         sortedDict = from entry in playersScores orderby entry.Value descending select entry;
     }
-    
 }
+

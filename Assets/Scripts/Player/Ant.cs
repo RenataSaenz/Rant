@@ -210,17 +210,15 @@ public class Ant : MonoBehaviour, IDamageable, IObservable
         SoundManager.instance.Play(SoundManager.Types.Damage);
         if (life < minLife)
         {
-            Dead();
+            EventManager.Trigger("GameOver");
         }
     }
 
     public void Dead(params object[] parameters)
     {
-        SaveGame.instance.gameData.collectPointInt = PointsContoller.totalScore;
-        SaveGame.instance.Save();
+        //SaveGame.instance.gameData.collectPointInt = PointsContoller.totalScore;
         _speed = 0;
         isDead = true;
-        EventManager.Trigger("GameOver");
         SoundManager.instance.Play(SoundManager.Types.Dead);
         life = minLife;
     }
