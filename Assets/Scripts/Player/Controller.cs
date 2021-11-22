@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Control 
+public class Controller 
 {
     Movement _movement;
-    private Ant ant;
+    private Ant _ant;
     private Vector3 _movementInput;
+    
+    private Vector2 _startPosition;
+    Vector2 _endPosition;
     //private int touchCount = 0;
 
     Action controlsMethod;
 
-    public Control(Ant controller, Movement m)
+    public Controller(Ant ant, Movement m)
     {
         _movement = m;
-        ant = controller;
+        _ant = ant;
         controlsMethod = NormalControls;
     }
 
@@ -25,31 +28,33 @@ public class Control
         _movementInput.y = Input.GetAxis("Vertical");
         if (_movementInput.x != 0)
            _movement.Move( _movementInput.x);
-        /*if (_movementInput.y >= 1)
-            _movement.Jump();*/
 
         controlsMethod();
+        
+#if UNITY_ANDROID && !UNITY_EDITOR
+        _movement.CalculateSwipePosition(_endPosition, _startPosition);
+#endif
+    }
 
-      
-        /*
-        if (touchCount == 0)
-            _movement.Move1();
-        if (touchCount == -1)
-            _movement.Move2();
-        if (touchCount == 1)
-            _movement.Move3();*/
+    public void StartTouch(Vector2 position)
+    {
+            _startPosition = position;
+    }
+    public void EndTouch(Vector2 position)
+    {
+            _endPosition = position;
     }
 
     void NormalControls()
     {
-        ant.managerUI.InactivePause();
+        _ant.managerUI.InactivePause();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Pausa");
             Time.timeScale = 0f;
             controlsMethod = PausedControls;
-            ant.managerUI.ActivePause();
+            _ant.managerUI.ActivePause();
         }
 
     }
@@ -60,7 +65,7 @@ public class Control
         {
             Time.timeScale = 1f;
             controlsMethod = NormalControls;
-            ant.managerUI.InactivePause();
+            _ant.managerUI.InactivePause();
         }
 
     }
