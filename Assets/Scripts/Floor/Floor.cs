@@ -11,8 +11,6 @@ public class Floor : MonoBehaviour
     [SerializeField]
     private int _numberOfObstacles = 7;
     [SerializeField]
-    private GameObject anthill;
-    [SerializeField]
     private GameObject[] obstacles;
     [SerializeField]
     private GameObject[] food;
@@ -171,7 +169,6 @@ public class Floor : MonoBehaviour
     }
     public void FinishFloor(FloorManager m, int t)
     {
-        anthill.SetActive(true);
         InitializeFloor(m, t);
     }
 
