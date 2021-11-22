@@ -11,32 +11,23 @@ public class ManagerUI : MonoBehaviour
     public GameObject pausedMenu;
     public Image cameraShutDown;
     public float speedFade;
-    public AudioSource clickAudioSource;
-    /*public Image stars0;
-    public Image stars1;
-    public Image stars2;
-    public Image stars3;*/
 
     [Header("Ads")] 
     [SerializeField] private GameObject rewardAchievment;
 
-    public static ManagerUI instance;
+    private static GameObject _rewardAchievment;
+    
+    
+
+
     private void Start()
     {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-        
         EventManager.Subscribe("GameOver", FadeOn);
 
         if (cameraShutDown != null)
             cameraShutDown.color = new Color(cameraShutDown.color.r, cameraShutDown.color.g, cameraShutDown.color.b, 0);
+        _rewardAchievment = rewardAchievment;
+        rewardAchievment.SetActive(false);
 
     }
 
@@ -49,39 +40,9 @@ public class ManagerUI : MonoBehaviour
         var score = PointsContoller.totalScore;
         text.text = "SCORE: " + score.ToString();
     }
-    /*public void TotalPoints()
-    {
-       var totalScore = PointsContoller.totalScore;
-
-        if (stars0 != null)
-        {
-            stars0.enabled = false;
-            stars1.enabled = false;
-            stars2.enabled = false;
-            stars3.enabled = false;
-
-            if (totalScore == 0)
-            {
-                stars0.enabled = true;
-            }
-            else if (totalScore > 0 && totalScore <= 3)
-            {
-                stars1.enabled = true;
-            }
-            else if (totalScore > 3 && totalScore < 7)
-            {
-                stars2.enabled = true;
-            }
-            else
-            {
-                stars3.enabled = true;
-            }
-        }
-    }*/
-
     public void OnCliclkSound()
     {
-        clickAudioSource.Play();
+        SoundManager.instance.Play(SoundManager.Types.Click);
     }
 
     public void ActivePause()
@@ -111,9 +72,9 @@ public class ManagerUI : MonoBehaviour
         }
     }
 
-    public void AdsRewards()
+    public static void AdsRewards()
     {
-        rewardAchievment.SetActive(true);
+        _rewardAchievment.SetActive(true);
     }
 
 }

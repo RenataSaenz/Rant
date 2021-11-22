@@ -9,7 +9,6 @@ public class CameraEnd : MonoBehaviour
         var damageable = col.collider.GetComponent<IDamageable>();
         if (damageable != null)
         {
-           Debug.Log("Camera End");
            EventManager.Trigger("GameOver"); 
         }
     }

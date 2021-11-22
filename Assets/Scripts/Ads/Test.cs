@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Test : MonoBehaviour
 {
     public AdsGame.AdsType nameAds;
+    //public event Action OnPlayRewards;
 
     private void Update()
     {
@@ -24,6 +26,8 @@ public class Test : MonoBehaviour
 
     void FinishAds()
     {
-        ManagerUI.instance.AdsRewards();
+      //  OnPlayRewards?.Invoke();
+      //  ManagerUI.instance.AdsRewards();
+      ManagerUI.AdsRewards();
     }
 }

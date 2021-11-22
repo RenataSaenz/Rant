@@ -44,9 +44,6 @@ public class AdsGame : MonoBehaviour
         {
             methodFailed();
         }
-
-        
-
     }
 
     public void HandleShowResult(ShowResult result)
