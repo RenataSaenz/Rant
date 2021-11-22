@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Floor : MonoBehaviour
@@ -19,10 +20,10 @@ public class Floor : MonoBehaviour
     private GameObject[] enemies;
     [SerializeField]
     private Transform[] obstaclesPositions;
-    [SerializeField]
-    private Transform[] foodPositions;
+    [FormerlySerializedAs("foodPositions")] [SerializeField]
+    private Transform[] coinsPositions;
     private List<int> ObstaclesNumbersList = new List<int>();
-    private List<int> FoodNumbersList = new List<int>(); 
+    private List<int> CoinsNumbersList = new List<int>(); 
     [SerializeField]
     private float speed = 5f;
     float minDist = 0;
@@ -106,7 +107,7 @@ public class Floor : MonoBehaviour
         var randomFood = Random.Range(2, food.Length);
         
         ObstaclesNumbersList = new List<int>(new int[obstaclesPositions.Length]);
-        FoodNumbersList = new List<int>(new int[foodPositions.Length]);
+        CoinsNumbersList = new List<int>(new int[coinsPositions.Length]);
 
         for (int o = 0; o < randomObstacles; o++)
         {
@@ -136,17 +137,17 @@ public class Floor : MonoBehaviour
 
         for (int f = 0; f < randomFood; f++)
         {
-            var randomFoodPositions = Random.Range(1, (foodPositions.Length) + 1);
+            var randomFoodPositions = Random.Range(1, (coinsPositions.Length) + 1);
 
-            while (FoodNumbersList.Contains(randomFoodPositions))
+            while (CoinsNumbersList.Contains(randomFoodPositions))
             {
-                randomFoodPositions = Random.Range(1, (foodPositions.Length) + 1);
+                randomFoodPositions = Random.Range(1, (coinsPositions.Length) + 1);
             }
 
-            FoodNumbersList[f] = randomFoodPositions;
+            CoinsNumbersList[f] = randomFoodPositions;
 
             Vector3 pos = transform.position;
-            pos = (foodPositions[FoodNumbersList[f] - 1]).transform.position;
+            pos = (coinsPositions[CoinsNumbersList[f] - 1]).transform.position;
             var index = Random.Range(0, food.Length);
             //var instance = Instantiate(obstacles[index], pos, Quaternion.identity);
             //instance.transform.parent = gameObject.transform;

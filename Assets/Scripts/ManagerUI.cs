@@ -12,12 +12,27 @@ public class ManagerUI : MonoBehaviour
     public Image cameraShutDown;
     public float speedFade;
     public AudioSource clickAudioSource;
-    public Image stars0;
+    /*public Image stars0;
     public Image stars1;
     public Image stars2;
-    public Image stars3;
+    public Image stars3;*/
+
+    [Header("Ads")] 
+    [SerializeField] private GameObject rewardAchievment;
+
+    public static ManagerUI instance;
     private void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+        
         EventManager.Subscribe("GameOver", FadeOn);
 
         if (cameraShutDown != null)
@@ -28,14 +43,13 @@ public class ManagerUI : MonoBehaviour
     private void Update()
     {
        ShowScore();
-       TotalPoints();
     }
     public void ShowScore()
     {
         var score = PointsContoller.totalScore;
         text.text = "SCORE: " + score.ToString();
     }
-    public void TotalPoints()
+    /*public void TotalPoints()
     {
        var totalScore = PointsContoller.totalScore;
 
@@ -63,7 +77,7 @@ public class ManagerUI : MonoBehaviour
                 stars3.enabled = true;
             }
         }
-    }
+    }*/
 
     public void OnCliclkSound()
     {
@@ -95,6 +109,11 @@ public class ManagerUI : MonoBehaviour
             cameraShutDown.color = Color.Lerp(cameraShutDown.color, fade, speedFade * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void AdsRewards()
+    {
+        rewardAchievment.SetActive(true);
     }
 
 }
