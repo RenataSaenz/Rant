@@ -9,7 +9,7 @@ public class LifeBar : MonoBehaviour, IObserver
     public Ant ant;
     private void Start()
     {
-        _playerToCopy = ant;
+        _playerToCopy = ant._view;
         _playerToCopy.Subscribe(this);
     }
 
