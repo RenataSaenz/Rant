@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Ad : MonoBehaviour
+public class AdReward : MonoBehaviour
 {
     [FormerlySerializedAs("AdObject")] [SerializeField] private Image _adObject;
     [SerializeField] private int _points = 50;
@@ -14,13 +14,10 @@ public class Ad : MonoBehaviour
     {
         SoundManager.instance.Play(SoundManager.Types.Victory);
     }
-
-
     public void AddPointsEvent()
     {
             PointsContoller.SumScore(_points);
     }
-
     public void DisableEvent()
     {
         _adObject.enabled= false;

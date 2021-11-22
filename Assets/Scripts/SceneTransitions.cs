@@ -29,12 +29,11 @@ public class SceneTransitions : MonoBehaviour
     }
 
     public void YouLost(params object[] parameters)
-    {Debug.Log("YouLost");
+    {
         StartCoroutine(WaitForLoadScene(2));
     }
     IEnumerator WaitForLoadScene(float time)
     {
-        Debug.Log("LoadScreen");
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("YouLost");
     }
