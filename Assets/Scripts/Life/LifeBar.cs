@@ -6,10 +6,10 @@ public class LifeBar : MonoBehaviour, IObserver
 {
     public Image lifeBar;
     IObservable _playerToCopy;
-    public Ant ant;
+    public View _view;
     private void Start()
     {
-        _playerToCopy = ant._view;
+        _playerToCopy = _view;
         _playerToCopy.Subscribe(this);
     }
 
@@ -18,9 +18,9 @@ public class LifeBar : MonoBehaviour, IObserver
         lifeBar.fillAmount = (_life / _maxLife);
     }
 
-    public void Notify(float life, float maxLife)
+    public void Notify(float value, float maxValue)
     {
-            BarUpdate(life, maxLife);
+            BarUpdate(value, maxValue);
     }
 
 }

@@ -1,27 +1,53 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class FunctionalController : MonoBehaviour,  IDamageable
+public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp 
 {
     public event Action<float, float> OnHudLife;
     public event Action OnDamge;
-    private Model _model;
-
+    
     private float _life;
     private float _maxLife;
     private float _minLife;
+    
+    
+    private PlayerModel _playerModel;
+    private View _view;
+    private InputController _inputController;
     private Movement _movement;
-    public void FunctionalControllerConstructor(Model model, Movement movement)
-    {
-        _life = model.life;
-        _maxLife = model.maxLife;
-        _minLife = model.minLife;
-        _movement = movement;
 
+    private void Awake()
+    {
+        _playerModel = GetComponent<PlayerModel>();
+        _view = GetComponent<View>();
+        
+        
+        _life = _playerModel.life;
+        _maxLife = _playerModel.maxLife;
+        _minLife = _playerModel.minLife;
+        
+        _movement = new Movement(_playerModel);
+        _inputController = new InputController( _playerModel, _movement);
+        
+        transform.position = _playerModel.InitialPosition;
+
+        EventManager.Subscribe("GameOver", Dead);
     }
+
+    private void Start()
+    {
+        OnHudLife += _view.UpdateHudLife;
+        OnDamge += _view.TakeDamage;
+        
+        SwipeManager2.instance.OnStartTouch += _inputController.StartTouch;
+        SwipeManager2.instance.OnEndTouch += _inputController.EndTouch;
+    }
+
+    private void FixedUpdate()
+    {
+        _inputController.OnUpdate();
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         var collectable = collision.gameObject.GetComponent<ICollectable>();
@@ -38,11 +64,14 @@ public class FunctionalController : MonoBehaviour,  IDamageable
     {
         var obj = other.gameObject.GetComponent<ICollectable>();
 
-        if (obj != null)
-        {
-            obj.Collect();
-        }
+        if (obj != null) obj.Collect();
     }
+
+    public void ChangePower(float maxDistanceUnits)
+    {
+       _movement.MoveForward(maxDistanceUnits);
+    }
+
     public void AddLifeFunc(float dmg)
     {
         _life += dmg;
@@ -64,4 +93,5 @@ public class FunctionalController : MonoBehaviour,  IDamageable
         SoundManager.instance.Play(SoundManager.Types.Dead);
         _life = _minLife;
     }
+    
 }

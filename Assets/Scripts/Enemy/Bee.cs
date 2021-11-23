@@ -6,7 +6,7 @@ public class Bee : MonoBehaviour
 {
     public Animator m_Animator;
 
-    public Ant target;
+    public PlayerModel target;
 
     private Vector3 _velocity;
 
@@ -86,7 +86,7 @@ public class Bee : MonoBehaviour
     {
         m_Animator.SetBool("Moving", true);
 
-        Vector3 desired = target.transform.position - transform.position;
+        Vector3 desired = ((Component) target).transform.position - transform.position;
 
 
         desired.Normalize();  //si queremos que vaya mas rapido cuanto mas lejos y no constante, borrar el normalizado.

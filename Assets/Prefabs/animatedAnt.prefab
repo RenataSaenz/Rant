@@ -1647,8 +1647,8 @@ GameObject:
   - component: {fileID: 4376480002401211930}
   - component: {fileID: 870924801107047466}
   - component: {fileID: 870924801107047464}
-  - component: {fileID: 870924801107047467}
   - component: {fileID: 2102530845}
+  - component: {fileID: 1511017100236019345}
   m_Layer: 9
   m_Name: animatedAnt
   m_TagString: Player
@@ -1741,26 +1741,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05229473, y: 0.05221066, z: 0.07917786}
   m_Center: {x: 0.0017223358, y: 0.016691923, z: -0.0037994385}
---- !u!114 &870924801107047467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167015917449943442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdd30d9547d4004ab53e672d3a5aec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
-  _speed: 1
-  _swipeSpeed: 1
-  _jumpForce: 0.5
-  life: 100
-  maxLife: 100
-  minLife: 0
-  managerUI: {fileID: 0}
 --- !u!114 &2102530845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,3 +1754,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 1
+--- !u!114 &1511017100236019345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167015917449943442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecbc21125e90ad4fbc777648620f204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 0
+  minLife: 0
+  forwardSpeed: 0
+  swipeSpeed: 0
+  damageParticles: {fileID: 4927758430890295417, guid: 8133159b9118aa1499d2a8cfd6370e84,
+    type: 3}
+  managerUI: {fileID: 0}
+  fasterPowerUp: {fileID: 0}

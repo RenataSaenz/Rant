@@ -4880,6 +4880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartObj: {fileID: 5077109265750304497}
-  _slowParticles: {fileID: 4927758430890295417, guid: 348a0b09b2d51c545ad949f38b84e094,
+  _particles: {fileID: 4927758430890295417, guid: 348a0b09b2d51c545ad949f38b84e094,
     type: 3}
   _addLife: 10

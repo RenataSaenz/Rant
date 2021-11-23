@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement
+public class Movement 
 {
     Transform _transform;
     public float _swipeSpeed;
@@ -11,11 +11,12 @@ public class Movement
     private Vector3 posLeft;
     private Vector3 posCenter;
     private Vector3 posRight;
-    public Movement(Model model)
+
+    public Movement(PlayerModel playerModel)
     {
-        _transform = model.myTransform;
-        _swipeSpeed = model.swipeSpeed;
-        _forwardSpeed = model.forwardSpeed;
+        _transform = playerModel.transform;
+        _swipeSpeed = playerModel.swipeSpeed;
+        _forwardSpeed = playerModel.forwardSpeed;
         
         posLeft = new Vector3(-1, _transform.position.y, _transform.position.z);
         posCenter = new Vector3(0, _transform.position.y, _transform.position.z);
@@ -26,6 +27,23 @@ public class Movement
     {
         _transform.position += _transform.right * h *  _swipeSpeed * Time.deltaTime;
     }
+    public void MoveForward(float maxDistanceUnits)
+    {
+        //_transform.position += _transform.up *  speed * Time.deltaTime;
+        Vector3 target; 
+        target.z = _transform.position.z + 1;
+
+        if (_transform.position.z <= 6)
+        {
+            _transform.position = Vector3.MoveTowards(_transform.position,
+                new Vector3(_transform.position.x, _transform.position.y, 6), maxDistanceUnits * Time.deltaTime);
+        }
+        else
+        { _transform.position = Vector3.MoveTowards(_transform.position,
+            new Vector3(_transform.position.x, _transform.position.y, -6), 700 * Time.deltaTime);
+        }
+    }
+    
 
     public void CalculateSwipePosition(Vector2 _endPosition, Vector2 _startPosition)
     {
@@ -86,5 +104,8 @@ public class Movement
         {
            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-1, 0.063f, pos.z), _swipeSpeed * Time.deltaTime);
         }*/
+        
     }
+  
+
 }
