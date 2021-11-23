@@ -60,7 +60,6 @@ public class HighScore : MonoBehaviour
     {
         for (int i = 0; i <= 100; i++)
         {
-            
             Debug.Log("Game loaded: "+ i.ToString());
             SaveGame.instance.numberGame = i;
             

@@ -1,17 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class View : IObservable
+public class View : MonoBehaviour, IObservable
 {
     List<IObserver> _allObservers = new List<IObserver>();
     private ParticleSystem _damageParticles;
     private Transform _transform;
-    public View(Model model)
+    
+    private PlayerModel _playerModel;
+    
+    private void Awake()
     {
-        _damageParticles = model.damageParticles;
-        _transform = model.myTransform;
+        _playerModel = GetComponent<PlayerModel>();
+        _damageParticles = _playerModel.damageParticles;
+        _transform = _playerModel.transform;
     }
+
     public void UpdateHudLife(float life, float maxLife)
     {
         NotifyToObservers(life, maxLife);
@@ -32,10 +38,10 @@ public class View : IObservable
             _allObservers.Remove(obs);
     }
 
-    public void NotifyToObservers(float life, float maxLife)
+    public void NotifyToObservers(float value, float maxValue)
     {
         for (int i = 0; i < _allObservers.Count; i++)
-            _allObservers[i].Notify(life, maxLife);
+            _allObservers[i].Notify(value, maxValue);
     }
 
 }

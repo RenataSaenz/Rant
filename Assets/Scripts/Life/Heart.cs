@@ -7,7 +7,7 @@ public class Heart : MonoBehaviour
     public GameObject heartObj;
 
     [SerializeField]
-    private ParticleSystem _slowParticles;
+    private ParticleSystem _particles;
     [SerializeField]
     private int _addLife = 10;
 
@@ -18,7 +18,7 @@ public class Heart : MonoBehaviour
         {
             SoundManager.instance.Play(SoundManager.Types.ExtraLife);
             heartObj.SetActive(false);
-            Instantiate(_slowParticles, transform.position, transform.rotation);
+            Instantiate(_particles, transform.position, transform.rotation);
             damageable.AddLifeFunc(_addLife);
         }
     }

@@ -2,5 +2,5 @@
 {
     void Subscribe(IObserver obs);   
     void Unsubscribe(IObserver obs);
-    void NotifyToObservers(float life, float maxLife);
+    void NotifyToObservers(float value, float maxValue);
 }

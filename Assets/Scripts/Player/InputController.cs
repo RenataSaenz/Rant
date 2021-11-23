@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Controller 
+public class InputController 
 {
     Movement _movement;
-    private Ant _ant;
+    PlayerModel _playerModel;
     private Vector3 _movementInput;
     
     private Vector2 _startPosition;
     Vector2 _endPosition;
     //private int touchCount = 0;
-
     Action controlsMethod;
 
-    public Controller(Ant ant, Movement m)
+    public InputController(PlayerModel playerModel, Movement m)
     {
+        _playerModel = playerModel;
         _movement = m;
-        _ant = ant;
         controlsMethod = NormalControls;
     }
 
@@ -47,16 +46,15 @@ public class Controller
 
     void NormalControls()
     {
-        _ant.managerUI.InactivePause();
+        _playerModel.managerUI.InactivePause();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Pausa");
             Time.timeScale = 0f;
             controlsMethod = PausedControls;
-            _ant.managerUI.ActivePause();
+            _playerModel.managerUI.ActivePause();
         }
-
     }
 
     void PausedControls()
@@ -65,8 +63,7 @@ public class Controller
         {
             Time.timeScale = 1f;
             controlsMethod = NormalControls;
-            _ant.managerUI.InactivePause();
+            _playerModel.managerUI.InactivePause();
         }
-
     }
 }
