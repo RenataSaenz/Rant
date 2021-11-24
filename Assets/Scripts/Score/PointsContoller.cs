@@ -26,10 +26,9 @@ public class PointsContoller : MonoBehaviour
     private void Start()
     {
         SaveGame.instance.OnLoadGameData += LoadGameData;
-        //SaveGame.instance.gameData.scpre = totalScore;
     }
 
-    public void LoadGameData(GameData data)
+    public void LoadGameData(RecentPlayers  scoreListData)
     {
     }
 
@@ -37,7 +36,6 @@ public class PointsContoller : MonoBehaviour
     {
         totalScore += score;
        
-        //SaveGame.instance.gameData.scpre = totalScore;
 
     }
     

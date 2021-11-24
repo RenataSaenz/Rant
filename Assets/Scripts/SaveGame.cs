@@ -9,10 +9,11 @@ public class SaveGame : MonoBehaviour
     public static SaveGame instance;
 
     public int numberGame;
-    public GameData gameData;
-    public event Action<GameData> OnLoadGameData;
+    public RecentPlayers scoreListData;
+    public event Action<RecentPlayers> OnLoadGameData;
     string _fileName = "Game{0}Data.sav";   // private string _fileName = "Game{0}Data{1}"; //LevelAlgoDataOtraCosa
     string _saveFilePath;
+   
     
     void Awake()
     {
@@ -37,21 +38,16 @@ public class SaveGame : MonoBehaviour
         Load();
     }
 
-    public bool CheckData()
-    {
-        if (!File.Exists(_saveFilePath)) return false;
-        else return true;
-    }
-
     public void Save()
     {
         try
-        {
+        { 
             if (!File.Exists(_saveFilePath))
                 File.Create(_saveFilePath);
 
             StreamWriter streamWriter = new StreamWriter(_saveFilePath, false);
-            streamWriter.Write(gameData.ToJson());
+            streamWriter.Write(scoreListData.ToJson());
+            //Debug.Log(scoreListData.ToJson().ToString());
             streamWriter.Close();
         }
         catch (Exception e)
@@ -66,15 +62,15 @@ public class SaveGame : MonoBehaviour
     {
         try
         {
-            if (gameData == null)
-                gameData = new GameData();
+            if (scoreListData == null)
+                scoreListData = new RecentPlayers();
             if (File.Exists(_saveFilePath))
             {
                 StreamReader streamReader = new StreamReader(_saveFilePath);
-                gameData = GameData.FromJson(streamReader.ReadToEnd());
+                scoreListData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
                 streamReader.Close();
                 
-                OnLoadGameData?.Invoke(gameData);
+                OnLoadGameData?.Invoke(scoreListData);
             }
         }
         catch (Exception e)

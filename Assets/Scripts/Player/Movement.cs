@@ -59,7 +59,7 @@ public class Movement
 
         if (_startPosition.x <= _endPosition.x) //swipe derecha
         { 
-            if (_swipePositionCount < 1)
+            if (_swipePositionCount < 2)
                 _swipePositionCount += 1; 
             
 
@@ -71,7 +71,7 @@ public class Movement
         }
         if (_startPosition.x >= _endPosition.x) //swipe izq
         {  
-            if (_swipePositionCount > -1)
+            if (_swipePositionCount > 0)
                 _swipePositionCount -= -1;
             
         }

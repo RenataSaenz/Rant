@@ -20,7 +20,7 @@ public class HighScore : MonoBehaviour
     private int score0;
     private int score1;
     private int score2;
-    private List<HighScorePlayersData> _playersData = new List<HighScorePlayersData>();
+    private List<UserDetails> _playersData = new List<UserDetails>();
     private void Awake()
     {
         if (instance == null)
@@ -48,44 +48,26 @@ public class HighScore : MonoBehaviour
         SetScores();
     }
 
-
     void SetScores()
     {
-        for (int i = 0; i <= 100; i++)
-        {
-            Debug.Log("Game loaded: "+ i.ToString());
-            SaveGame.instance.numberGame = i;
-            
-            var check = SaveGame.instance.CheckData();
-            
-            if (!check) break;
-            
-            int n = i +1;
-            SaveGame.instance.Load();
-            
-            if (PointsContoller.playerName == "")
-            { 
-                Debug.Log("Player does not have a name, number used for player is: " + n);
-                PointsContoller.playerName = "player" + n;
-            }
-            Debug.Log("Total score of " + PointsContoller.playerName + " is "+ PointsContoller.totalScore.ToString()); 
-            _playersData.Add(new HighScorePlayersData{name = PointsContoller.playerName, score = PointsContoller.totalScore});
-            
-            
+        SaveGame.instance.Load();
+        
+        _playersData =  SaveGame.instance.scoreListData.list.OrderByDescending(i => i.score).ToList();
+        foreach( var x in _playersData) {
+            Debug.Log( x.name + ": " + x.score.ToString());
         }
 
         GetHighestScores();
     }
-
+    
     void GetHighestScores()
     {
-        _playersData = _playersData.OrderByDescending(i => i.score).ToList();
 
         highScore.text = _playersData[0].score.ToString();
         secondHighScore.text = _playersData[1].score.ToString();
         thirdHighScore.text = _playersData[2].score.ToString();
         
-        nameHighScore.text = _playersData[0].name;
+        nameHighScore.text =_playersData[0].name;
         nameSecondHighScore.text= _playersData[1].name;
         nameThirdHighScore.text = _playersData[2].name;
     }
