@@ -39,8 +39,8 @@ public class SaveGame : MonoBehaviour
 
     public bool CheckData()
     {
-        if (!File.Exists(_saveFilePath))return (false);
-        else return (true);
+        if (!File.Exists(_saveFilePath)) return false;
+        else return true;
     }
 
     public void Save()
