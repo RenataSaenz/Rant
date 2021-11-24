@@ -15,3 +15,12 @@ public class FloorFactory : IFactory<Floor>
         return floor;
     }
 }
+
+public class ProjectileFactory : IFactory<Projectile>
+{
+    public Projectile Create(Projectile projectilePrefab)
+    {
+        var projectile = Object.Instantiate(projectilePrefab);
+        return projectile;
+    }
+}
