@@ -798,7 +798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.25005722, y: -0.15052414}
+  m_AnchoredPosition: {x: 0.25006104, y: -0.15052414}
   m_SizeDelta: {x: -28.700012, y: -11.890572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524891484
@@ -970,7 +970,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128174
+  m_Name: pb_Mesh56834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1377,6 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a381a862a35e69b44ae1550e4f378b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerUI: {fileID: 0}
   _timeForTransition: 0.5
 --- !u!4 &1174501429
 Transform:
@@ -1472,7 +1473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.25005722, y: -0.15052414}
+  m_AnchoredPosition: {x: 0.25006104, y: -0.15052414}
   m_SizeDelta: {x: -28.700012, y: -11.890572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292528850

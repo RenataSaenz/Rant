@@ -22,7 +22,7 @@ public class Obstacles : MonoBehaviour
         var damageable = col.collider.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.SubtractLifeFunc(damage);
+            damageable.SubtractLifeFunc(FlyweightPointer.Enemy.damage);
         }
         
     }
