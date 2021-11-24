@@ -15,6 +15,7 @@ public class PlayerModel : MonoBehaviour
     public float life;
     Rigidbody _rb;
     Transform transform;
+    public List<Vector3> _swipePoints = new List<Vector3>();
     
     [Header("Scripts")]
     public ManagerUI managerUI;
