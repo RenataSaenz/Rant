@@ -23,11 +23,10 @@ public class PlayerName : MonoBehaviour
 
    public void SetName()
    {
-       SaveGame.instance.gameData.collectPointInt = PointsContoller.totalScore;
        PointsContoller.playerName = nameOfPlayer;
-       SaveGame.instance.gameData.name = PointsContoller.playerName;
+       SaveGame.instance.scoreListData.list.Add(new UserDetails{name = PointsContoller.playerName, score = PointsContoller.totalScore});
        SaveGame.instance.Save();
-       HighScore.instance.LoadScores();
        setNameCanvas.SetActive(false);
+       HighScore.instance.LoadScores();
    }
 }

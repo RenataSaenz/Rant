@@ -455,7 +455,7 @@ MonoBehaviour:
   thirdHighScore: {fileID: 306537727}
   nameScore: {fileID: 1647581268}
   nameHighScore: {fileID: 436699314}
-  nameSecondHighScore: {fileID: 1546538166}
+  nameSecondHighScore: {fileID: 985867117}
   nameThirdHighScore: {fileID: 1546538166}
 --- !u!4 &276178548
 Transform:
@@ -1398,6 +1398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberGame: 0
+  scoreListData:
+    list: []
 --- !u!4 &668222179
 Transform:
   m_ObjectHideFlags: 0
@@ -3857,7 +3859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 19.599998, y: 76.80001}
+  m_AnchoredPosition: {x: 19.59999, y: 76.8}
   m_SizeDelta: {x: 408.86, y: 52.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124714389

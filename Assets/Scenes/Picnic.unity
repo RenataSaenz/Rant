@@ -2219,18 +2219,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5028392663696402435}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &2068124424 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 5028392663934409832, guid: e7a4e72e6756e9e49b280f5eaffa4e21,
-    type: 3}
-  m_PrefabInstance: {fileID: 5028392663696402435}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2068124426 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 50318818505900995, guid: e7a4e72e6756e9e49b280f5eaffa4e21,
-    type: 3}
-  m_PrefabInstance: {fileID: 5028392663696402435}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2068124427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2251,8 +2239,10 @@ MonoBehaviour:
     type: 3}
   InitialPosition: {x: 0, y: 0.063, z: -4.7}
   life: 100
-  _rb: {fileID: 2068124424}
-  transform: {fileID: 2068124426}
+  _swipePoints:
+  - {x: -1, y: 0.063, z: -4.7}
+  - {x: 0, y: 0.063, z: -4.7}
+  - {x: 1, y: 0.063, z: -4.7}
   managerUI: {fileID: 186030196}
   fasterPowerUp: {fileID: 940476679098670012, guid: 5cee59b58142f2a4886dd20f06e54639,
     type: 3}

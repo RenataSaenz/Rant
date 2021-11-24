@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PointsContoller.totalScore = 0;
-        //GameData ld = new GameData();
+        //UserDetails ld = new UserDetails();
         
        // Debug.Log(ld.ToJson());
        
