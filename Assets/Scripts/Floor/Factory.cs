@@ -24,3 +24,12 @@ public class ProjectileFactory : IFactory<Projectile>
         return projectile;
     }
 }
+
+public class HandFactory : IFactory<Hand>
+{
+    public Hand Create(Hand handPrefab)
+    {
+        var hand = Object.Instantiate(handPrefab);
+        return hand;
+    }
+}

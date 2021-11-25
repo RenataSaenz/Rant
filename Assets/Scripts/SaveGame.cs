@@ -29,8 +29,6 @@ public class SaveGame : MonoBehaviour
         
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);
-       
-        
     }
 
     private void Start()

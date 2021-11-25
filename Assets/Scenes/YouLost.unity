@@ -500,7 +500,7 @@ MonoBehaviour:
   thirdHighScore: {fileID: 306537727}
   nameScore: {fileID: 1647581268}
   nameHighScore: {fileID: 436699314}
-  nameSecondHighScore: {fileID: 1546538166}
+  nameSecondHighScore: {fileID: 985867117}
   nameThirdHighScore: {fileID: 1546538166}
 --- !u!4 &276178548
 Transform:
@@ -1443,6 +1443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberGame: 0
+  scoreListData:
+    list: []
 --- !u!4 &668222179
 Transform:
   m_ObjectHideFlags: 0
