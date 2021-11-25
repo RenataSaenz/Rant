@@ -19,7 +19,6 @@ public class FloorManager : MonoBehaviour
 
     private void Awake()
     {
-        FloorFactory _factory = new FloorFactory();
         pool = new Pool<Floor>(Create, Floor.TurnOff, Floor.TurnOn, 1);
         ActiveFloor = InstantiateFloor;
     }
@@ -69,8 +68,10 @@ public class FloorManager : MonoBehaviour
         }
     }
     public Floor Create()
-    {
-        return Instantiate(prefab);
+    { 
+        FloorFactory _factory = new FloorFactory();
+        return _factory.Create(prefab);
+        // Instantiate(prefab);
     }
    
 }

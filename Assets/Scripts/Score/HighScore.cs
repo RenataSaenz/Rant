@@ -53,9 +53,9 @@ public class HighScore : MonoBehaviour
         SaveGame.instance.Load();
         
         _playersData =  SaveGame.instance.scoreListData.list.OrderByDescending(i => i.score).ToList();
-        foreach( var x in _playersData) {
+       /* foreach( var x in _playersData) {
             Debug.Log( x.name + ": " + x.score.ToString());
-        }
+        }*/
 
         GetHighestScores();
     }
