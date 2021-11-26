@@ -6,6 +6,7 @@ public static class FlyweightPointer
 {
     public static readonly Flyweight Enemy = new Flyweight
     {
-        damage = 15
+        damage = 15,
+        maxForce = 5,
     };
 }

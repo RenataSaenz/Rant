@@ -30,14 +30,17 @@ public class HandManager : MonoBehaviour
     Action ActiveHand;
 
     private float ActualTime;
+
+    private bool start;
     
 
     private void Awake()
     {
+        start = false;
         //initialPosZ = prefab.transform.position.z;
         pool = new Pool<Hand>(Create, Hand.TurnOff, Hand.TurnOn, 1);
         ActiveHand = InstantiateHand;
-        numHands = 1;
+        numHands = 0;
         ActualTime -= delay;
     }
 
@@ -48,22 +51,38 @@ public class HandManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ActualTime += Time.deltaTime;
-        
-        if (ActualTime > delay && numHands <= (numberOfHands-1))
+        if (start)
         {
-            ActualTime = 0;
-            pool.Get().NextInPatronHand(this, initialPos, (handSize * numHands) + handsDistance);
-            numHands += 1;
-        }
+            ActualTime += Time.deltaTime;
+       
+            if (numHands == 0)
+            {
+                NewHand();
+                numHands += 1;
+            }
+            if (ActualTime > delay && 1 <= numHands &&  numHands <= (numberOfHands-1))
+            {
+                ActualTime = 0;
+                pool.Get().NextInPatronHand(this, initialPos, (handSize * numHands) + handsDistance);
+                numHands += 1;
+            }
 
-        if (numHands >= numberOfHands)
-        {
-            ActiveHand = delegate { };
+            if (numHands >= numberOfHands)
+            {
+                ActiveHand = delegate { };
+                start = false;
+            } 
         }
+        
 
     }
     
+
+    private void OnTriggerEnter( Collider other)
+    {
+        start = true;
+    }
+
 
     public void NewHand()
     {
@@ -75,7 +94,7 @@ public class HandManager : MonoBehaviour
         pool.Return(hand);
     }
 
-    void InstantiateHand()
+   void InstantiateHand()
     {
         pool.Get().InitializeHand(this, initialPos); //initialPosZ);
     }

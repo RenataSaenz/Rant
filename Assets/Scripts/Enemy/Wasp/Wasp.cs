@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class Wasp : MonoBehaviour
+{
+    [Header("Stats")]
+    private Vector3 _velocity;
+    public float maxSpeed;
+    [SerializeField]
+    private float maxForce;
+    public Transform shootPoint;
+    [SerializeField]private float _fireRate;
+    
+    private float _restartTimeToShoot;
+    
+    [Header("Field of View")]
+    public float viewRadius;
+    public float viewAngle;
+    public LayerMask obstacleMask;
+    public LayerMask detectableAgentMask;  //player mask
+    
+    [Header("WayPoints")]
+    public List<Transform> wayPoints = new List<Transform>();
+    [NonSerialized] public int _wayPointIndex = 0;
+    
+    private StateMachine _fsm;
+
+    private void Awake()
+    {
+        maxForce = FlyweightPointer.Enemy.maxForce;
+        _restartTimeToShoot = _fireRate;
+        
+        _fsm = new StateMachine();
+        _fsm.AddState(PlayerStatesEnum.Patrol, new PatrolingState(_fsm, this));
+        _fsm.AddState(PlayerStatesEnum.Shoot, new ShootingState(_fsm, this));
+        _fsm.ChangeState(PlayerStatesEnum.Patrol);
+        
+    }
+
+    void FixedUpdate()
+    {
+        _fsm.OnUpdate();
+        
+        
+
+    }
+
+    public void Shoot()
+    {
+        _fireRate -= Time.deltaTime;
+        if (_fireRate < 0)
+        {
+            BulletSpawner.instance.Spawn(shootPoint);
+            _fireRate = _restartTimeToShoot;
+        }
+        
+    }
+
+   /* private void OnTriggerStay(Collider other)
+    {
+        var damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            target = other.gameObject;
+            Shoot();
+        }
+    }*/
+    public void WayPoints()
+    {
+        Vector3 desired = wayPoints[_wayPointIndex].transform.position - transform.position;
+        
+        if (desired.magnitude < 0.15f)
+        {
+            _wayPointIndex++;
+            if (_wayPointIndex >= wayPoints.Count)
+                _wayPointIndex = 0;
+        }
+        desired.Normalize();
+        desired *= maxSpeed;
+
+        Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, maxForce);
+
+        ApplyForce(steering);
+        
+        transform.position += _velocity * Time.deltaTime;
+        transform.forward = _velocity;
+        //return steering;
+    }
+    
+    public bool InSight(Vector3 start, Vector3 end)
+    {
+        Vector3 dir = end - start;
+        if (!Physics.Raycast(start, dir, dir.magnitude, obstacleMask))return true;
+        else return false;
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
+
+        Vector3 lineA = DirFromAngle(viewAngle / 2 + transform.eulerAngles.y);
+        Vector3 lineB = DirFromAngle(-viewAngle / 2 + transform.eulerAngles.y);
+
+        Gizmos.DrawLine(transform.position, transform.position + lineA * viewRadius);
+        Gizmos.DrawLine(transform.position, transform.position + lineB * viewRadius);
+
+    }
+    
+    Vector3 DirFromAngle(float angle)
+    {
+        return new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
+    }
+    public void ApplyForce(Vector3 force)
+    {
+        _velocity += force;
+        _velocity = Vector3.ClampMagnitude(_velocity, maxSpeed);
+    }
+
+
+}

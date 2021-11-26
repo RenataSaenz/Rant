@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8446061844177323902}
   - component: {fileID: 8459143509986340694}
   - component: {fileID: 8459143509986340690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

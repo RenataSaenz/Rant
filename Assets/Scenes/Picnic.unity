@@ -1030,7 +1030,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16132
+  m_Name: pb_Mesh15826
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialPosZ: 0
   prefab: {fileID: -5803271594243398761, guid: cfcf24b5e9778374e87ba069ea664f43, type: 3}
-  minFloors: 6
+  minFloors: 20
 --- !u!4 &1257685212
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,7 +1609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55625004, y: 0.9265149}
   m_AnchorMax: {x: 1, y: 0.96700007}
-  m_AnchoredPosition: {x: 12.900055, y: -9}
+  m_AnchoredPosition: {x: 12.899994, y: -9}
   m_SizeDelta: {x: -255, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350041157

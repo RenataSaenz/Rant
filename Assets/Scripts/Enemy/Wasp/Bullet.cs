@@ -25,7 +25,6 @@ public class Bullet : MonoBehaviour
         if (_actualTime > _maxTime)
         {
             _actualTime -= _maxTime;
-            Debug.Log("FIXED");
             BulletSpawner.instance.ReturnBullet(this);
         }
     }
@@ -47,7 +46,6 @@ public class Bullet : MonoBehaviour
       
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("cOLLISION WITH" + other);
         var damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {
