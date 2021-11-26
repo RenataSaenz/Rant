@@ -9,6 +9,7 @@ public class PlayerName : MonoBehaviour
 
     public Text inputText;
     public TextMeshProUGUI score;
+    public HighScore _highScore;
 
    private void Start()
    {
@@ -20,13 +21,12 @@ public class PlayerName : MonoBehaviour
    {
        if (inputText!=null) nameOfPlayer = inputText.text;
    }
-
    public void SetName()
    {
        PointsContoller.playerName = nameOfPlayer;
-       SaveGame.instance.scoreListData.list.Add(new UserDetails{name = PointsContoller.playerName, score = PointsContoller.totalScore});
+       SaveGame.instance.recentPlayersData.list.Add(new UserDetails{name =PointsContoller.playerName, score = PointsContoller.totalScore});
        SaveGame.instance.Save();
        setNameCanvas.SetActive(false);
-       HighScore.instance.LoadScores();
+       _highScore.LoadScores();
    }
 }

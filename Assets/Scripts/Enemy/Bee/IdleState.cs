@@ -12,7 +12,6 @@ public class IdleState : IState
     
     public IdleState(StateMachine fsm, Bee b)
     {
-        Debug.Log("Idle");
         _fsm = fsm;
         _bee = b;
         _target = _bee.target;
@@ -24,7 +23,6 @@ public class IdleState : IState
 
     public void OnUpdate()
     {
-        Debug.Log("Honey");
         HoneyRound();
         FieldOfView();
     }

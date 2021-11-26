@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HighScore : MonoBehaviour
 {
-    public static HighScore instance;
+    //public static HighScore instance;
 
     public GameObject highScoreCanvas;
 
@@ -23,21 +23,18 @@ public class HighScore : MonoBehaviour
     private List<UserDetails> _playersData = new List<UserDetails>();
     private void Awake()
     {
-        if (instance == null)
+        /*if (instance == null)
             instance = this;
         else
         {
             Destroy(gameObject);
             return;
-        }
+        }*/
 
         DontDestroyOnLoad(gameObject);
-    }
-
-    void Start()
-    {
         highScoreCanvas.SetActive(false);
     }
+
 
     public void LoadScores()
     {
@@ -50,14 +47,14 @@ public class HighScore : MonoBehaviour
 
     void SetScores()
     {
-        SaveGame.instance.Load();
+        //SaveGame.instance.Load();
         
-        _playersData =  SaveGame.instance.scoreListData.list.OrderByDescending(i => i.score).ToList();
+        _playersData =  SaveGame.instance.recentPlayersData.list.OrderByDescending(i => i.score).ToList();
        /* foreach( var x in _playersData) {
             Debug.Log( x.name + ": " + x.score.ToString());
         }*/
-
-        GetHighestScores();
+       
+       GetHighestScores();
     }
     
     void GetHighestScores()

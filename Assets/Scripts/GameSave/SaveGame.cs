@@ -9,9 +9,9 @@ public class SaveGame : MonoBehaviour
     public static SaveGame instance;
 
     public int numberGame;
-    public RecentPlayers scoreListData;
+    public RecentPlayers recentPlayersData;
     public event Action<RecentPlayers> OnLoadGameData;
-    string _fileName = "Game{0}Data.sav";   // private string _fileName = "Game{0}Data{1}"; //LevelAlgoDataOtraCosa
+    string _fileName = "Game{0}Data.sav";   // private string _fileName = "Game{0}Data{1}";
     string _saveFilePath;
    
     
@@ -26,13 +26,13 @@ public class SaveGame : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-        
+
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);
     }
 
     private void Start()
-    { 
+    {
         Load();
     }
 
@@ -44,31 +44,29 @@ public class SaveGame : MonoBehaviour
                 File.Create(_saveFilePath);
 
             StreamWriter streamWriter = new StreamWriter(_saveFilePath, false);
-            streamWriter.Write(scoreListData.ToJson());
-            //Debug.Log(scoreListData.ToJson().ToString());
+            streamWriter.Write(recentPlayersData.ToJson());
             streamWriter.Close();
         }
         catch (Exception e)
         {
-            Debug.LogError(e); //o se puede activar un cartel que avise al usuario que hay un error
+            Debug.LogError(e); 
         }
-        //lo ideal seria hacer un finally despues de catch para que siempre cierre el file por si se abre y salta error que se cierre
-       
     }
 
     public void Load()
     {
         try
         {
-            if (scoreListData == null)
-                scoreListData = new RecentPlayers();
+            if (recentPlayersData == null)
+                recentPlayersData = new RecentPlayers();
             if (File.Exists(_saveFilePath))
             {
                 StreamReader streamReader = new StreamReader(_saveFilePath);
-                scoreListData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
+                //recentPlayersData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
+                recentPlayersData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
                 streamReader.Close();
                 
-                OnLoadGameData?.Invoke(scoreListData);
+                OnLoadGameData?.Invoke(recentPlayersData);
             }
         }
         catch (Exception e)
