@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +9,7 @@ public class LangManager : MonoBehaviour
     public static LangManager instance;
     public Language selectedLanguage;
 
-    public string externalURL = "https://drive.google.com/uc?export-download&id-1NF9-Qca3wF_TSpd2LG20O9_Qex0uKxB5";
+    public string externalURL = "https://drive.google.com/uc?export=download&id=1ExTsBQvokOQTomfKSp_ZJKiPPY6yCUjG";
     public Dictionary<Language, Dictionary<string, string>> languageManager = new Dictionary<Language, Dictionary<string, string>>();
 
     public event Action OnUpdate;
@@ -63,4 +63,3 @@ public enum Language
     eng,
     spa
 }
-*/

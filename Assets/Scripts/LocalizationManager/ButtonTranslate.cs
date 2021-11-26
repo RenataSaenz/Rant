@@ -1,4 +1,4 @@
-﻿/*using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,4 +15,4 @@ public class ButtonTranslate : MonoBehaviour
     {
         myText.text = LangManager.instance.GetTranslate(ID);
     }
-}*/
+}
