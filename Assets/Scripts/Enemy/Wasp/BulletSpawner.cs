@@ -25,18 +25,11 @@ public class BulletSpawner : MonoBehaviour
 
     public void Spawn(Transform shootPoint)
     {
-        Debug.Log("Spawn");
         pool.Get().Position(shootPoint);
-    }
-
-    public void Position(Transform  shootPoint)
-    {
-        
     }
 
     public void ReturnBullet(Bullet bullet)
     {
-        Debug.Log("RETURN");
         pool.Return(bullet);
     }
 

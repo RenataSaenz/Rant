@@ -631,14 +631,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 1200412760035563}
-  target: {fileID: 1511017100236019345, guid: 5ab4b0a4312c9d84eacc7f682c1961e0, type: 3}
-  _particles: {fileID: 96530956565100085}
   _damage: 1
-  maxSpeed: 5
-  maxForce: 5
-  beeCollider: {fileID: 6229062945300275263}
+  _maxSpeed: 4
+  _maxForce: 4
+  _particles: {fileID: 96530956565100085}
+  target: {fileID: 1511017100236019345, guid: 5ab4b0a4312c9d84eacc7f682c1961e0, type: 3}
   honey: {fileID: 0}
-  range: 1
+  viewRadius: 10
+  viewAngle: 70
+  attackRange: 1.23
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!135 &6229062945300275263
 SphereCollider:
   m_ObjectHideFlags: 0

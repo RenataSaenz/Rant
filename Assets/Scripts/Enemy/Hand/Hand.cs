@@ -6,8 +6,8 @@ using System;
 public class Hand : MonoBehaviour
 {
     private HandManager manager;
-    [SerializeField]
-    private float speed = 5f;
+    //[SerializeField]
+    //private float speed = 5f;
     float minDist = 0;
     private float _initialPosZ;
     //[SerializeField]
@@ -68,11 +68,6 @@ public class Hand : MonoBehaviour
         _ArtificialHand = NewHand;
         
         //Animation Play
-        
-        
-
-
-
     }
     public void NextInPatronHand(HandManager m, Vector3 pos, float z)
     {

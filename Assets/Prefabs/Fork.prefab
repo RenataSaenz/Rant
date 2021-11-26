@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2901261508222852508}
   - component: {fileID: 2893532176148221938}
   - component: {fileID: 2884368545226169960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8089782346173664124}
   - component: {fileID: 8089782346173664123}
   - component: {fileID: 8089782346173664122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}

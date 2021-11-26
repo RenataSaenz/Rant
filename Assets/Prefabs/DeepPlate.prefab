@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 82197594754601956}
   - component: {fileID: 90256653384360854}
   - component: {fileID: 99518908069925460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DeepPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8398313838531669964}
   - component: {fileID: 8398313838531669965}
   - component: {fileID: 8398313838531669962}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DeepPlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
