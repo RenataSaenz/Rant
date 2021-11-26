@@ -3,43 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointsContoller : MonoBehaviour
+public class PointsContoller
 {
-    public static PointsContoller instance;
-    
     public static int totalScore;
     public static string playerName;
     
-    private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        SaveGame.instance.OnLoadGameData += LoadGameData;
-    }
-
-    public void LoadGameData(RecentPlayers  scoreListData)
-    {
-    }
-
     public static void SumScore(int score)
     {
         totalScore += score;
-       
-
     }
-    
-
-    
-    
 }

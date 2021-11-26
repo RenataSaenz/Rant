@@ -77,7 +77,7 @@ public class Movement
         }
         
         Vector3 dir = _playerModel._swipePoints[_swipePositionCount] - _transform.position;
-        _transform.forward = dir;
+        //_transform.forward = dir;
         _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
     }
   
