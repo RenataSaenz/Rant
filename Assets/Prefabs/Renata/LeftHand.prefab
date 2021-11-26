@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6930891110710125007}
   - component: {fileID: 2726806656229114716}
   - component: {fileID: 872937041052906334}
-  m_Layer: 0
+  - component: {fileID: 1118078709008780590}
+  m_Layer: 11
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,6 +80,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!320 &1118078709008780590
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132472996657971515}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 445c6afcd43e84c448b995cd281d8efd, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 5125768615295893968, guid: 445c6afcd43e84c448b995cd281d8efd, type: 2}
+    value: {fileID: 2726806656229114716}
+  - key: {fileID: 561988165203668871, guid: 445c6afcd43e84c448b995cd281d8efd, type: 2}
+    value: {fileID: 2726806656229114716}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &629083235937391919
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4531089644261304124}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +143,7 @@ GameObject:
   - component: {fileID: 8498766859037075210}
   - component: {fileID: 23734992619040150}
   - component: {fileID: 534486483619347294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

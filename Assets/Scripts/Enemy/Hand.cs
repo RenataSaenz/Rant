@@ -13,6 +13,8 @@ public class Hand : MonoBehaviour
     //[SerializeField]
     //private int _handSize = 30;
     Action _ArtificialHand;
+    private GameObject parent;
+    private Floor floor;
     
     void OnCollisionEnter(Collision col)
     {
@@ -27,27 +29,24 @@ public class Hand : MonoBehaviour
     private void Awake()
     {
         transform.position = Vector3.zero;
-        _ArtificialHand = NewHand;
     }
 
     private void Update()
     {
-        if (transform.position.z <= minDist)
+        if (!floor)
         {
-            _ArtificialHand();
+            _ArtificialHand = ReturnHand;
         }
     }
 
     void NewHand()
     {
         manager.NewHand();
-        _ArtificialHand = ReturnHand;
     }
 
     void ReturnHand()
     {
-        manager.ReturnHand(this);
-        minDist = 0;
+       manager.ReturnHand(this);
     }
 
     public static void TurnOff(Hand floor)
@@ -59,16 +58,26 @@ public class Hand : MonoBehaviour
     {
         floor.gameObject.SetActive(true);
     }
-    public void  InitializeHand(HandManager m, float pos)
+    public void  InitializeHand(HandManager m, Vector3 pos)
     {
-        _initialPosZ = pos;
+        parent = m.floorParent;
+        floor = parent.GetComponent<Floor>();
+        transform.SetParent(parent.transform, false);
         manager = m;
-        transform.position = new Vector3(0, 0, pos);
+        transform.localPosition = pos;
         _ArtificialHand = NewHand;
-        //minDist = 0
+        
+        //Animation Play
+        
+        
+
+
+
     }
-    public void NextInPatronHand(HandManager m, float pos)
+    public void NextInPatronHand(HandManager m, Vector3 pos, float z)
     {
-        InitializeHand(m, pos);
+        var totalPos = new Vector3();
+        totalPos = new Vector3(pos.x, pos.y, pos.z + z);
+        InitializeHand(m, totalPos);
     }
 }

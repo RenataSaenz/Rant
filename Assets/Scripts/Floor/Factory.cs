@@ -16,9 +16,9 @@ public class FloorFactory : IFactory<Floor>
     }
 }
 
-public class ProjectileFactory : IFactory<Projectile>
+public class BulletFactory : IFactory<Bullet>
 {
-    public Projectile Create(Projectile projectilePrefab)
+    public Bullet Create(Bullet projectilePrefab)
     {
         var projectile = Object.Instantiate(projectilePrefab);
         return projectile;
