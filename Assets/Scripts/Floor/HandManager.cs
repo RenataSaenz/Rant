@@ -5,7 +5,8 @@ using System;
 
 public class HandManager : MonoBehaviour
 {
-    public float initialPosZ = 0;
+
+    public Vector3 initialPos;
 
     public Hand prefab;
 
@@ -20,7 +21,15 @@ public class HandManager : MonoBehaviour
 
     [SerializeField] private int numberOfHands;
 
+    public GameObject floorParent;
+
+    public float delay;
+   // public float period = 0.1f;
+    private float time = 0.0f;
+    private int numHands;
     Action ActiveHand;
+
+    private float ActualTime;
     
 
     private void Awake()
@@ -28,6 +37,8 @@ public class HandManager : MonoBehaviour
         //initialPosZ = prefab.transform.position.z;
         pool = new Pool<Hand>(Create, Hand.TurnOff, Hand.TurnOn, 1);
         ActiveHand = InstantiateHand;
+        numHands = 1;
+        ActualTime -= delay;
     }
 
     private void Start()
@@ -35,9 +46,27 @@ public class HandManager : MonoBehaviour
         NewHand();
     }
 
+    private void FixedUpdate()
+    {
+        ActualTime += Time.deltaTime;
+        
+        if (ActualTime > delay && numHands <= (numberOfHands-1))
+        {
+            ActualTime = 0;
+            pool.Get().NextInPatronHand(this, initialPos, (handSize * numHands) + handsDistance);
+            numHands += 1;
+        }
+
+        if (numHands >= numberOfHands)
+        {
+            ActiveHand = delegate { };
+        }
+
+    }
+    
+
     public void NewHand()
     {
-        // pool.Get().InitialFloor(this, initialPosZ); 
         ActiveHand();
     }
 
@@ -48,16 +77,13 @@ public class HandManager : MonoBehaviour
 
     void InstantiateHand()
     {
-        pool.Get().InitializeHand(this, initialPosZ);
-        for (var c = 1; c <= numberOfHands; c++)
-        {
-            pool.Get().NextInPatronHand(this, initialPosZ + (handSize * c) + handsDistance);
-            ActiveHand = delegate { };
-        }
+        pool.Get().InitializeHand(this, initialPos); //initialPosZ);
     }
+    
     public Hand Create()
     {
         HandFactory _factory = new HandFactory();
         return _factory.Create(prefab);
     }
+
 }
