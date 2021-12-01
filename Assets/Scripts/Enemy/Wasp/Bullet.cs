@@ -7,12 +7,14 @@ public class Bullet : MonoBehaviour
     public float speed;
     private float _maxTime;
     private float _actualTime;
-     Rigidbody _rb;
+    Rigidbody _rb;
+    [SerializeField]
+    private ParticleSystem _damageParticles;
 
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody>();
-        _maxTime = 0.5f;    
+        _maxTime = 0.8f;    
     }
 
     private void FixedUpdate()
@@ -25,6 +27,7 @@ public class Bullet : MonoBehaviour
         if (_actualTime > _maxTime)
         {
             _actualTime -= _maxTime;
+            Instantiate(_damageParticles, transform.position, transform.rotation);
             BulletSpawner.instance.ReturnBullet(this);
         }
     }
@@ -51,6 +54,7 @@ public class Bullet : MonoBehaviour
         {
             damageable.SubtractLifeFunc(FlyweightPointer.Enemy.damage);
         }
+        Instantiate(_damageParticles, transform.position, transform.rotation);
         BulletSpawner.instance.ReturnBullet(this);
     }
 }

@@ -29,6 +29,6 @@ public class GameManager : MonoBehaviour
     } 
   
    
-   //SaveGame.instance.Load();  //recargar partida
+   //SaveGame.Instance.Load();  //recargar partida
    
 }

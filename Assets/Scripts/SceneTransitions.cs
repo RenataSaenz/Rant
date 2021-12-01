@@ -25,7 +25,7 @@ public class SceneTransitions : MonoBehaviour
     public void YouWon(params object[] parameters)
     {
         SceneManager.LoadScene("YouWon");
-       // ScoreManager.instance.PointsContoller();
+       // ScoreManager.Instance.PointsContoller();
     }
 
     public void YouLost(params object[] parameters)
@@ -48,6 +48,7 @@ public class SceneTransitions : MonoBehaviour
     public void Rules()
     {
         SceneManager.LoadScene("Rules");
+        
     }
 
     public void Credits()

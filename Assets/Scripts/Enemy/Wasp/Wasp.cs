@@ -7,7 +7,6 @@ public class Wasp : MonoBehaviour
     [Header("Stats")]
     private Vector3 _velocity;
     public float maxSpeed;
-    [SerializeField]
     private float maxForce;
     public Transform shootPoint;
     [SerializeField]private float _fireRate;
@@ -41,9 +40,6 @@ public class Wasp : MonoBehaviour
     void FixedUpdate()
     {
         _fsm.OnUpdate();
-        
-        
-
     }
 
     public void Shoot()
@@ -54,18 +50,7 @@ public class Wasp : MonoBehaviour
             BulletSpawner.instance.Spawn(shootPoint);
             _fireRate = _restartTimeToShoot;
         }
-        
     }
-
-   /* private void OnTriggerStay(Collider other)
-    {
-        var damageable = other.GetComponent<IDamageable>();
-        if (damageable != null)
-        {
-            target = other.gameObject;
-            Shoot();
-        }
-    }*/
     public void WayPoints()
     {
         Vector3 desired = wayPoints[_wayPointIndex].transform.position - transform.position;

@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 9005d7dfdeeb7324289c592977a5e954
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cartoon Fun
+  fontNames:
+  - Cartoon Fun
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0a606afccfc671b4091a4e6eb3bd6f26, type: 3}
+  - {fileID: 12800000, guid: 3fbc64bff851146438e74b1f83c878a7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

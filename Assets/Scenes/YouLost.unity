@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 17953959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 907989b2dae36ed4481203e5bc914460, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &158120882
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberGame: 0
-  scoreListData:
+  recentPlayersData:
     list: []
 --- !u!4 &668222179
 Transform:
@@ -3860,7 +3860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 19.599998, y: 76.80001}
+  m_AnchoredPosition: {x: 19.59999, y: 76.8}
   m_SizeDelta: {x: 408.86, y: 52.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124714389

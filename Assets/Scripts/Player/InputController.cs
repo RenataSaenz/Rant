@@ -8,11 +8,11 @@ public class InputController
     Movement _movement;
     PlayerModel _playerModel;
     private Vector3 _movementInput;
-    
-    private Vector2 _startPosition;
+    Vector2 _startPosition;
     Vector2 _endPosition;
     //private int touchCount = 0;
     Action controlsMethod;
+    int _weaponIndex = 0;
 
     public InputController(PlayerModel playerModel, Movement m)
     {
@@ -28,8 +28,27 @@ public class InputController
         if (_movementInput.x != 0)
            _movement.Move( _movementInput.x);
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _playerModel.weapons[_weaponIndex].Shoot();
+            Debug.Log("shoot");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _playerModel.weapons[_weaponIndex].TurnOff();
+            _weaponIndex++;
+            if (_weaponIndex >= _playerModel.weapons.Count)
+                _weaponIndex = 0;
+            _playerModel.weapons[_weaponIndex].TurnOn();
+        }
+
+
+
+
         controlsMethod();
         
+        //_movement.CalculateSwipePosition();
 #if UNITY_ANDROID && !UNITY_EDITOR
         _movement.CalculateSwipePosition(_endPosition, _startPosition);
 #endif
@@ -37,11 +56,11 @@ public class InputController
 
     public void StartTouch(Vector2 position)
     {
-            _startPosition = position;
+        _startPosition = position;
     }
     public void EndTouch(Vector2 position)
     {
-            _endPosition = position;
+        _endPosition = position;
     }
 
     void NormalControls()
