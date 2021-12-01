@@ -1,13 +1,13 @@
-﻿/*using System.Collections;
-using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class LanguageU : MonoBehaviour
 {
-    public static Dictionary<Language, Dictionary<string, string>> LoadCodex(string source)
+    public static Dictionary<SystemLanguage, Dictionary<string, string>> LoadCodex(string source)
     {
-        var codex = new Dictionary<Language, Dictionary<string, string>>();
+        Debug.Log("entro");
+        var codex = new Dictionary<SystemLanguage, Dictionary<string, string>>();
 
         var columnToIndex = new Dictionary<string, int>();
         bool first = true;
@@ -30,9 +30,9 @@ public class LanguageU : MonoBehaviour
             {
                 string langName = cells[columnToIndex["Idioma"]];
 
-                Language lang;
+                SystemLanguage lang;
 
-                lang = (Language)Enum.Parse(typeof(Language), langName);
+                lang = (SystemLanguage)Enum.Parse(typeof(SystemLanguage), langName);
 
                 var idName = cells[columnToIndex["ID"]];
 

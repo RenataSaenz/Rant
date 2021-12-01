@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HighScore : MonoBehaviour
 {
-    //public static HighScore instance;
+    //public static HighScore Instance;
 
     public GameObject highScoreCanvas;
 
@@ -23,15 +23,14 @@ public class HighScore : MonoBehaviour
     private List<UserDetails> _playersData = new List<UserDetails>();
     private void Awake()
     {
-        /*if (instance == null)
-            instance = this;
+        /*if (Instance == null)
+            Instance = this;
         else
         {
             Destroy(gameObject);
             return;
         }*/
 
-        DontDestroyOnLoad(gameObject);
         highScoreCanvas.SetActive(false);
     }
 
@@ -47,7 +46,7 @@ public class HighScore : MonoBehaviour
 
     void SetScores()
     {
-        //SaveGame.instance.Load();
+        //SaveGame.Instance.Load();
         
         _playersData =  SaveGame.instance.recentPlayersData.list.OrderByDescending(i => i.score).ToList();
        /* foreach( var x in _playersData) {
@@ -59,14 +58,22 @@ public class HighScore : MonoBehaviour
     
     void GetHighestScores()
     {
-
-        highScore.text = _playersData[0].score.ToString();
-        secondHighScore.text = _playersData[1].score.ToString();
-        thirdHighScore.text = _playersData[2].score.ToString();
-        
-        nameHighScore.text =_playersData[0].name;
-        nameSecondHighScore.text= _playersData[1].name;
-        nameThirdHighScore.text = _playersData[2].name;
+        if (_playersData[0] != null)
+        {
+            highScore.text = _playersData[0].score.ToString();
+            nameHighScore.text =_playersData[0].name;
+        }
+        if (_playersData[1] != null)
+        {
+            secondHighScore.text = _playersData[1].score.ToString();
+            nameSecondHighScore.text= _playersData[1].name;
+        }
+        else return;
+        if (_playersData[2] != null)
+        {
+            thirdHighScore.text = _playersData[2].score.ToString();
+            nameThirdHighScore.text = _playersData[2].name;
+        }
     }
 }
 

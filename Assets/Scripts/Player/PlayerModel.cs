@@ -16,7 +16,10 @@ public class PlayerModel : MonoBehaviour
     Rigidbody _rb;
     Transform transform;
     public List<Vector3> _swipePoints = new List<Vector3>();
+    public List<Weapon> weapons;
     
+    
+
     [Header("Scripts")]
     public ManagerUI managerUI;
     public FasterPowerUp fasterPowerUp;

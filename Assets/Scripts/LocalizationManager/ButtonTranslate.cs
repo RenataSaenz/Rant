@@ -1,18 +1,19 @@
-﻿/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public class ButtonTranslate : MonoBehaviour
 {
     public string ID;
     public Text myText;
-    private void Start()
+    private void Awake()
     {
-        LangManager.instance.OnUpdate += ChangeLang;
+        Debug.Log(LocalizationManager.Instance.gameObject);
+        LocalizationManager.Instance.ChangeLanguage += ChangeLang;
     }
 
     void ChangeLang()
     {
-        myText.text = LangManager.instance.GetTranslate(ID);
+        Debug.Log("ChangeLang");
+      //if (myText != null) 
+          myText.text = LocalizationManager.Instance.GetTranslate(ID);
     }
-}*/
+}

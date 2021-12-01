@@ -19,16 +19,21 @@ public class SaveGame : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else
+       /* else
         {
             Destroy(gameObject);
             return;
-        }
-
-        DontDestroyOnLoad(gameObject);
+        }*/
+        //DontDestroyOnLoad(gameObject);
 
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);
+
+        if (!File.Exists(_saveFilePath))
+        {
+            File.Create(_saveFilePath);
+        }
+        
     }
 
     private void Start()
@@ -39,10 +44,7 @@ public class SaveGame : MonoBehaviour
     public void Save()
     {
         try
-        { 
-            if (!File.Exists(_saveFilePath))
-                File.Create(_saveFilePath);
-
+        {
             StreamWriter streamWriter = new StreamWriter(_saveFilePath, false);
             streamWriter.Write(recentPlayersData.ToJson());
             streamWriter.Close();
@@ -54,19 +56,19 @@ public class SaveGame : MonoBehaviour
     }
 
     public void Load()
-    {
+    { 
+        if (recentPlayersData == null)
+            recentPlayersData = new RecentPlayers();
         try
         {
-            if (recentPlayersData == null)
-                recentPlayersData = new RecentPlayers();
+            
             if (File.Exists(_saveFilePath))
             {
                 StreamReader streamReader = new StreamReader(_saveFilePath);
-                //recentPlayersData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
                 recentPlayersData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
                 streamReader.Close();
                 
-                OnLoadGameData?.Invoke(recentPlayersData);
+               OnLoadGameData?.Invoke(recentPlayersData);
             }
         }
         catch (Exception e)

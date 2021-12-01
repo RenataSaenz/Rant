@@ -27,7 +27,7 @@ public class Test : MonoBehaviour
     void FinishAds()
     {
       //  OnPlayRewards?.Invoke();
-      //  ManagerUI.instance.AdsRewards();
+      //  ManagerUI.Instance.AdsRewards();
       ManagerUI.AdsRewards();
     }
 }

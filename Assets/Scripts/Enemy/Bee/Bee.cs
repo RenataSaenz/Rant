@@ -13,7 +13,6 @@ public class Bee : MonoBehaviour
     private int _damage = 5;
     [SerializeField]
     private float _maxSpeed;
-    [SerializeField]
     private float _maxForce;
     private int _counter = 1;
     

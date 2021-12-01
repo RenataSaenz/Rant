@@ -19,7 +19,6 @@ public class ChasingState : IState
 
     public void OnStart()
     {
-        Debug.Log("Chasing");
     }
 
     public void OnUpdate()

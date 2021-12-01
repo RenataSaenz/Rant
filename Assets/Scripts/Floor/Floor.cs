@@ -123,8 +123,8 @@ public class Floor : MonoBehaviour
              Vector3 pos = transform.position;
              pos = (obstaclesPositions[ObstaclesNumbersList[o] - 1]).transform.position;
             var index = Random.Range(0, obstacles.Length);
-            //var instance = Instantiate(obstacles[index], pos, Quaternion.identity);
-            //instance.transform.parent = gameObject.transform;
+            //var Instance = Instantiate(obstacles[index], pos, Quaternion.identity);
+            //Instance.transform.parent = gameObject.transform;
             obstacles[index].transform.position = pos;
             obstacles[index].SetActive(true);
         }
@@ -149,8 +149,8 @@ public class Floor : MonoBehaviour
             Vector3 pos = transform.position;
             pos = (coinsPositions[CoinsNumbersList[f] - 1]).transform.position;
             var index = Random.Range(0, food.Length);
-            //var instance = Instantiate(obstacles[index], pos, Quaternion.identity);
-            //instance.transform.parent = gameObject.transform;
+            //var Instance = Instantiate(obstacles[index], pos, Quaternion.identity);
+            //Instance.transform.parent = gameObject.transform;
             food[index].transform.position = pos;
             food[index].SetActive(true);
         }

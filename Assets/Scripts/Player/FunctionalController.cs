@@ -15,12 +15,10 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
     private View _view;
     private InputController _inputController;
     private Movement _movement;
-
     private void Awake()
     {
         _playerModel = GetComponent<PlayerModel>();
         _view = GetComponent<View>();
-        
         
         _life = _playerModel.life;
         _maxLife = _playerModel.maxLife;
@@ -47,17 +45,13 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
     {
         _inputController.OnUpdate();
     }
-
     void OnCollisionEnter(Collision collision)
     {
         var collectable = collision.gameObject.GetComponent<ICollectable>();
 
         if (collectable != null)
         {
-            if (collectable != null)
-            {
-                collectable.Collect();
-            }
+            collectable.Collect();
         }
     }
     private void OnTriggerEnter(Collider other)
