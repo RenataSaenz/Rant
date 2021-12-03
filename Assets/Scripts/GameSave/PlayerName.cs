@@ -24,7 +24,6 @@ public class PlayerName : MonoBehaviour
    public void SetName()
    {
        PointsContoller.playerName = nameOfPlayer;
-       Debug.Log(nameOfPlayer);
        PointsContoller.playerName = nameOfPlayer;
        SaveGame.instance.recentPlayersData.list.Add(new UserDetails{name = PointsContoller.playerName, score = PointsContoller.totalScore});
        SaveGame.instance.Save();

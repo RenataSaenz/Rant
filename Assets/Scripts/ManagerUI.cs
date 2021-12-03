@@ -7,7 +7,7 @@ using System;
 
 public class ManagerUI : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    [SerializeField] private Text _totalScore;
     public GameObject pausedMenu;
     public Image cameraShutDown;
     public float speedFade;
@@ -38,7 +38,7 @@ public class ManagerUI : MonoBehaviour
     public void ShowScore()
     {
         var score = PointsContoller.totalScore;
-        text.text = "SCORE: " + score.ToString();
+        _totalScore.text = score.ToString();
     }
     public void OnCliclkSound()
     {

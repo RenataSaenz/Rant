@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9006916837849094214}
   - component: {fileID: -1824066287771234002}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletWasp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c275cbcfd008d346a18c645b421a665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  _damageParticles: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
+  _speed: 0
+  _damage: 20
+  _explosionParticles: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
     type: 3}
+  _mesh: {fileID: 4300018, guid: 6c5328542e8c29e45b226f00e5257201, type: 3}
+  _material: {fileID: 2100000, guid: 4f7547f24146bd24082f64368356caae, type: 2}

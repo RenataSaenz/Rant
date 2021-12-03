@@ -11,7 +11,7 @@ public class FloorManager : MonoBehaviour
 
     public Pool<Floor> pool;
 
-    public int minFloors;
+    //public int minFloors;
     int _counter;
 
     Action ActiveFloor;
@@ -47,7 +47,7 @@ public class FloorManager : MonoBehaviour
         {
             pool.Get().InitializeFloor(this, initialPosZ);
         }
-        else if (_counter > 1 && _counter <= minFloors)
+        else if (_counter > 1) //&& _counter <= minFloors)
         {
             if(_counter%2==1)
             {
@@ -58,14 +58,15 @@ public class FloorManager : MonoBehaviour
                 pool.Get().MiddleFloor(this, initialPosZ + _floorSize);
             }
         }
-        else if (_counter == (minFloors + 1))
-        {
-            pool.Get().FinishFloor(this, initialPosZ + _floorSize);
-        }
         else
         {
             ActiveFloor = delegate { };
         }
+        // else if (_counter == (minFloors + 1))
+        // {
+        //     pool.Get().FinishFloor(this, initialPosZ + _floorSize);
+        // }
+        
     }
     public Floor Create()
     { 

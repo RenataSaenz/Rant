@@ -7,6 +7,6 @@ public class Pistol : Weapon
     public override void Shoot()
     {
         base.Shoot();
-        Debug.Log("pistol.shoot");
+        Debug.Log("Pistol Shoot");
     }
 }

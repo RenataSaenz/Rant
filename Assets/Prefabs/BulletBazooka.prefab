@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9006916837849094214}
   - component: {fileID: -1824066287771234002}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletBazooka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  _damage: 100
   _damageParticles: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
     type: 3}

@@ -6,12 +6,8 @@ using System;
 public class Hand : MonoBehaviour
 {
     private HandManager manager;
-    //[SerializeField]
-    //private float speed = 5f;
     float minDist = 0;
     private float _initialPosZ;
-    //[SerializeField]
-    //private int _handSize = 30;
     Action _ArtificialHand;
     private GameObject parent;
     private Floor floor;

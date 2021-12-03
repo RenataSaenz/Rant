@@ -19,21 +19,18 @@ public class SaveGame : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-       /* else
+        else
         {
             Destroy(gameObject);
             return;
-        }*/
+        }
         //DontDestroyOnLoad(gameObject);
 
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);
 
-        if (!File.Exists(_saveFilePath))
-        {
-            File.Create(_saveFilePath);
-        }
-        
+        // if (!File.Exists(_saveFilePath))
+        //     File.Create(_saveFilePath);
     }
 
     private void Start()
@@ -57,10 +54,11 @@ public class SaveGame : MonoBehaviour
 
     public void Load()
     { 
-        if (recentPlayersData == null)
-            recentPlayersData = new RecentPlayers();
+        
         try
         {
+            if (recentPlayersData == null)
+                recentPlayersData = new RecentPlayers();
             
             if (File.Exists(_saveFilePath))
             {
@@ -70,11 +68,17 @@ public class SaveGame : MonoBehaviour
                 
                OnLoadGameData?.Invoke(recentPlayersData);
             }
+            else
+            {
+                File.Create(_saveFilePath);
+            }
         }
         catch (Exception e)
         {
             Debug.LogError(e);
         }
+        
+       
      
     }
     
