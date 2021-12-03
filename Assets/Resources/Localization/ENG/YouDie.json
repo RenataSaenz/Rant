@@ -1,0 +1,9 @@
+{
+  "youDiedTitleText" : "You Died",
+  "highScoresText": "HIGHSCORES",
+  "writeNameText" : "Write your name:",
+  "saveText" : "Save",
+  "scoreText" : "Score",
+  "retryText" : "Retry",
+  "exitText" : "Exit"
+}

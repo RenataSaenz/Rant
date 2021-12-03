@@ -3155,6 +3155,37 @@ PrefabInstance:
       propertyPath: _fireRate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _explosionParticles
+      value: 
+      objectReference: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
+        type: 3}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _mesh
+      value: 
+      objectReference: {fileID: 4300018, guid: 6c5328542e8c29e45b226f00e5257201, type: 3}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _material
+      value: 
+      objectReference: {fileID: 2100000, guid: 31684c903e311c24eaa478f486f9ce36, type: 2}
+    - target: {fileID: 3309244089814780841, guid: aef484fe47031fb419c5edd62fb1a44f,
+        type: 3}
+      propertyPath: _target.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aef484fe47031fb419c5edd62fb1a44f, type: 3}
 --- !u!4 &8090055724225784624 stripped

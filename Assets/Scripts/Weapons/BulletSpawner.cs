@@ -7,25 +7,23 @@ public class BulletSpawner : MonoBehaviour
     public static BulletSpawner instance;
     public Bullet bullet;
     public Pool<Bullet> pool;
+    public BulletBuilder bulletBuilder;
+    public Transform _firstBullet;
 
     void Awake()
     {
         instance = this;
+        bulletBuilder = new BulletBuilder();
     }
     private void Start()
     {
-        pool = new Pool<Bullet>(Create, Bullet.TurnOff, Bullet.TurnOn,  1);
+        bulletBuilder.ShootPoint(_firstBullet);
+        pool = new Pool<Bullet>(bulletBuilder.Build, Bullet.TurnOff, Bullet.TurnOn,  1);
     }
 
-    public Bullet Create()
+    public void Spawn()
     {
-        BulletFactory _factory = new BulletFactory();
-        return _factory.Create(bullet);
-    }
-
-    public void Spawn(Transform shootPoint)
-    {
-        pool.Get().Position(shootPoint);
+        bulletBuilder.Configure();
     }
 
     public void ReturnBullet(Bullet bullet)

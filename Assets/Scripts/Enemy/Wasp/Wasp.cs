@@ -7,7 +7,7 @@ public class Wasp : MonoBehaviour
     [Header("Stats")]
     private Vector3 _velocity;
     public float maxSpeed;
-    private float maxForce;
+    //private float maxForce;
     public Transform shootPoint;
     [SerializeField]private float _fireRate;
     
@@ -23,11 +23,19 @@ public class Wasp : MonoBehaviour
     public List<Transform> wayPoints = new List<Transform>();
     [NonSerialized] public int _wayPointIndex = 0;
     
+    [Header("Bullet")]
+    [SerializeField]protected float _speed;
+    [SerializeField]protected float _damage;
+    [SerializeField]protected ParticleSystem _explosionParticles;
+    [SerializeField]protected Mesh _mesh;
+    [SerializeField]protected Material _material;
+    [SerializeField]protected LayerMask _target;
+    
     private StateMachine _fsm;
 
     private void Awake()
     {
-        maxForce = FlyweightPointer.Enemy.maxForce;
+       // maxForce = FlyweightPointer.Enemy.maxForce;
         _restartTimeToShoot = _fireRate;
         
         _fsm = new StateMachine();
@@ -47,7 +55,23 @@ public class Wasp : MonoBehaviour
         _fireRate -= Time.deltaTime;
         if (_fireRate < 0)
         {
-            BulletSpawner.instance.Spawn(shootPoint);
+            BulletSpawner.instance.bulletBuilder.Damage(_damage);
+            BulletSpawner.instance.bulletBuilder.Speed(_speed);
+            BulletSpawner.instance.bulletBuilder.Material(_material);
+            BulletSpawner.instance.bulletBuilder.Mesh(_mesh);
+            BulletSpawner.instance.bulletBuilder.Particles(_explosionParticles);
+            BulletSpawner.instance.bulletBuilder.ShootPoint(shootPoint);
+            BulletSpawner.instance.bulletBuilder.Target(_target);
+            
+            BulletSpawner.instance.Spawn();
+            
+            // Bullet.bulletBuilder.Damage(_damage);
+            // Bullet.bulletBuilder.Speed(speed);
+            // Bullet.bulletBuilder.Material(_material);
+            // Bullet.bulletBuilder.Mesh(_mesh);
+            // Bullet.bulletBuilder.Particles(_explosionParticles);
+            // BulletSpawner.instance.Spawn(shootPoint);
+            
             _fireRate = _restartTimeToShoot;
         }
     }
@@ -64,7 +88,7 @@ public class Wasp : MonoBehaviour
         desired.Normalize();
         desired *= maxSpeed;
 
-        Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, maxForce);
+        Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, FlyweightPointer.Enemy.maxForce);
 
         ApplyForce(steering);
         

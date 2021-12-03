@@ -2,5 +2,7 @@
   "playBtnText" : "Jugar",
   "exitMenuBtnText": "Salir",
   "creditsBtnText" : "Créditos",
-  "rulesBtnText" : "Reglas"
+  "rulesBtnText" : "Reglas",
+  "creditsTitleText" : "Créditos",
+  "menuButton" : "Menú"
 }

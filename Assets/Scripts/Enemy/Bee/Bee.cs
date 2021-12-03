@@ -13,7 +13,7 @@ public class Bee : MonoBehaviour
     private int _damage = 5;
     [SerializeField]
     private float _maxSpeed;
-    private float _maxForce;
+    //private float _maxForce;
     private int _counter = 1;
     
     public ParticleSystem _particles;
@@ -34,7 +34,7 @@ public class Bee : MonoBehaviour
     
     private void Start()
     {
-        _maxForce = FlyweightPointer.Enemy.maxForce;
+        //_maxForce = FlyweightPointer.Enemy.maxForce;
         
         _fsm = new StateMachine();
         
@@ -90,7 +90,7 @@ public class Bee : MonoBehaviour
         desired.Normalize();
         desired *= _maxSpeed;
 
-        Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, _maxForce);
+        Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, FlyweightPointer.Enemy.maxForce);
 
         ApplyForce(steering);
         //return steering;

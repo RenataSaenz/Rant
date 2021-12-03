@@ -2,6 +2,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HighScore : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class HighScore : MonoBehaviour
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI secondHighScore;
     public TextMeshProUGUI thirdHighScore;
-    public TextMeshProUGUI nameScore;
+    public Text nameScore;
     public TextMeshProUGUI nameHighScore;
     public TextMeshProUGUI nameSecondHighScore;
     public TextMeshProUGUI nameThirdHighScore;
@@ -23,14 +24,6 @@ public class HighScore : MonoBehaviour
     private List<UserDetails> _playersData = new List<UserDetails>();
     private void Awake()
     {
-        /*if (Instance == null)
-            Instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }*/
-
         highScoreCanvas.SetActive(false);
     }
 
@@ -46,8 +39,6 @@ public class HighScore : MonoBehaviour
 
     void SetScores()
     {
-        //SaveGame.Instance.Load();
-        
         _playersData =  SaveGame.instance.recentPlayersData.list.OrderByDescending(i => i.score).ToList();
        /* foreach( var x in _playersData) {
             Debug.Log( x.name + ": " + x.score.ToString());
@@ -58,18 +49,15 @@ public class HighScore : MonoBehaviour
     
     void GetHighestScores()
     {
-        if (_playersData[0] != null)
-        {
             highScore.text = _playersData[0].score.ToString();
             nameHighScore.text =_playersData[0].name;
-        }
-        if (_playersData[1] != null)
+            
+        if (_playersData.Count > 1)
         {
             secondHighScore.text = _playersData[1].score.ToString();
             nameSecondHighScore.text= _playersData[1].name;
         }
-        else return;
-        if (_playersData[2] != null)
+        if (_playersData.Count > 2)
         {
             thirdHighScore.text = _playersData[2].score.ToString();
             nameThirdHighScore.text = _playersData[2].name;

@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class Bazooka : Weapon
 {
-
     public override void Shoot()
     {
         base.Shoot();
-        Debug.Log("bazooka.shoot");
+        Debug.Log("Pistol Shoot");
     }
     
 }

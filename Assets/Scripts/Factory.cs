@@ -4,32 +4,23 @@ using UnityEngine;
 
 public interface IFactory<T>
 {
-    T Create(T parameter);
+    T Create(T bulletPrefab);
 }
 
 public class FloorFactory : IFactory<Floor>
 {
-    public Floor Create(Floor floorPrefab)
+    public Floor Create(Floor bulletPrefab)
     {
-        var floor = Object.Instantiate(floorPrefab);
+        var floor = Object.Instantiate(bulletPrefab);
         return floor;
-    }
-}
-
-public class BulletFactory : IFactory<Bullet>
-{
-    public Bullet Create(Bullet projectilePrefab)
-    {
-        var projectile = Object.Instantiate(projectilePrefab);
-        return projectile;
     }
 }
 
 public class HandFactory : IFactory<Hand>
 {
-    public Hand Create(Hand handPrefab)
+    public Hand Create(Hand bulletPrefab)
     {
-        var hand = Object.Instantiate(handPrefab);
+        var hand = Object.Instantiate(bulletPrefab);
         return hand;
     }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6212201449690442726}
   - component: {fileID: 7880582873309116820}
   - component: {fileID: 7338565167354328967}
-  - component: {fileID: -1876362944990831373}
   - component: {fileID: -7172689641271475843}
   - component: {fileID: 5363611563144933663}
+  - component: {fileID: 142520848663801376}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316380496520477681}
   m_LocalRotation: {x: -0.08946582, y: -0.012764735, z: -0.14066884, w: 0.9859235}
-  m_LocalPosition: {x: 0.0404, y: 0.3754, z: -4.539}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.3754, z: -4.539}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,21 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-1876362944990831373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316380496520477681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c275cbcfd008d346a18c645b421a665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  _damageParticles: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
-    type: 3}
 --- !u!54 &-7172689641271475843
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,7 +107,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.059132963
-  m_Height: 0.24912369
+  m_Radius: 0.054727513
+  m_Height: 0.109455034
   m_Direction: 2
-  m_Center: {x: 0.00000004190422, y: -0.0005998005, z: 0.19485034}
+  m_Center: {x: 0.00000008497118, y: 0.00042235793, z: 0.10301629}
+--- !u!114 &142520848663801376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316380496520477681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c275cbcfd008d346a18c645b421a665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _damage: 100
+  _explosionParticles: {fileID: 4927758430890295417, guid: 9162293e6cc990845a93a04aff667793,
+    type: 3}
+  _mesh: {fileID: 4300018, guid: 6c5328542e8c29e45b226f00e5257201, type: 3}
+  _material: {fileID: 2100000, guid: 4f7547f24146bd24082f64368356caae, type: 2}

@@ -40,19 +40,16 @@ public class LocalizationManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start");
         InvokeLanguage();
     }
 
     public void InvokeLanguage()
     {
-        Debug.Log("InvokeLanguage");
         ChangeLanguage?.Invoke();
     }
     
     public void SwitchLanguage()
     {
-        Debug.Log("SwitchLanguage");
         language = language == SystemLanguage.Spanish ? SystemLanguage.English : SystemLanguage.Spanish;
         InvokeLanguage();
         CurrentLanguage.SettedLanguage(language);
@@ -93,7 +90,6 @@ public class LocalizationManager : MonoBehaviour
     
     public string GetTranslate(string id)
     {
-        Debug.Log("GetTranslate");
         if (!translations[language].ContainsKey(id))
         {
             Debug.LogError($"Key '{id}' for language '{language}' not found");

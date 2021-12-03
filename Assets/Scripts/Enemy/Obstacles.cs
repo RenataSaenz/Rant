@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacles : MonoBehaviour
 {
-    public int damage;
+    //public int damage;
     public Obstacles SetPosition(Transform t)
     {
         transform.position = t.position;

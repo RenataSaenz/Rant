@@ -25,33 +25,32 @@ public class InputController
     {
         _movementInput.x = Input.GetAxis("Horizontal");
         _movementInput.y = Input.GetAxis("Vertical");
+        
         if (_movementInput.x != 0)
            _movement.Move( _movementInput.x);
 
         if (Input.GetKeyDown(KeyCode.F))
-        {
             _playerModel.weapons[_weaponIndex].Shoot();
-            Debug.Log("shoot");
-        }
-
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
-            _playerModel.weapons[_weaponIndex].TurnOff();
             _weaponIndex++;
-            if (_weaponIndex >= _playerModel.weapons.Count)
-                _weaponIndex = 0;
-            _playerModel.weapons[_weaponIndex].TurnOn();
+            if (_weaponIndex >= _playerModel.weapons.Count) _weaponIndex = 0;
         }
 
-
-
-
+        WeaponInUse();
         controlsMethod();
         
         //_movement.CalculateSwipePosition();
 #if UNITY_ANDROID && !UNITY_EDITOR
         _movement.CalculateSwipePosition(_endPosition, _startPosition);
 #endif
+    }
+    void WeaponInUse()
+    {
+        foreach (var weapon in _playerModel.weapons) 
+            if (weapon == _playerModel.weapons[_weaponIndex]) weapon.TurnOn();
+            else weapon.TurnOff();
     }
 
     public void StartTouch(Vector2 position)
@@ -69,7 +68,6 @@ public class InputController
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Pausa");
             Time.timeScale = 0f;
             controlsMethod = PausedControls;
             _playerModel.managerUI.ActivePause();
