@@ -35,7 +35,9 @@ public class Wasp : MonoBehaviour
 
     private void Awake()
     {
-       // maxForce = FlyweightPointer.Enemy.maxForce;
+        //Error solucionado de Parcial 2
+        // maxForce = FlyweightPointer.Enemy.maxForce;
+       
         _restartTimeToShoot = _fireRate;
         
         _fsm = new StateMachine();
@@ -65,12 +67,6 @@ public class Wasp : MonoBehaviour
             
             BulletSpawner.instance.Spawn();
             
-            // Bullet.bulletBuilder.Damage(_damage);
-            // Bullet.bulletBuilder.Speed(speed);
-            // Bullet.bulletBuilder.Material(_material);
-            // Bullet.bulletBuilder.Mesh(_mesh);
-            // Bullet.bulletBuilder.Particles(_explosionParticles);
-            // BulletSpawner.instance.Spawn(shootPoint);
             
             _fireRate = _restartTimeToShoot;
         }
