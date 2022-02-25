@@ -1,6 +1,0 @@
-Pool y Factory para la creación y reutilización del piso.
-Observer para la vida.
-Event Manager para la implementacion y cambios generados por el uso de powerUps, y para la administración de GameOver y GameWon.
-Observer, para la actualización del lifeBar.
-
-Si bien es cierto que Event Manager pordría no ser el método más óptimo para los powerUps, planeamos a futuro hacer que interactuen con más scripts validando así su uso. En caso contrario de no ser utilizado de esa manera, lo cambiaremos.

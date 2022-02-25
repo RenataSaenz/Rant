@@ -93,7 +93,6 @@ public class Bee : MonoBehaviour
         Vector3 steering = Vector3.ClampMagnitude(desired - _velocity, FlyweightPointer.Enemy.maxForce);
 
         ApplyForce(steering);
-        //return steering;
     }
     
     public bool InSight(Vector3 start, Vector3 end)
