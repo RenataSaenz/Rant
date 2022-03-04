@@ -24,7 +24,7 @@ public class SaveGame : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);

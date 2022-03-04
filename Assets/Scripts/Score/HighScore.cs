@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class HighScore : MonoBehaviour
     private int score1;
     private int score2;
     private List<UserDetails> _playersData = new List<UserDetails>();
+
     private void Awake()
     {
         highScoreCanvas.SetActive(false);
@@ -31,10 +33,12 @@ public class HighScore : MonoBehaviour
     public void LoadScores()
     {
         highScoreCanvas.SetActive(true);
+        //StartCoroutine(WaitForLoadScene(5));
         SaveGame.instance.Load();
+        
         score.text = PointsContoller.totalScore.ToString();
-        nameScore.text = PointsContoller.playerName + ":";
-        SetScores();
+         nameScore.text = PointsContoller.playerName + ":";
+         SetScores();
     }
 
     void SetScores()
@@ -63,5 +67,16 @@ public class HighScore : MonoBehaviour
             nameThirdHighScore.text = _playersData[2].name;
         }
     }
+    
+    IEnumerator WaitForLoadScene(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SaveGame.instance.Load();
+        score.text = PointsContoller.totalScore.ToString();
+        nameScore.text = PointsContoller.playerName + ":";
+        SetScores();
+    }
 }
+
+
 
