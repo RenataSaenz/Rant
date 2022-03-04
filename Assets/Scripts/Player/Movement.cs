@@ -27,6 +27,8 @@ public class Movement
     public void Move(float h)
     {
         _transform.position += _transform.right * h *  _swipeSpeed * Time.deltaTime;
+        
+        
     }
     public void MoveForward(float maxDistanceUnits)
     {
@@ -41,25 +43,51 @@ public class Movement
             new Vector3(_transform.position.x, _transform.position.y,  startPos.z), 700 * Time.deltaTime);
         }
     }
-
-    public void CalculateSwipePosition(Vector2 _endPosition, Vector2 _startPosition)
+    public void CalculateSwipePosition(int wp)
     {
-
-        if (_startPosition.x < _endPosition.x) //swipe derecha
-        { 
-            if (_swipePositionCount < 2)
-                _swipePositionCount += 1; 
+        if (wp != null) _swipePositionCount = wp;
             
-        }
-        if (_startPosition.x > _endPosition.x) //swipe izq
-        {  
-            if (_swipePositionCount > 0)
-                _swipePositionCount -= -1;
-            
-        }
-        
-        Vector3 dir = _playerModel._swipePoints[_swipePositionCount] - _transform.position;
-        _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
+            _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[_swipePositionCount],
+                _swipeSpeed * Time.deltaTime);
+          
+       
     }
-    
+
+    // public void CalculateSwipePosition(Vector2 _endPosition, Vector2 _startPosition)
+    // {
+    //
+    //     if (_startPosition.x < _endPosition.x) //swipe derecha
+    //     {
+    //         
+    //         //_transform.position = Vector3.MoveTowards(_transform.position,
+    //           //  _playerModel._swipePoints[2], _swipeSpeed * Time.deltaTime);
+    //         
+    //         //_transform.position =  _playerModel._swipePoints[2];
+    //         
+    //         _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[2],
+    //             _swipeSpeed * Time.deltaTime);
+    //         //
+    //         // if (_swipePositionCount == 2) return;
+    //         // _swipePositionCount += 1; 
+    //         
+    //     }
+    //     if (_startPosition.x > _endPosition.x) //swipe izq
+    //     {
+    //       //  _transform.position = Vector3.MoveTowards(_transform.position,
+    //        //     _playerModel._swipePoints[0], _swipeSpeed * Time.deltaTime);
+    //         //_transform.position =  _playerModel._swipePoints[0];
+    //         
+    //         _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[0],
+    //             _swipeSpeed * Time.deltaTime);
+    //        // if (_swipePositionCount == 0) return;
+    //        // //  
+    //        //  _swipePositionCount -= -1;
+    //        //  
+    //     }
+    //     
+    //    
+    //     //Vector3 dir = _playerModel._swipePoints[_swipePositionCount] - _transform.position;
+    //   //  _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
+    //    
+    // }
 }

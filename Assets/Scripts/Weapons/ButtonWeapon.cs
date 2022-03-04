@@ -19,9 +19,7 @@ public class ButtonWeapon : MonoBehaviour
     {
          SetWeaponButton();
     }
-    
-    
-    
+
     private void SetWeaponButton()
     {
         foreach (var weapon in _weapons)

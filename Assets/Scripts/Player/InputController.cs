@@ -13,6 +13,7 @@ public class InputController
     //private int touchCount = 0;
     Action controlsMethod;
     int _weaponIndex = 0;
+    int side = 1;
 
     public InputController(PlayerModel playerModel, Movement m)
     {
@@ -40,10 +41,13 @@ public class InputController
 
         WeaponInUse();
         controlsMethod();
+        // if (_endPosition!=null && _startPosition!=null) 
+       // _movement.CalculateSwipePosition(_endPosition, _startPosition);
         
-        //_movement.CalculateSwipePosition();
 #if UNITY_ANDROID && !UNITY_EDITOR
-        _movement.CalculateSwipePosition(_endPosition, _startPosition);
+
+       _movement.CalculateSwipePosition(side);
+
 #endif
     }
     void WeaponInUse()
@@ -60,6 +64,13 @@ public class InputController
     public void EndTouch(Vector2 position)
     {
         _endPosition = position;
+        CalculatePos();
+    }
+
+    void CalculatePos()
+    {
+        if (_startPosition.x < _endPosition.x && side!=2) side +=1;
+        if (_startPosition.x > _endPosition.x&& side!=0) side -= 1;
     }
 
     void NormalControls()

@@ -9,6 +9,8 @@ public class AdReward : MonoBehaviour
 {
     [FormerlySerializedAs("AdObject")] [SerializeField] private Image _adObject;
     [SerializeField] private int _points = 50;
+    [SerializeField] private int _gems = 0;
+    [SerializeField] private GameObject _adGameObject;
 
     private void Start()
     {
@@ -17,9 +19,11 @@ public class AdReward : MonoBehaviour
     public void AddPointsEvent()
     {
             PointsContoller.SumScore(_points);
+            GemsContoller.SumGems(_gems);
     }
     public void DisableEvent()
     {
-        _adObject.enabled= false;
+       if (_adObject !=null) _adObject.enabled= false;
+       if (_adGameObject !=null)_adGameObject.SetActive(false);
     }
 }

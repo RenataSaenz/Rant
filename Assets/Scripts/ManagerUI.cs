@@ -37,6 +37,7 @@ public class ManagerUI : MonoBehaviour
     }
     public void ShowScore()
     {
+        if (_totalScore == null) return;
         var score = PointsContoller.totalScore;
         _totalScore.text = score.ToString();
     }
