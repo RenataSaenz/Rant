@@ -47,7 +47,7 @@ public class SceneTransitions : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Picnic");
+        SceneManager.LoadScene("Loading");
     }
 
     public void Rules()
