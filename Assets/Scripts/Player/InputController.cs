@@ -12,7 +12,7 @@ public class InputController
     Vector2 _endPosition;
     //private int touchCount = 0;
     Action controlsMethod;
-    int _weaponIndex = 0;
+    // int _weaponIndex = 0;
     int side = 1;
     
     
@@ -36,16 +36,16 @@ public class InputController
         if (_movementInput.x != 0)
            _movement.Move( _movementInput.x);
 
-        if (Input.GetKeyDown(KeyCode.F))
-            _playerModel.weapons[_weaponIndex].Shoot();
-        
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            _weaponIndex++;
-            if (_weaponIndex >= _playerModel.weapons.Count) _weaponIndex = 0;
-        }
+        // if (Input.GetKeyDown(KeyCode.F))
+        //     _playerModel.weapons[_weaponIndex].Shoot();
+        //
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     _weaponIndex++;
+        //     if (_weaponIndex >= _playerModel.weapons.Count) _weaponIndex = 0;
+        // }
 
-        WeaponInUse();
+        // WeaponInUse();
         controlsMethod();
         // if (_endPosition!=null && _startPosition!=null) 
        // 
@@ -57,12 +57,12 @@ public class InputController
 #endif
         
     }
-    void WeaponInUse()
-    {
-        foreach (var weapon in _playerModel.weapons) 
-            if (weapon == _playerModel.weapons[_weaponIndex]) weapon.TurnOn();
-            else weapon.TurnOff();
-    }
+    // void WeaponInUse()
+    // {
+    //     foreach (var weapon in _playerModel.weapons) 
+    //         if (weapon == _playerModel.weapons[_weaponIndex]) weapon.TurnOn();
+    //         else weapon.TurnOff();
+    // }
 
     public void StartTouch(Vector2 position)
     {
