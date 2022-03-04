@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using MiniJSON;
-using TMPro.EditorUtilities;
+//using TMPro.EditorUtilities;
+//using TMPro;
 using UnityEngine.SceneManagement;
 
 public class LocalizationManager : MonoBehaviour

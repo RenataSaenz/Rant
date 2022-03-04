@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Gacha : MonoBehaviour
 {
-   //public CharacterType obtainedCharacter;
+   //public GunType obtainedGun;
    public TextMeshProUGUI _diamonds;
    public TextMeshProUGUI _rollCost;
    [SerializeField] private GameObject _freeDiamonds;
-   
-   public int remainingCurrency;
    
    public int costPerRoll;
    
@@ -24,30 +23,36 @@ public class Gacha : MonoBehaviour
    private int _rollResult;
    
    private int _pityCounter;
-   public enum CharacterType
-   {
-      FiveStarFocus,
-      FiveStar,
-      FourStar,
-      ThreeStar
-   }
 
+
+   [SerializeField] private ItemWeapon[] rewards;
+   
+   [SerializeField] private Image _chest;
+   [SerializeField] private GameObject _rewardGameObject;
+   
+   private List<ItemWeapon> _weaponsWon = new List<ItemWeapon>();
+   
    private void Start()
    {
+      _rewardGameObject.SetActive(false);
       _freeDiamonds.SetActive(false);
       _rollCost.text = costPerRoll.ToString();
+
+      // SaveRewardJson.instance.weaponsGained.list.Add(new ItemWeapon{id = 5});
+      // SaveRewardJson.instance.weaponsGained.list.Add(new ItemWeapon{id = 6});
+      // SaveRewardJson.instance.Save();
    }
 
    private void Update()
    {
-      _diamonds.text = remainingCurrency.ToString();
+      _diamonds.text = GemsContoller.totalGems.ToString();
    }
 
-   public bool Roll(out CharacterType obtainedCharacter)
+   public bool Roll(out RewardType obtainedGun)
    {
-      if (remainingCurrency >= costPerRoll)
+      if (GemsContoller.totalGems >= costPerRoll)
       {
-         remainingCurrency -= costPerRoll;
+         GemsContoller.SumGems(-costPerRoll);
          
          _rollResult = Random.Range(0, 101);
 
@@ -55,15 +60,15 @@ public class Gacha : MonoBehaviour
          {
             if (_rollResult < _rarityChance[i])  //si quiero agregar mayor probabilidad ya sea por fecha especial etc, multiplico el rarityChance[i] * algo. Tengo mayores chances si lo multiplico. Puedo usar una variable y que default sea 1.
             {
-               obtainedCharacter = (CharacterType)i;
+               obtainedGun = (RewardType)i;
                
-               if (obtainedCharacter != CharacterType.FiveStarFocus)
+               if (obtainedGun != RewardType.FiveStarFocus)
                {
                   _pityCounter++;
                   
                   if (_pityCounter >= pityForGuaranteedRare)
                   {
-                     obtainedCharacter = CharacterType.FiveStarFocus;
+                     obtainedGun =  RewardType.FiveStarFocus;
                      _pityCounter = 0;
                   }
                }
@@ -76,22 +81,25 @@ public class Gacha : MonoBehaviour
                _rollResult -= _rarityChance[i];
          }
          
-         obtainedCharacter = CharacterType.ThreeStar;
+         obtainedGun =  RewardType.ThreeStar;
          return false;
 
       }
       else
       {
-         obtainedCharacter = CharacterType.ThreeStar;
+         obtainedGun = RewardType.ThreeStar;
          return false;
       }
    }
-
    public void BTN_Roll()
    {
-      CharacterType obtained;
+      _rewardGameObject.SetActive(false);
+      RewardType obtained;
       if (Roll(out obtained))
       {
+         _rewardGameObject.SetActive(true);
+         SetReward(obtained);
+         //AddRewardToGame(obtained);
          Debug.Log("Conseguiste: " + obtained);
       }
       else
@@ -101,4 +109,70 @@ public class Gacha : MonoBehaviour
       }
    }
    
+   private void SetReward( RewardType obtained)
+   {
+      ItemWeapon r = Array.Find(rewards, reward => reward.rewardType == obtained);
+      _chest.sprite = r.image;
+      
+      int IDGained = r.id;
+      Debug.Log(IDGained.ToString());
+      AddReward(IDGained);
+      
+      //SaveRewardJson.instance.weaponsGained.list.Add(new ItemWeapon{id = IDGained});
+      //SaveRewardJson.instance.Save();
+   }
+
+   void AddReward(int IDGained)
+   {
+      //SaveRewardJson.instance.Load();
+      
+      _weaponsWon = SaveRewardJson.instance.weaponsGained.list.OrderByDescending(i => i.id).ToList();
+      
+      foreach (var i in _weaponsWon)
+      {
+         if (IDGained == i.id) return;
+      }
+      
+      SaveRewardJson.instance.weaponsGained.list.Add(new ItemWeapon{id = IDGained});
+      SaveRewardJson.instance.Save();
+   }
+   
+
+  /* void SetSavedReward(Weapons.Types weapon)
+   {
+      if (ICanAddRewardToList(weapon))
+      {
+         string rewardsWon = PlayerPrefs.GetString("Rewards");
+         
+         if(rewardsWon == "")
+            PlayerPrefs.SetString("Rewards", (int)weapon + "");
+         else
+            PlayerPrefs.SetString("Rewards", rewardsWon +  "/" + (int)weapon);  //solo rewards obtenidas
+         
+         
+      }
+   }
+
+   bool ICanAddRewardToList(Weapons.Types weapon)
+   {
+      if (PlayerPrefs.GetString("Rewards") == "") return true;
+      
+      string[] rewardsWon = PlayerPrefs.GetString("Rewards").Split('/');
+
+      for (int i = 0; i < rewardsWon.Length; i++)
+      {
+         if ((int) weapon == Convert.ToInt32(rewardsWon[i]))
+            return false;
+      }
+
+      return true;
+   }*/
+}
+
+public enum RewardType
+{
+   FiveStarFocus,
+   FiveStar,
+   FourStar,
+   ThreeStar
 }

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SaveGame : MonoBehaviour
+public class SaveRewardJson : MonoBehaviour
 {
-    public static SaveGame instance;
+    public static SaveRewardJson instance;
 
-    public int numberGame;
-    public RecentPlayers recentPlayersData;
-    public event Action<RecentPlayers> OnLoadGameData;
+    public int numberGame = 1;
+    public WeaponsWon weaponsGained;
+    public event Action<WeaponsWon> OnLoadRewardData;
     string _fileName = "Game{0}Data.sav";   // private string _fileName = "Game{0}Data{1}";
     string _saveFilePath;
    
@@ -24,13 +24,10 @@ public class SaveGame : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this);
 
         _saveFilePath = Application.persistentDataPath + "/" + string.Format(_fileName, numberGame);
         Debug.Log(_saveFilePath);
-
-        // if (!File.Exists(_saveFilePath))
-        //     File.Create(_saveFilePath);
     }
 
     private void Start()
@@ -43,7 +40,7 @@ public class SaveGame : MonoBehaviour
         try
         {
             StreamWriter streamWriter = new StreamWriter(_saveFilePath, false);
-            streamWriter.Write(recentPlayersData.ToJson());
+            streamWriter.Write(weaponsGained.ToJson());
             streamWriter.Close();
         }
         catch (Exception e)
@@ -57,20 +54,22 @@ public class SaveGame : MonoBehaviour
         
         try
         {
-            if (recentPlayersData == null)
-                recentPlayersData = new RecentPlayers();
+            if (weaponsGained == null)
+                weaponsGained = new WeaponsWon();
             
             if (File.Exists(_saveFilePath))
             {
                 StreamReader streamReader = new StreamReader(_saveFilePath);
-                recentPlayersData = JsonUtility.FromJson<RecentPlayers>(streamReader.ReadToEnd());
+                weaponsGained = JsonUtility.FromJson<WeaponsWon>(streamReader.ReadToEnd());
                 streamReader.Close();
                 
-               OnLoadGameData?.Invoke(recentPlayersData);
+                OnLoadRewardData?.Invoke(weaponsGained);
             }
             else
             {
                 File.Create(_saveFilePath);
+                weaponsGained.list.Add(new ItemWeapon{id = 5});
+                weaponsGained.list.Add(new ItemWeapon{id = 6});
             }
         }
         catch (Exception e)
