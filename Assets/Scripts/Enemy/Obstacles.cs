@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacles : MonoBehaviour
+public class Obstacles : MonoBehaviour, IDamageable
 {
-    //public int damage;
+    [SerializeField] float life = 5;
     public Obstacles SetPosition(Transform t)
     {
         transform.position = t.position;
@@ -17,6 +18,11 @@ public class Obstacles : MonoBehaviour
         return this;
     }
 
+    private void Update()
+    {
+        if (life<=0)gameObject.SetActive(false);
+    }
+
     void OnCollisionEnter(Collision col)
     {
         var damageable = col.collider.GetComponent<IDamageable>();
@@ -24,6 +30,14 @@ public class Obstacles : MonoBehaviour
         {
             damageable.SubtractLifeFunc(FlyweightPointer.Enemy.damage);
         }
-        
     }
+    public void AddLifeFunc(float dmg)
+    {
+       
+    }
+    public void SubtractLifeFunc(float dmg)
+    { 
+        life -= dmg;
+    }
+    
 }
