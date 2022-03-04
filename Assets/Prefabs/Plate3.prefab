@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c9c6d9721f7a247b0bb9c0139211a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  life: 5
 --- !u!65 &5461603691078768116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57,8 +57,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.708441, y: 0.17804003, z: 1.7344532}
-  m_Center: {x: 0.03945577, y: 0.021666285, z: -0.01674378}
+  m_Size: {x: 1.708441, y: 0.28263807, z: 1.7344532}
+  m_Center: {x: 0.03945577, y: 0.073965296, z: -0.01674378}
 --- !u!1 &7078728506333035730
 GameObject:
   m_ObjectHideFlags: 0
