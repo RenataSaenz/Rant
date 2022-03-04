@@ -24,7 +24,6 @@ public class PlayerModel : MonoBehaviour
     [Header("Scripts")]
     public ManagerUI managerUI;
     public FasterPowerUp fasterPowerUp;
-    //[SerializeField]private SetRewardsToGame _setRewardsToGame;
     
     private List<ItemWeapon> _weaponsWon = new List<ItemWeapon>();
     [SerializeField]private ItemWeapon[] _allWeapons;
@@ -40,21 +39,11 @@ public class PlayerModel : MonoBehaviour
         {
             SaveRewardJson.instance.Save();
         }
-        //SaveRewardJson.instance.Load();
         _weaponsWon = SaveRewardJson.instance.weaponsGained.list.ToList();
         foreach (var i in _weaponsWon)
         {
             ItemWeapon r = Array.Find(_allWeapons, weapon => weapon.id ==i.id);
-            //if (r.weaponData.I == null) return;
-            
             weapons.Add(r.weaponData);
         }
-        
-        
-        //if (_setRewardsToGame == null) return;
-       // foreach (var weapon in _setRewardsToGame.weaponsInGame)
-       // {
-          //  weapons.Add(weapon.weaponData);
-        //}
     }
 }

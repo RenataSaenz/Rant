@@ -17,8 +17,7 @@ public class ManagerUI : MonoBehaviour
 
     private static GameObject _rewardAchievment;
     
-    
-
+    [SerializeField] private Text _totalGems;
 
     private void Start()
     {
@@ -34,6 +33,7 @@ public class ManagerUI : MonoBehaviour
     private void Update()
     {
        ShowScore();
+       if (_totalGems !=null) _totalGems.text = GemsContoller.totalGems.ToString();
     }
     public void ShowScore()
     {

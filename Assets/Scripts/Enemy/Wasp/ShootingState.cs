@@ -48,7 +48,7 @@ public class ShootingState : IState
                     {
                         
                         _target = item.gameObject;
-                        Debug.Log("entra " + _target);
+                    //    Debug.Log("entra " + _target);
                         _enemy.transform.LookAt(_target.transform);
                         _enemy.Shoot();
                     }

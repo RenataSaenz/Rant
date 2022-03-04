@@ -6,6 +6,7 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
     public event Action<float, float> OnHudLife;
     public event Action OnDamge;
     
+    
     private float _life;
     private float _maxLife;
     private float _minLife;
@@ -39,6 +40,7 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
         
         SwipeManager2.instance.OnStartTouch += _inputController.StartTouch;
         SwipeManager2.instance.OnEndTouch += _inputController.EndTouch;
+        //SwipeManager2.instance.OnUpdateTouch += UpdateTouch;
     }
 
     private void FixedUpdate()
@@ -54,6 +56,32 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
             collectable.Collect();
         }
     }
+    
+    // void UpdateTouch(Vector2 position)
+    // {
+    //     if (transform.position.x < 1 &&  transform.position.x > -1)
+    //     {
+    //         transform.position = new Vector3(position.x, 0.063f,-4.7f );
+    //     }
+    //     else
+    //     {
+    //         if (transform.position.x < -1) 
+    //         {
+    //             transform.position = Vector3.MoveTowards(transform.position,  new Vector3(-0.99f, 0.063f,-4.7f ),
+    //                      2 * Time.deltaTime);
+    //             
+    //         }
+    //         
+    //         if (transform.position.x > 1) 
+    //         {
+    //             transform.position = Vector3.MoveTowards(transform.position,  new Vector3(0.99f, 0.063f,-4.7f ),
+    //                 2 * Time.deltaTime);
+    //             
+    //         }
+    //     }
+    //     
+    //    
+    // }
     private void OnTriggerEnter(Collider other)
     {
         var obj = other.gameObject.GetComponent<ICollectable>();

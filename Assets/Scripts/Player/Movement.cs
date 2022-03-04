@@ -43,51 +43,53 @@ public class Movement
             new Vector3(_transform.position.x, _transform.position.y,  startPos.z), 700 * Time.deltaTime);
         }
     }
-    public void CalculateSwipePosition(int wp)
+    // public void CalculateSwipePosition(Vector2 endPos, Vector2 startPos)
+    // {
+    //     if (_startPosition.x < _endPosition.x)
+    //     {
+    //         Vector3 dir = _playerModel._swipePoints[2] - _transform.position; 
+    //         _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
+    //     }
+    //        
+    //     if (_startPosition.x > _endPosition.x)
+    //     {
+    //         Vector3 dir = _playerModel._swipePoints[0] - _transform.position; 
+    //         _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
+    //     }
+    // }
+
+    // public void CalculateMovement(Vector2 startPos, Vector2 endPos)
+    // {
+    //         if (startPos.x < endPos.x && _swipePositionCount!=2) _swipePositionCount +=1;
+    //         if (startPos.x > endPos.x&& _swipePositionCount!=0) _swipePositionCount -= 1;
+    //         
+    //         
+    //         _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[_swipePositionCount],
+    //             _swipeSpeed * Time.deltaTime);
+    //
+    // }
+    
+
+    public void CalculateSwipePosition(Vector2 _endPosition, Vector2 _startPosition)
     {
-        if (wp != null) _swipePositionCount = wp;
+    
+        if (_startPosition.x < _endPosition.x) //swipe derecha
+        {
             
-            _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[_swipePositionCount],
+            _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[2],
                 _swipeSpeed * Time.deltaTime);
-          
+            
+        }
+        if (_startPosition.x > _endPosition.x) //swipe izq
+        {
+            
+            _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[0],
+                _swipeSpeed * Time.deltaTime);
+        }
+        
+       
+        //Vector3 dir = _playerModel._swipePoints[_swipePositionCount] - _transform.position;
+      //  _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
        
     }
-
-    // public void CalculateSwipePosition(Vector2 _endPosition, Vector2 _startPosition)
-    // {
-    //
-    //     if (_startPosition.x < _endPosition.x) //swipe derecha
-    //     {
-    //         
-    //         //_transform.position = Vector3.MoveTowards(_transform.position,
-    //           //  _playerModel._swipePoints[2], _swipeSpeed * Time.deltaTime);
-    //         
-    //         //_transform.position =  _playerModel._swipePoints[2];
-    //         
-    //         _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[2],
-    //             _swipeSpeed * Time.deltaTime);
-    //         //
-    //         // if (_swipePositionCount == 2) return;
-    //         // _swipePositionCount += 1; 
-    //         
-    //     }
-    //     if (_startPosition.x > _endPosition.x) //swipe izq
-    //     {
-    //       //  _transform.position = Vector3.MoveTowards(_transform.position,
-    //        //     _playerModel._swipePoints[0], _swipeSpeed * Time.deltaTime);
-    //         //_transform.position =  _playerModel._swipePoints[0];
-    //         
-    //         _transform.position = Vector3.MoveTowards(_transform.position, _playerModel._swipePoints[0],
-    //             _swipeSpeed * Time.deltaTime);
-    //        // if (_swipePositionCount == 0) return;
-    //        // //  
-    //        //  _swipePositionCount -= -1;
-    //        //  
-    //     }
-    //     
-    //    
-    //     //Vector3 dir = _playerModel._swipePoints[_swipePositionCount] - _transform.position;
-    //   //  _transform.position +=  dir * _swipeSpeed * Time.deltaTime;
-    //    
-    // }
 }

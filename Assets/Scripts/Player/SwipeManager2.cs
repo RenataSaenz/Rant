@@ -68,7 +68,7 @@ public class SwipeManager2 : MonoBehaviour
 
                 if (touch.fingerId == _idTouch)
                 {
-                    _actualPos = GetWorldPositionPlane(touch.position);
+                   _actualPos = GetWorldPositionPlane(touch.position);
                     //_actualPos = _cam.ScreenToWorldPoint(touch.position);  //esto es si esta orthographic
                     OnUpdateTouch(_actualPos);
                 }
