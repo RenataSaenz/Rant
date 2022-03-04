@@ -23,10 +23,13 @@ public class AdsGame : MonoBehaviour
         instance = this;
     }
 
+    
     public void Active(AdsType nameAds, Action methodFinished, Action methodFailed)
     {
         try
         {
+
+            if (WatchedAdsInt.watchedAds > 3) return;
             if (Advertisement.IsReady(nameAds.ToString()) && !Advertisement.isShowing)
             {
                 ShowOptions options = new ShowOptions();
@@ -34,6 +37,7 @@ public class AdsGame : MonoBehaviour
                 _CallFailed = methodFailed;
                 _CallFinished = methodFinished;
                 Advertisement.Show(nameAds.ToString(), options);
+                WatchedAdsInt.watchedAds++;
             }
             else
             {
@@ -53,6 +57,7 @@ public class AdsGame : MonoBehaviour
         else
             _CallFailed?.Invoke();
     }
+
 
     public enum AdsType
     {
