@@ -41,12 +41,13 @@ public class SceneTransitions : MonoBehaviour
     public void Play()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Loading");
         PointsContoller.totalScore = 0;
+        SceneManager.LoadScene("Loading");
     }
     public void Retry()
     {
         Time.timeScale = 1f;
+        PointsContoller.totalScore = 0;
         SceneManager.LoadScene("Picnic");
     }
 
