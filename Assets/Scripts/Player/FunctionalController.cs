@@ -16,6 +16,8 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
     private View _view;
     private InputController _inputController;
     private Movement _movement;
+    
+    int _weaponIndex = 0;
     private void Awake()
     {
         _playerModel = GetComponent<PlayerModel>();
@@ -56,7 +58,40 @@ public class FunctionalController : MonoBehaviour,  IDamageable, IPowerUp
             collectable.Collect();
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+            _playerModel.weapons[_weaponIndex].Shoot();
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _weaponIndex++;
+            if (_weaponIndex >= _playerModel.weapons.Count) _weaponIndex = 0;
+        }
+        WeaponInUse();
+    }
+
+    public void OnClickChangeWeapon()
+    {
+        _weaponIndex++;
+        if (_weaponIndex >= _playerModel.weapons.Count) _weaponIndex = 0;
+    }
+
+    public void OnClickShoot()
+    {
+        _playerModel.weapons[_weaponIndex].Shoot();
+    }
     
+    
+    
+    void WeaponInUse()
+    {
+        foreach (var weapon in _playerModel.weapons) 
+            if (weapon == _playerModel.weapons[_weaponIndex]) weapon.TurnOn();
+            else weapon.TurnOff();
+    }
+
     // void UpdateTouch(Vector2 position)
     // {
     //     if (transform.position.x < 1 &&  transform.position.x > -1)
